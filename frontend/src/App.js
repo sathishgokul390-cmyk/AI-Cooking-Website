@@ -4,7 +4,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <button>
+      <button style={{background:
+        "red"
+      }}>
         Click me!
       </button>    
       <h1>AI-Cooking-Website</h1>
