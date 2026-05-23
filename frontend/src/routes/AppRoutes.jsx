@@ -9,11 +9,14 @@ import AiGenerator from '../pages/AiGenerator/AiGenerator';
 import Features from '../pages/Features/Features'
 import About from '../pages/About/About'
 // import TrendingRecipes from '../sections/TrendingRecipes/TrendingRecipes'
-import TrendingRecipes from '../pages/TrendingRecipe/TrendingRecipes'
+import TrendingRecipes from '../pages/TrendingRecipe/TrendingRecipes';
+import Navbar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
+    <Navbar />
       <Routes>
         {/* navbar */}
         <Route path='/' element={<Home />} />
@@ -26,6 +29,7 @@ export default function AppRoutes() {
         <Route path='/register' element={<Register />} />
         <Route path='/dashboard' element={<Dashboard />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
