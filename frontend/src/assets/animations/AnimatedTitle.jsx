@@ -37,17 +37,19 @@ function AnimatedTitle({ onComplete }) {
 
   return (
     <div className="container">
+      <div className="pan-loader">
+        <div className="pan"></div>
+        <div className="handle"></div>
+        <div className="flame"></div>
+      </div>
+
       <motion.h1
-        variants={container}
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
         className="title"
       >
-        {text.split("").map((char, index) => (
-          <motion.span key={index} variants={letterAnimation}>
-            {char}
-          </motion.span>
-        ))}
+        AI_Cooking_Website
       </motion.h1>
     </div>
   );
