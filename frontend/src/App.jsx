@@ -18,8 +18,27 @@
 // }
 
 // export default App;
-import AppRoutes from './routes/AppRoutes'
+import { useEffect, useState } from "react";
+import AppRoutes from "./routes/AppRoutes";
+import AnimatedTitle from "./assets/animations/AnimatedTitle";
+import Navbar from "./components/navbar/Navbar";
 
 export default function App() {
-  return <AppRoutes />
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <>
+      {/* {loading ? <AnimatedTitle /> : <AppRoutes />} */}
+      
+      <AppRoutes />
+    </>
+  );
 }

@@ -6,15 +6,8 @@
 
 /* Dark luxury background */
 body {
-  background: linear-gradient(
-    135deg,
-    #0a0a0a 0%,
-    #111111 40%,
-    #1a120b 100%
-  );
   font-family: Arial, sans-serif;
-  overflow: hidden;
-} 
+}
 
 /* Center container */
 .container {
@@ -31,11 +24,9 @@ body {
   position: absolute;
   width: 500px;
   height: 500px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 140, 0, 0.25),
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(255, 140, 0, 0.25),
+      transparent 70%);
   filter: blur(100px);
   animation: glowMove 4s infinite alternate ease-in-out;
 }
@@ -76,6 +67,7 @@ body {
   from {
     transform: scale(1) translate(-30px, -20px);
   }
+
   to {
     transform: scale(1.2) translate(30px, 20px);
   }
@@ -100,6 +92,57 @@ body {
   color: white;
   font-size: 40px;
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* ban animation */
+/* full logo fill overlay */
+.fill-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(90deg,
+      #ff8c00,
+      #ff6b00);
+
+  /* convert white logo to orange */
+  mix-blend-mode: color;
+
+  /* left to right animation */
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: fullFill 3s linear forwards;
+}
+
+/* fill animation */
+@keyframes fullFill {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* dark & light mode */
+html {
+  background-color: #f9fafb;
+  color: #111111;
+}
+
+/* dark mode */
+html.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* smooth theme transition */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
