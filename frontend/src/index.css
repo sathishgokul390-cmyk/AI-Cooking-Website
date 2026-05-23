@@ -1,13 +1,102 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Dark luxury background */
+body {
+  background: linear-gradient(
+    135deg,
+    #0a0a0a 0%,
+    #111111 40%,
+    #1a120b 100%
+  );
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+} 
+
+/* Center container */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Luxury orange glow background */
+.container::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 140, 0, 0.25),
+    transparent 70%
+  );
+  filter: blur(100px);
+  animation: glowMove 4s infinite alternate ease-in-out;
+}
+
+/* Main title */
+.title {
+  color: #ffffff;
+  font-size: 70px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  z-index: 2;
+
+  /* luxury orange glow */
+  text-shadow:
+    0 0 10px #ff8c00,
+    0 0 20px #ff8c00,
+    0 0 40px #ff6b00,
+    0 0 80px rgba(255, 140, 0, 0.5);
+}
+
+/* each letter */
+.title span {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* hover effect */
+.title span:hover {
+  transform: translateY(-8px) scale(1.15);
+  color: #ffb347;
+  text-shadow:
+    0 0 20px #ffb347,
+    0 0 40px #ff8c00;
+}
+
+/* background glow animation */
+@keyframes glowMove {
+  from {
+    transform: scale(1) translate(-30px, -20px);
+  }
+  to {
+    transform: scale(1.2) translate(30px, 20px);
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .title {
+    font-size: 38px;
+    text-align: center;
+    padding: 20px;
+  }
+}
+
+/* home */
+.home-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  color: white;
+  font-size: 40px;
 }
