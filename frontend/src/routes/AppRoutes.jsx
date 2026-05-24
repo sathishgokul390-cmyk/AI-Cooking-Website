@@ -13,6 +13,7 @@ import TrendingRecipes from '../pages/TrendingRecipe/TrendingRecipes';
 import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
 
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>

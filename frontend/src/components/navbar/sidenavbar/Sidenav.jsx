@@ -1,10 +1,7 @@
 import {
   Clock3,
-  Bookmark,
   ChevronDown,
   Search,
-  Menu,
-  X,
   Salad,
   Flame,
   Apple,
@@ -16,13 +13,17 @@ import {
 
 import { useState } from "react";
 
-export default function RecipeDetails() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+export default function Sidenav() {
 
-  // Dropdown States
-  const [openDropdown, setOpenDropdown] = useState(null);
+  // ACTIVE DROPDOWN
+  const [openDropdown, setOpenDropdown] =
+    useState(null);
 
-  // Reusable Filters
+  // SEARCH STATE
+  const [search, setSearch] =
+    useState("");
+
+  // FILTERS
   const filters = [
     {
       title: "Cooking Time",
@@ -122,120 +123,267 @@ export default function RecipeDetails() {
   ];
 
   return (
-    <div className="min-h-screen text-white flex">
-      {/* Sidebar */}
-      <div
-        className={`
-          fixed lg:relative z-50 top-0 left-0 h-screen w-[320px]
-          bg-black/40 border-r border-white/10
-          transform transition-transform duration-300 flex flex-col
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-          lg:translate-x-0
+    <aside
+      className="
+        fixed left-0
+        w-[280px]
+        h-screen
+        bg-white
+        dark:bg-[#081028]
+        border-r
+        border-black/10
+        dark:border-white/10
+        overflow-y-auto
+        overflow-x-hidden
+        z-50
+        transition-all duration-300
+      "
+      style={{
+        scrollbarWidth: "none",
+      }}
+    >
+
+      {/* HIDE SCROLLBAR */}
+      <style>
+        {`
+          aside::-webkit-scrollbar {
+            display: none;
+          }
         `}
+      </style>
+
+      {/* CONTENT */}
+      <div
+        className="
+          px-6 py-6
+          flex flex-col
+          min-h-screen
+        "
       >
-        {/* Mobile Close */}
-        <div className="lg:hidden flex justify-end p-5">
-          <button onClick={() => setSidebarOpen(false)}>
-            <X size={28} />
-          </button>
+
+        {/* TITLE */}
+        <div className="mb-8">
+
+          <h1
+            className="
+              text-3xl font-bold
+              text-orange-500
+            "
+          >
+            Filters
+          </h1>
+
+          <p
+            className="
+              text-slate-500
+              dark:text-slate-400
+              mt-2
+            "
+          >
+            Discover perfect recipes
+          </p>
+
         </div>
 
-        <div className="p-6 overflow-y-scroll flex-1" style={{ scrollbarWidth: "none" }}>
-          {/* Search */}
-          <div className="relative mb-10">
-            <Search
-              size={18}
-              className="absolute left-4 top-4 text-slate-500"
-            />
+        {/* SEARCH */}
+        <div className="relative mb-6">
 
-            <input
-              type="text"
-              placeholder="Search recipes..."
-              className="w-full bg-[#111827] border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none"
-            />
-          </div>
+          <Search
+            size={20}
+            className="
+              absolute
+              left-5 top-1/2
+              -translate-y-1/2
+              text-slate-500
+            "
+          />
 
-          {/* Filters */}
+          <input
+            type="text"
+            value={search}
+            onChange={(e) =>
+              setSearch(e.target.value)
+            }
+            placeholder="Search filters..."
+            className="
+              w-full
+              bg-slate-100
+              dark:bg-[#0F172A]
+              border
+              border-black/10
+              dark:border-white/10
+              rounded-2xl
+              py-4 pl-14 pr-4
+              outline-none
+              text-black
+              dark:text-white
+              placeholder:text-slate-500
+              focus:border-orange-400/40
+              transition-all duration-300
+            "
+          />
+        </div>
+
+        {/* FILTERS */}
+        <div className="flex-1">
+
           {filters.map((filter, index) => {
+
             const Icon = filter.icon;
-            const isOpen = openDropdown === filter.title;
+
+            const isOpen =
+              openDropdown === filter.title;
 
             return (
-              <div key={index} className="mb-4">
-                {/* Button */}
+              <div key={index}>
+
+                {/* BUTTON */}
                 <button
                   onClick={() =>
                     setOpenDropdown(
-                      isOpen ? null : filter.title
+                      isOpen
+                        ? null
+                        : filter.title
                     )
                   }
                   className="
-                    w-full flex items-center justify-between
-                    px-4 py-4 rounded-2xl
-                    bg-[#111827]
-                    border border-white/5
-                    hover:bg-[#1E293B]
-                    hover:border-white/10
+                    group
+                    w-full
+                    flex items-center
+                    justify-between
+                    py-5
+                    border-b
+                    border-black/10
+                    dark:border-white/10
+                    hover:border-orange-400/30
                     transition-all duration-300
                   "
                 >
-                  {/* Left */}
-                  <div className="flex items-center gap-3">
+
+                  {/* LEFT */}
+                  <div
+                    className="
+                      flex items-center gap-4
+                    "
+                  >
+
+                    {/* ICON */}
                     <Icon
                       size={20}
-                      className={filter.color}
+                      className={`
+                        ${filter.color}
+                        group-hover:scale-110
+                        transition-all duration-300
+                      `}
                     />
 
-                    <span className="text-slate-300 font-medium">
+                    {/* TITLE */}
+                    <span
+                      className="
+                        text-slate-700
+                        dark:text-slate-300
+                        font-medium
+                        group-hover:text-orange-500
+                        transition-all duration-300
+                      "
+                    >
                       {filter.title}
                     </span>
                   </div>
 
-                  {/* Arrow */}
+                  {/* ARROW */}
                   <ChevronDown
-                    size={20}
-                    className={`transition-transform duration-300 ${isOpen
-                      ? "rotate-180 text-orange-400"
-                      : "text-slate-400"
-                      }`}
+                    size={18}
+                    className={`
+                      transition-all duration-300
+                      ${
+                        isOpen
+                          ? "rotate-180 text-orange-500"
+                          : "text-slate-500"
+                      }
+                    `}
                   />
                 </button>
 
-                {/* Dropdown */}
+                {/* DROPDOWN */}
                 <div
                   className={`
-                    overflow-hidden transition-all duration-300
-                    ${isOpen
-                      ? "max-h-[500px] opacity-100 mt-4"
-                      : "max-h-0 opacity-0"
+                    overflow-hidden
+                    transition-all duration-500
+                    ${
+                      isOpen
+                        ? "max-h-[400px] opacity-100 py-3"
+                        : "max-h-0 opacity-0"
                     }
                   `}
                 >
-                  <div className="space-y-3 pl-2">
-                    {filter.items.map((item, idx) => (
-                      <button
-                        key={idx}
-                        className="
-                          w-full text-left
-                          bg-[#111827]
-                          hover:bg-[#1E293B]
-                          border border-white/5
-                          hover:border-orange-400/20
-                          px-4 py-3 rounded-xl
-                          transition-all duration-300
-                          text-slate-300 hover:text-white
-                        "
-                      >
-                        {item}
-                      </button>
-                    ))}
+
+                  <div
+                    className="
+                      space-y-2
+                      pl-10
+                    "
+                  >
+
+                    {filter.items.map(
+                      (item, idx) => (
+
+                        <button
+                          key={idx}
+                          className="
+                            block
+                            w-full
+                            text-left
+                            py-2
+                            text-slate-500
+                            dark:text-slate-400
+                            hover:text-orange-500
+                            transition-all duration-300
+                          "
+                        >
+                          {item}
+                        </button>
+                      )
+                    )}
+
                   </div>
                 </div>
+
               </div>
             );
           })}
         </div>
+
+        {/* FOOTER */}
+        <div
+          className="
+            mt-10
+            pt-6
+            border-t
+            border-black/10
+            dark:border-white/10
+          "
+        >
+
+          <button
+            className="
+              w-full
+              py-4
+              rounded-2xl
+              bg-orange-500
+              hover:bg-orange-400
+              text-white
+              font-semibold
+              transition-all duration-300
+              shadow-lg
+              shadow-orange-500/20
+            "
+          >
+            Apply Filters
+          </button>
+
+        </div>
       </div>
-    </div>
+    </aside>
   );
 }
