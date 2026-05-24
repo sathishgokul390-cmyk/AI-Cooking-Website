@@ -1,0 +1,129 @@
+/* ── PanLoader.css ── */
+
+.loader-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #080808;
+    overflow: hidden;
+}
+
+/* ── burst flash overlay ── */
+.burst-flash {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%,
+            rgba(255, 140, 0, 0.85) 0%,
+            rgba(255, 80, 0, 0.4) 40%,
+            transparent 70%);
+}
+
+/* ── pan scene wrapper ── */
+.pan-scene {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ── smoke canvas ── */
+.smoke-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+/* ── fire glow bar ── */
+.fire-glow {
+    width: 300px;
+    height: 32px;
+    margin-top: -10px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+            rgba(255, 120, 0, 0.75) 0%,
+            rgba(255, 60, 0, 0.35) 50%,
+            transparent 80%);
+    filter: blur(18px);
+    animation: fireFlicker 0.18s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes fireFlicker {
+    from {
+        transform: scaleX(1) scaleY(1);
+    }
+
+    to {
+        transform: scaleX(1.08) scaleY(0.85);
+    }
+}
+
+/* ── progress track ── */
+.progress-track {
+    position: relative;
+    width: 300px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 99px;
+    margin-top: 18px;
+    overflow: visible;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #c73000, #ff6600, #ffaa00, #ffdd55);
+    box-shadow: 0 0 8px rgba(255, 120, 0, 0.9), 0 0 18px rgba(255, 80, 0, 0.5);
+    transition: width 0.06s linear;
+}
+
+.progress-dot {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffdd55;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px #ffcc00, 0 0 18px rgba(255, 200, 0, 0.7);
+    transition: left 0.06s linear;
+}
+
+/* ── progress label ── */
+.progress-label {
+    margin-top: 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: rgba(255, 180, 80, 0.75);
+    transition: opacity 0.4s ease;
+}
+
+/* ── brand text ── */
+.brand-text {
+    margin-top: 10px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    color: #ff8c00;
+    text-shadow:
+        0 0 10px rgba(255, 140, 0, 0.8),
+        0 0 28px rgba(255, 100, 0, 0.5);
+}
+
+/* ── responsive ── */
+@media (max-width: 480px) {
+
+    .progress-track,
+    .fire-glow {
+        width: 220px;
+    }
+}

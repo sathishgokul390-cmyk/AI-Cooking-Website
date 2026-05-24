@@ -126,9 +126,9 @@ export default function RecipeDetails() {
       {/* Sidebar */}
       <div
         className={`
-          fixed lg:relative z-50 top-0 left-0 h-full w-[320px]
+          fixed lg:relative z-50 top-0 left-0 h-screen w-[320px]
           bg-black/40 border-r border-white/10
-          transform transition-transform duration-300
+          transform transition-transform duration-300 flex flex-col
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           lg:translate-x-0
         `}
@@ -140,7 +140,7 @@ export default function RecipeDetails() {
           </button>
         </div>
 
-        <div className="p-6">
+        <div className="p-6 overflow-y-scroll flex-1" style={{ scrollbarWidth: "none" }}>
           {/* Search */}
           <div className="relative mb-10">
             <Search
@@ -194,11 +194,10 @@ export default function RecipeDetails() {
                   {/* Arrow */}
                   <ChevronDown
                     size={20}
-                    className={`transition-transform duration-300 ${
-                      isOpen
-                        ? "rotate-180 text-orange-400"
-                        : "text-slate-400"
-                    }`}
+                    className={`transition-transform duration-300 ${isOpen
+                      ? "rotate-180 text-orange-400"
+                      : "text-slate-400"
+                      }`}
                   />
                 </button>
 
@@ -206,10 +205,9 @@ export default function RecipeDetails() {
                 <div
                   className={`
                     overflow-hidden transition-all duration-300
-                    ${
-                      isOpen
-                        ? "max-h-[500px] opacity-100 mt-4"
-                        : "max-h-0 opacity-0"
+                    ${isOpen
+                      ? "max-h-[500px] opacity-100 mt-4"
+                      : "max-h-0 opacity-0"
                     }
                   `}
                 >

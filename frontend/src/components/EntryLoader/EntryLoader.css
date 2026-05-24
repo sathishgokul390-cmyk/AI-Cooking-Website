@@ -1,0 +1,249 @@
+/* EntryLoader.css */
+
+.entry-loader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+    overflow: hidden;
+}
+
+/* Animated radial background pulse */
+.entry-loader-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 70%);
+    animation: bgPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+    from {
+        opacity: 0.6;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Floating particles */
+.entry-loader-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 165, 0, 0.15);
+    animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Logo wrapper with glassmorphism card */
+.entry-loader-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 48px 56px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 0 60px rgba(255, 140, 0, 0.12),
+        0 0 120px rgba(255, 140, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Outer glow ring */
+.entry-loader-glow-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 34px;
+    background: conic-gradient(from 0deg,
+            transparent 0%,
+            rgba(255, 140, 0, 0.6) 25%,
+            transparent 50%,
+            rgba(255, 200, 80, 0.4) 75%,
+            transparent 100%);
+    animation: spinGlow 2.5s linear infinite;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    padding: 2px;
+    border-radius: 34px;
+}
+
+@keyframes spinGlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Logo image */
+.entry-loader-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.5));
+}
+
+/* Liquid fill container */
+.entry-loader-fill-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.entry-loader-fill-wrap .entry-loader-logo {
+    width: 100%;
+    height: 100%;
+}
+
+/* Liquid fill overlay */
+.entry-loader-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top,
+            rgba(255, 140, 0, 0.55) 0%,
+            rgba(255, 200, 80, 0.25) 60%,
+            transparent 100%);
+    border-radius: 0 0 20px 20px;
+    animation: liquidFill 2.2s ease-in-out forwards;
+    mix-blend-mode: screen;
+}
+
+@keyframes liquidFill {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+/* Wave on top of liquid */
+.entry-loader-liquid::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -20%;
+    width: 140%;
+    height: 16px;
+    background: rgba(255, 180, 50, 0.4);
+    border-radius: 50%;
+    animation: wave 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes wave {
+    from {
+        transform: translateX(0) scaleY(1);
+    }
+
+    to {
+        transform: translateX(10%) scaleY(1.4);
+    }
+}
+
+/* Brand name text */
+.entry-loader-brand {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 30%, #ffb347 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.9;
+}
+
+/* Progress bar */
+.entry-loader-progress-track {
+    width: 180px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.entry-loader-progress-bar {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #ff8c00, #ffd700);
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.8);
+    animation: progressFill 2.4s ease-in-out forwards;
+}
+
+@keyframes progressFill {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .entry-loader-card {
+        padding: 36px 32px;
+        border-radius: 24px;
+    }
+
+    .entry-loader-logo,
+    .entry-loader-fill-wrap {
+        width: 90px;
+        height: 90px;
+    }
+
+    .entry-loader-brand {
+        font-size: 1.1rem;
+    }
+
+    .entry-loader-progress-track {
+        width: 140px;
+    }
+}

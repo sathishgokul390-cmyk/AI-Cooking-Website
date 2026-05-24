@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+/* ── loader body lock (prevents scroll during entry) ── */
+body.loader-active {
+  overflow: hidden;
+}
+
 /* Dark luxury background */
 body {
   font-family: Arial, sans-serif;
