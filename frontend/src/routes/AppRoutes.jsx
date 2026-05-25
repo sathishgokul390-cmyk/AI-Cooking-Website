@@ -1,4 +1,4 @@
-ï»¿import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
@@ -18,11 +18,11 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Auth pages â€” no shared Navbar/Footer */}
+        {/* Auth pages — no shared Navbar/Footer */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* All other pages â€” shared Navbar + Footer */}
+        {/* All other pages — shared Navbar + Footer */}
         <Route
           path="*"
           element={
@@ -39,7 +39,7 @@ export default function AppRoutes() {
                 <Route path="/features" element={<Features />} />
                 <Route path="/dashboard" element={<Dashboard />} />
               </Routes>
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />

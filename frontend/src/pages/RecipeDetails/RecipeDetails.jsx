@@ -1,12 +1,20 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Clock3, Bookmark, Search, Star, Heart } from "lucide-react";
 import Sidenav from "../../components/navbar/sidenavbar/Sidenav";
+
+// images
+import friedNoddles from "../../assets/images/fried_noddles.avif";
+import noddleSoup from "../../assets/images/noddle_soup.avif";
+import tofu from "../../assets/images/tofu.avif";
+import healthySalad from "../../assets/images/healthy_salad.avif";
+import chickenSteak from "../../assets/images/chicken_steak.avif";
+import chocolatePancake from "../../assets/images/chocolate_pancake.avif"
 
 const recipes = [
   {
     id: 1,
     title: "Fried Noodles",
-    image: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=800&auto=format&fit=crop",
+    image: friedNoddles,
     time: "20 min",
     difficulty: "Easy",
     rating: "4.7",
@@ -15,7 +23,7 @@ const recipes = [
   {
     id: 2,
     title: "Noodle Soup",
-    image: "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=800&auto=format&fit=crop",
+    image: noddleSoup,
     time: "1 hour",
     difficulty: "Medium",
     rating: "4.5",
@@ -24,7 +32,7 @@ const recipes = [
   {
     id: 3,
     title: "Tofu With Sauce",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=800&auto=format&fit=crop",
+    image: tofu,
     time: "45 min",
     difficulty: "Medium",
     rating: "4.6",
@@ -33,7 +41,7 @@ const recipes = [
   {
     id: 4,
     title: "Healthy Salad",
-    image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=800&auto=format&fit=crop",
+    image: healthySalad,
     time: "15 min",
     difficulty: "Easy",
     rating: "4.8",
@@ -42,7 +50,7 @@ const recipes = [
   {
     id: 5,
     title: "Chicken Steak",
-    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop",
+    image: chickenSteak,
     time: "40 min",
     difficulty: "Hard",
     rating: "4.9",
@@ -51,7 +59,7 @@ const recipes = [
   {
     id: 6,
     title: "Chocolate Pancakes",
-    image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=800&auto=format&fit=crop",
+    image: chocolatePancake,
     time: "30 min",
     difficulty: "Easy",
     rating: "4.7",
@@ -75,7 +83,7 @@ export default function RecipeDetails() {
     : recipes;
 
   return (
-    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#0B1120] text-black dark:text-white transition-all duration-300">
+    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#121413] text-black dark:text-white transition-all duration-300">
       <Sidenav />
 
       <div className="lg:ml-[280px] p-6 lg:p-10 transition-all duration-300">

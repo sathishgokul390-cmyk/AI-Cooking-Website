@@ -1,45 +1,62 @@
-﻿import { Clock3, Star, Heart, Sparkles, ChevronRight, Flame } from "lucide-react";
+import { Clock3, Star, Heart, Sparkles, ChevronRight, Flame } from "lucide-react";
 import { useState } from "react";
+// hero image
+import heroFood from "../../assets/images/healthy_salad.avif";
 
-// ── DATA ──────────────────────────────────────────────────────────────────────
+// categories
+
+import breakfast from "../../assets/images/breakfast.avif";
+import lunch from "../../assets/images/lunch.avif";
+import dinner from "../../assets/images/dinner.avif";
+import dessert from "../../assets/images/deserts.avif";
+import snackes from "../../assets/images/snacks.avif";
+import drink from "../../assets/images/drink.jpg"
+
+// recipes images
+import chickenBriyani from "../../assets/images/chicken_biryani.avif";
+import pannerButterMasala from "../../assets/images/panner_butter_masala.avif";
+import chocolateLavaCake from "../../assets/images/chocolate_lava_cake.avif";
+import vegSandwich from "../../assets/images/veg_sandwich.avif";
+
+// -- DATA ----------------------------------------------------------------------
 
 const categories = [
   {
     title: "Breakfast",
     recipes: "25 Recipes",
-    image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=400&auto=format&fit=crop",
+    image: breakfast,
   },
   {
     title: "Lunch",
     recipes: "40 Recipes",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=400&auto=format&fit=crop",
+    image: lunch,
   },
   {
     title: "Dinner",
     recipes: "60 Recipes",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=400&auto=format&fit=crop",
+    image: dinner,
   },
   {
     title: "Desserts",
     recipes: "30 Recipes",
-    image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=80&w=400&auto=format&fit=crop",
+    image: dessert,
   },
   {
     title: "Snacks",
     recipes: "35 Recipes",
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=400&auto=format&fit=crop",
+    image: snackes,
   },
   {
     title: "Drinks",
     recipes: "20 Recipes",
-    image: "https://images.unsplash.com/photo-1553530666-ba11a90bb918?q=80&w=400&auto=format&fit=crop",
+    image: drink,
   },
 ];
 
 const recipes = [
   {
     title: "Chicken Biryani",
-    image: "https://images.unsplash.com/photo-1701579231349-d7459c40919d?q=80&w=600&auto=format&fit=crop",
+    image: chickenBriyani,
     time: "45 min",
     difficulty: "Medium",
     rating: "4.8",
@@ -47,7 +64,7 @@ const recipes = [
   },
   {
     title: "Paneer Butter Masala",
-    image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=600&auto=format&fit=crop",
+    image: pannerButterMasala,
     time: "30 min",
     difficulty: "Easy",
     rating: "4.7",
@@ -55,7 +72,7 @@ const recipes = [
   },
   {
     title: "Chocolate Lava Cake",
-    image: "https://images.unsplash.com/photo-1617305855058-336d24456869?q=80&w=600&auto=format&fit=crop",
+    image: chocolateLavaCake,
     time: "25 min",
     difficulty: "Easy",
     rating: "4.9",
@@ -63,7 +80,7 @@ const recipes = [
   },
   {
     title: "Veg Sandwich",
-    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=600&auto=format&fit=crop",
+    image: vegSandwich,
     time: "15 min",
     difficulty: "Easy",
     rating: "4.6",
@@ -71,7 +88,7 @@ const recipes = [
   },
 ];
 
-// ── COMPONENT ─────────────────────────────────────────────────────────────────
+// -- COMPONENT -----------------------------------------------------------------
 
 export default function Hero() {
   const [liked, setLiked] = useState({});
@@ -80,16 +97,16 @@ export default function Hero() {
     setLiked((prev) => ({ ...prev, [i]: !prev[i] }));
 
   return (
-    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#0B1120] text-black dark:text-white transition-all duration-300">
+    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#121413] text-black dark:text-white transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-10">
 
-        {/* ── HERO ─────────────────────────────────────────────────────────── */}
+        {/* -- HERO ----------------------------------------------------------- */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
 
           {/* LEFT */}
           <div>
             <p className="text-orange-500 text-2xl font-semibold mb-4">
-              Hello, Foodie! 👋
+              Hello, Foodie! ??
             </p>
 
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-5">
@@ -110,21 +127,18 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT — hero card with circular food image + floating badges */}
+          {/* RIGHT � hero card with large food image + floating badges */}
           <div className="relative flex items-center justify-center">
             {/* card bg */}
-            <div className="w-full bg-[#FFF5E6] dark:bg-[#1a1a2e] border border-black/10 dark:border-white/10 rounded-[36px] p-6 shadow-xl flex items-center justify-center min-h-[420px]">
-              {/* circular food image */}
-              <div className="w-72 h-72 rounded-full overflow-hidden ring-4 ring-orange-500/20 shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop"
-                  alt="Delicious food bowl"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="w-full bg-[#FFF5E6] dark:bg-[#1e1f1e] border border-black/10 dark:border-white/10 rounded-[36px] overflow-hidden shadow-xl min-h-[420px]">
+              <img
+                src={heroFood}
+                alt="Delicious food bowl"
+                className="w-full h-[420px] object-cover scale-105 -translate-y-4"
+              />
             </div>
 
-            {/* Quick & Easy badge — top right */}
+            {/* Quick & Easy badge � top right */}
             <div className="absolute top-5 right-5 bg-white dark:bg-[#1e293b] border border-black/10 dark:border-white/10 rounded-2xl px-4 py-2.5 shadow-lg">
               <div className="flex items-center gap-2 mb-0.5">
                 <Flame size={15} className="text-orange-500" />
@@ -135,7 +149,7 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* Popular badge — bottom left */}
+            {/* Popular badge � bottom left */}
             <div className="absolute bottom-5 left-5 bg-white dark:bg-[#1e293b] border border-black/10 dark:border-white/10 rounded-2xl px-4 py-2.5 shadow-lg">
               <div className="flex items-center gap-2 mb-0.5">
                 <Star size={15} className="text-orange-500 fill-orange-500" />
@@ -148,7 +162,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── CATEGORIES ───────────────────────────────────────────────────── */}
+        {/* -- CATEGORIES ----------------------------------------------------- */}
         <div className="mb-20">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold">Categories</h2>
@@ -177,7 +191,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── POPULAR RECIPES ──────────────────────────────────────────────── */}
+        {/* -- POPULAR RECIPES ------------------------------------------------ */}
         <div className="mb-20">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold">Popular Recipes</h2>
@@ -199,7 +213,7 @@ export default function Hero() {
                     alt={recipe.title}
                     className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  {/* heart — top left */}
+                  {/* heart � top left */}
                   <button
                     onClick={() => toggleLike(i)}
                     className="absolute top-3 left-3 p-2 rounded-full bg-white/80 dark:bg-black/50 backdrop-blur-sm hover:scale-110 transition-all duration-300"
@@ -234,7 +248,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── ASK AI CHEF ──────────────────────────────────────────────────── */}
+        {/* -- ASK AI CHEF ---------------------------------------------------- */}
         <div className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-[36px] p-10 flex flex-col lg:flex-row items-center justify-between gap-10">
           {/* left */}
           <div className="flex-1">
@@ -262,7 +276,7 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* right — AI chef illustration */}
+          {/* right � AI chef illustration */}
           <img
             src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"
             alt="AI Chef"

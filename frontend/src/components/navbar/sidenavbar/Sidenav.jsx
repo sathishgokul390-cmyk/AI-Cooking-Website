@@ -1,4 +1,4 @@
-﻿import {
+import {
   Clock3,
   ChevronDown,
   Search,

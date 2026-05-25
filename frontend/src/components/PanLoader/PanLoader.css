@@ -1,129 +1,193 @@
-/* ── PanLoader.css ── */
-
+/* ===== ROOT ===== */
 .loader-root {
     position: fixed;
     inset: 0;
-    z-index: 9999;
+    background: #040404;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #080808;
+    z-index: 9999;
     overflow: hidden;
 }
 
-/* ── burst flash overlay ── */
-.burst-flash {
+/* ===== GRID BACKGROUND ===== */
+.grid-bg {
     position: absolute;
     inset: 0;
-    pointer-events: none;
-    border-radius: 50%;
-    background: radial-gradient(circle at 50% 50%,
-            rgba(255, 140, 0, 0.85) 0%,
-            rgba(255, 80, 0, 0.4) 40%,
-            transparent 70%);
+    background-image:
+        linear-gradient(rgba(255, 100, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 100, 0, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+    animation: gridFade 4s ease-in-out infinite alternate;
 }
 
-/* ── pan scene wrapper ── */
-.pan-scene {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@keyframes gridFade {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 0.9;
+    }
 }
 
-/* ── smoke canvas ── */
-.smoke-canvas {
+/* ===== AMBIENT GLOW ===== */
+.ambient-glow {
     position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 50% 30% at 50% 62%, rgba(255, 80, 0, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 50% at 50% 80%, rgba(255, 30, 0, 0.06) 0%, transparent 80%);
+    animation: ambientPulse 3s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes ambientPulse {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1.0;
+    }
+}
+
+/* ===== CANVAS SMOKE ===== */
+.smoke-canvas {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
     mix-blend-mode: screen;
+    opacity: 0.85;
+    width: 100vw;
+    height: 100vh;
 }
 
-/* ── fire glow bar ── */
+/* ===== BURST ===== */
+.burst-flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 52%, rgba(255, 140, 0, 0.65), transparent 58%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ===== PAN SCENE ===== */
+.pan-scene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ===== PAN SVG ===== */
+.pan-svg {
+    width: 400px;
+    height: 260px;
+}
+
+/* ===== FIRE GLOW ===== */
 .fire-glow {
     width: 300px;
     height: 32px;
     margin-top: -10px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at center,
-            rgba(255, 120, 0, 0.75) 0%,
-            rgba(255, 60, 0, 0.35) 50%,
+    background: radial-gradient(ellipse,
+            rgba(255, 60, 0, 0.8) 0%,
+            rgba(255, 30, 0, 0.3) 50%,
             transparent 80%);
     filter: blur(18px);
-    animation: fireFlicker 0.18s ease-in-out infinite alternate;
+    border-radius: 50%;
+    animation: fireFlicker 0.3s ease-in-out infinite alternate;
     pointer-events: none;
 }
 
 @keyframes fireFlicker {
     from {
         transform: scaleX(1) scaleY(1);
+        opacity: 0.75;
     }
 
     to {
         transform: scaleX(1.08) scaleY(0.85);
+        opacity: 1.0;
     }
 }
 
-/* ── progress track ── */
+/* ===== PROGRESS BAR ===== */
 .progress-track {
     position: relative;
     width: 300px;
     height: 2px;
-    background: rgba(255, 255, 255, 0.07);
-    border-radius: 99px;
-    margin-top: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    margin-top: 28px;
     overflow: visible;
 }
 
 .progress-fill {
     height: 100%;
-    border-radius: 99px;
+    border-radius: 4px;
     background: linear-gradient(90deg, #c73000, #ff6600, #ffaa00, #ffdd55);
-    box-shadow: 0 0 8px rgba(255, 120, 0, 0.9), 0 0 18px rgba(255, 80, 0, 0.5);
-    transition: width 0.06s linear;
+    box-shadow: 0 0 12px rgba(255, 130, 0, 0.8);
+    transition: width 0.04s linear;
 }
 
 .progress-dot {
     position: absolute;
     top: 50%;
+    transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #ffdd55;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 8px #ffcc00, 0 0 18px rgba(255, 200, 0, 0.7);
-    transition: left 0.06s linear;
+    background: #ffe066;
+    box-shadow: 0 0 14px 5px rgba(255, 160, 0, 0.9);
+    transition: left 0.04s linear;
 }
 
-/* ── progress label ── */
+/* ===== LABELS ===== */
 .progress-label {
-    margin-top: 14px;
+    margin-top: 16px;
     font-family: 'Courier New', monospace;
     font-size: 11px;
     letter-spacing: 5px;
-    color: rgba(255, 180, 80, 0.75);
-    transition: opacity 0.4s ease;
+    color: rgba(255, 150, 50, 0.6);
+    text-transform: uppercase;
 }
 
-/* ── brand text ── */
 .brand-text {
     margin-top: 10px;
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: 'Georgia', serif;
     font-size: 18px;
-    color: #ff8c00;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
     text-shadow:
-        0 0 10px rgba(255, 140, 0, 0.8),
-        0 0 28px rgba(255, 100, 0, 0.5);
+        0 0 16px rgba(255, 120, 0, 0.6),
+        0 0 40px rgba(255, 60, 0, 0.2);
 }
 
-/* ── responsive ── */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
+    .pan-svg {
+        width: 300px;
+        height: 195px;
+    }
 
-    .progress-track,
-    .fire-glow {
-        width: 220px;
+    .progress-track {
+        width: 240px;
+    }
+
+    .smoke-canvas {
+        width: 100vw;
+        height: 100vh;
     }
 }

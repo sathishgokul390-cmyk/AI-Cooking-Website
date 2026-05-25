@@ -52,7 +52,7 @@ export default function AiGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#0B1120] text-black dark:text-white transition-all duration-300">
+    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#121413] text-black dark:text-white transition-all duration-300">
       <div className="max-w-3xl mx-auto px-4 py-10 flex flex-col h-screen">
 
         {/* HEADER */}

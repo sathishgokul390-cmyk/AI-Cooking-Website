@@ -46,7 +46,7 @@ export default function Footer() {
   return (
     <footer
       className="
-        bg-[#0B1120]
+        bg-[#121413]
         text-white
         border-t
         border-white/10
@@ -107,7 +107,7 @@ export default function Footer() {
           </div>
 
           {/* SOCIAL */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-5">
               Social Media
             </h3>
@@ -144,7 +144,7 @@ export default function Footer() {
               ))}
             </div>
 
-          </div>
+          </div> */}
 
           {/* NEWSLETTER */}
           <div>

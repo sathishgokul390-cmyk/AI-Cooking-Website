@@ -1,7 +1,8 @@
-﻿import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+// import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/main_logo.png"
 import ThemeToggle from "../ui/ThemeToggle";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -24,12 +25,15 @@ export default function Navbar() {
     : "U";
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-[#0B1120]/90 backdrop-blur-xl border-b border-black/10 dark:border-white/10 transition-all duration-300">
+    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-[#121413]/90 backdrop-blur-xl border-b border-black/10 dark:border-white/10 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
 
         {/* LOGO */}
         <Link to="/" className="flex items-center gap-2 shrink-0">
-          <img src={logo} alt="CookAI" className="h-10 w-10 object-contain" />
+          <img src={logo} alt="CookAI" 
+          style={{
+            
+          }} className="h-10 w-10 object-contain" />
           <span className="text-2xl font-bold text-orange-500">CookAI</span>
         </Link>
 
@@ -53,16 +57,16 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
 
           {/* SEARCH */}
-          <div className="hidden md:flex items-center gap-2 bg-slate-100 dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-xl px-4 py-2">
+          {/* <div className="hidden md:flex items-center gap-2 bg-slate-100 dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-xl px-4 py-2">
             <Search size={16} className="text-slate-400" />
             <input
               type="text"
               placeholder="Search recipes..."
               className="bg-transparent outline-none text-sm w-32 text-black dark:text-white placeholder:text-slate-400"
             />
-          </div>
+          </div> */}
 
-          {/* THEME TOGGLE — sun/moon pill */}
+          {/* THEME TOGGLE � sun/moon pill */}
           <ThemeToggle />
 
           {/* AVATAR / LOGIN */}
@@ -108,7 +112,7 @@ export default function Navbar() {
 
       {/* MOBILE DROPDOWN */}
       {menuOpen && (
-        <div className="lg:hidden border-t border-black/10 dark:border-white/10 bg-white dark:bg-[#0B1120] px-6 py-4 flex flex-col gap-3">
+        <div className="lg:hidden border-t border-black/10 dark:border-white/10 bg-white dark:bg-[#121413] px-6 py-4 flex flex-col gap-3">
           {navLinks.map((link) => (
             <Link
               key={link.to}
