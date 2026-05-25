@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./PanLoader.css";
-import PanLoader from '../../components/PanLoader/PanLoader'
+
 
 /* ─── Canvas Smoke + Particles ─────────────────────────────────────── */
 function SmokeCanvas({ progress, burst }) {
