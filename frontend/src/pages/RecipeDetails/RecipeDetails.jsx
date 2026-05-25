@@ -1,281 +1,172 @@
-import { useState } from "react";
-import {
-  Clock3,
-  Bookmark,
-  Search,
-} from "lucide-react";
-
+﻿import { useState } from "react";
+import { Clock3, Bookmark, Search, Star, Heart } from "lucide-react";
 import Sidenav from "../../components/navbar/sidenavbar/Sidenav";
 
+const recipes = [
+  {
+    id: 1,
+    title: "Fried Noodles",
+    image: "https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=800&auto=format&fit=crop",
+    time: "20 min",
+    difficulty: "Easy",
+    rating: "4.7",
+    category: "Lunch",
+  },
+  {
+    id: 2,
+    title: "Noodle Soup",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=800&auto=format&fit=crop",
+    time: "1 hour",
+    difficulty: "Medium",
+    rating: "4.5",
+    category: "Dinner",
+  },
+  {
+    id: 3,
+    title: "Tofu With Sauce",
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=800&auto=format&fit=crop",
+    time: "45 min",
+    difficulty: "Medium",
+    rating: "4.6",
+    category: "Dinner",
+  },
+  {
+    id: 4,
+    title: "Healthy Salad",
+    image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=800&auto=format&fit=crop",
+    time: "15 min",
+    difficulty: "Easy",
+    rating: "4.8",
+    category: "Lunch",
+  },
+  {
+    id: 5,
+    title: "Chicken Steak",
+    image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop",
+    time: "40 min",
+    difficulty: "Hard",
+    rating: "4.9",
+    category: "Dinner",
+  },
+  {
+    id: 6,
+    title: "Chocolate Pancakes",
+    image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=800&auto=format&fit=crop",
+    time: "30 min",
+    difficulty: "Easy",
+    rating: "4.7",
+    category: "Breakfast",
+  },
+];
+
+const difficultyColor = {
+  Easy: "bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400",
+  Medium: "bg-yellow-50 dark:bg-yellow-500/10 text-yellow-600 dark:text-yellow-400",
+  Hard: "bg-red-50 dark:bg-red-500/10 text-red-500",
+};
+
 export default function RecipeDetails() {
-
   const [query, setQuery] = useState("");
+  const [saved, setSaved] = useState({});
+  const [liked, setLiked] = useState({});
 
-  // RECIPES
-  const recipes = [
-    {
-      id: 1,
-      title: "Fried Noodles",
-      image:
-        "https://images.unsplash.com/photo-1617093727343-374698b1b08d?q=80&w=1200&auto=format&fit=crop",
-      time: "20 minutes",
-    },
-
-    {
-      id: 2,
-      title: "Noodle Soup",
-      image:
-        "https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200&auto=format&fit=crop",
-      time: "1 hour",
-    },
-
-    {
-      id: 3,
-      title: "Tofu With Sauce",
-      image:
-        "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop",
-      time: "45 minutes",
-    },
-
-    {
-      id: 4,
-      title: "Healthy Salad",
-      image:
-        "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop",
-      time: "15 minutes",
-    },
-
-    {
-      id: 5,
-      title: "Chicken Steak",
-      image:
-        "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=1200&auto=format&fit=crop",
-      time: "40 minutes",
-    },
-
-    {
-      id: 6,
-      title: "Chocolate Pancakes",
-      image:
-        "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop",
-      time: "30 minutes",
-    },
-  ];
-
-  // SEARCH FILTER
-  const filteredRecipes = query.trim()
-    ? recipes.filter((recipe) =>
-        recipe.title
-          .toLowerCase()
-          .includes(query.toLowerCase())
-      )
+  const filtered = query.trim()
+    ? recipes.filter((r) => r.title.toLowerCase().includes(query.toLowerCase()))
     : recipes;
 
   return (
-    <div className="min-h-screen bg-orange-50 dark:bg-[#0B1120] text-black dark:text-white transition-all duration-300">
-
-      {/* SIDEBAR */}
+    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#0B1120] text-black dark:text-white transition-all duration-300">
       <Sidenav />
 
-      {/* MAIN CONTENT */}
-      <div
-        className="
-          lg:ml-[280px]
-          p-6 lg:p-10
-          transition-all duration-300
-        "
-      >
+      <div className="lg:ml-[280px] p-6 lg:p-10 transition-all duration-300">
 
         {/* HEADER */}
-        <div
-          className="
-            flex flex-col
-            lg:flex-row
-            lg:items-center
-            lg:justify-between
-            gap-6
-            mb-12
-          "
-        >
-
-          {/* TITLE */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
           <div>
-            <h1
-              className="
-                text-5xl
-                font-bold
-                mb-3
-              "
-            >
-              All Recipes
-            </h1>
-
-            <p
-              className="
-                text-slate-600
-                dark:text-slate-400
-                text-lg
-              "
-            >
-              Discover AI-powered premium recipes
-            </p>
+            <h1 className="text-4xl font-bold mb-2">All Recipes</h1>
+            <p className="text-slate-500 dark:text-slate-400">Discover AI-powered premium recipes</p>
           </div>
 
-          {/* SEARCH BAR */}
-          <div
-            className="
-              flex items-center gap-3
-              bg-white
-              dark:bg-black/40
-              border
-              border-black/10
-              dark:border-white/10
-              backdrop-blur-xl
-              rounded-2xl
-              px-5 py-3
-              w-full lg:w-[380px]
-              shadow-lg
-            "
-          >
-            <Search
-              size={20}
-              className="
-                text-slate-500
-                dark:text-slate-400
-              "
-            />
-
+          {/* SEARCH */}
+          <div className="flex items-center gap-3 bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-2xl px-5 py-3 w-full lg:w-[360px] shadow-sm">
+            <Search size={18} className="text-slate-400 shrink-0" />
             <input
               type="text"
               placeholder="Search recipes..."
               value={query}
-              onChange={(e) =>
-                setQuery(e.target.value)
-              }
-              className="
-                bg-transparent
-                outline-none
-                w-full
-                text-black
-                dark:text-white
-                placeholder:text-slate-400
-              "
+              onChange={(e) => setQuery(e.target.value)}
+              className="bg-transparent outline-none w-full text-black dark:text-white placeholder:text-slate-400 text-sm"
             />
           </div>
         </div>
 
-        {/* RECIPE GRID */}
-        <div
-          className="
-            grid
-            md:grid-cols-2
-            xl:grid-cols-3
-            gap-8
-          "
-        >
-
-          {filteredRecipes.map((recipe) => (
-
+        {/* GRID */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-7">
+          {filtered.map((recipe) => (
             <div
               key={recipe.id}
-              className="
-                bg-white
-                dark:bg-black/40
-                backdrop-blur-xl
-                rounded-3xl
-                overflow-hidden
-                border
-                border-black/10
-                dark:border-white/5
-                hover:-translate-y-2
-                hover:border-orange-400/30
-                transition-all duration-300
-                shadow-xl
-              "
+              className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/5 rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-400/30 transition-all duration-300 group"
             >
-
               {/* IMAGE */}
-              <div className="overflow-hidden">
+              <div className="relative overflow-hidden">
                 <img
                   src={recipe.image}
                   alt={recipe.title}
-                  className="
-                    w-full
-                    h-[320px]
-                    object-cover
-                    hover:scale-105
-                    transition duration-500
-                  "
+                  className="w-full h-[260px] object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                <div className="absolute top-3 right-3 flex gap-2">
+                  <button
+                    onClick={() => setLiked((p) => ({ ...p, [recipe.id]: !p[recipe.id] }))}
+                    className="p-2 rounded-full bg-white/80 dark:bg-black/50 backdrop-blur-sm hover:scale-110 transition-all"
+                  >
+                    <Heart
+                      size={15}
+                      className={liked[recipe.id] ? "fill-red-500 text-red-500" : "text-slate-500"}
+                    />
+                  </button>
+                </div>
+                <span className="absolute bottom-3 left-3 text-xs px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm text-white font-medium">
+                  {recipe.category}
+                </span>
               </div>
 
               {/* CONTENT */}
-              <div className="p-6">
+              <div className="p-5">
+                <h2 className="text-xl font-bold mb-4">{recipe.title}</h2>
 
-                {/* TITLE */}
-                <h2
-                  className="
-                    text-2xl
-                    font-bold
-                    mb-8
-                  "
-                >
-                  {recipe.title}
-                </h2>
-
-                {/* FOOTER */}
-                <div
-                  className="
-                    flex items-center
-                    justify-between
-                  "
-                >
-
-                  {/* TIME */}
-                  <div
-                    className="
-                      flex items-center gap-2
-                      text-slate-600
-                      dark:text-slate-400
-                    "
-                  >
-                    <Clock3 size={18} />
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-sm">
+                    <Clock3 size={15} />
                     <span>{recipe.time}</span>
                   </div>
 
-                  {/* BOOKMARK */}
-                  <button
-                    className="
-                      text-slate-500
-                      dark:text-slate-400
-                      hover:text-orange-500
-                      transition
-                    "
-                  >
-                    <Bookmark size={22} />
-                  </button>
+                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${difficultyColor[recipe.difficulty]}`}>
+                    {recipe.difficulty}
+                  </span>
 
+                  <div className="flex items-center gap-1 text-yellow-500 text-sm">
+                    <Star size={15} className="fill-yellow-500" />
+                    <span className="font-semibold">{recipe.rating}</span>
+                  </div>
+
+                  <button
+                    onClick={() => setSaved((p) => ({ ...p, [recipe.id]: !p[recipe.id] }))}
+                    className={`transition-colors ${saved[recipe.id] ? "text-orange-500" : "text-slate-400 hover:text-orange-500"}`}
+                  >
+                    <Bookmark size={18} className={saved[recipe.id] ? "fill-orange-500" : ""} />
+                  </button>
                 </div>
               </div>
             </div>
           ))}
-
         </div>
 
         {/* EMPTY STATE */}
-        {filteredRecipes.length === 0 && (
+        {filtered.length === 0 && (
           <div className="mt-20 text-center">
-
-            <p
-              className="
-                text-slate-500
-                dark:text-slate-400
-                text-xl
-              "
-            >
-              No recipes found for "{query}"
+            <p className="text-slate-500 dark:text-slate-400 text-xl">
+              No recipes found for &quot;{query}&quot;
             </p>
-
           </div>
         )}
       </div>

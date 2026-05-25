@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Check saved theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");
       setDarkMode(true);
     }
   }, []);
 
-  // Toggle function
   const toggleTheme = () => {
     if (darkMode) {
       document.documentElement.classList.remove("dark");
@@ -23,20 +20,23 @@ export default function ThemeToggle() {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }
-
     setDarkMode(!darkMode);
   };
 
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full bg-orange-100 dark:bg-zinc-800"
+      className="flex items-center gap-1 bg-slate-100 dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-full px-2 py-1.5 transition-all duration-300"
+      aria-label="Toggle theme"
     >
-      {darkMode ? (
-        <Sun size={20} className="text-yellow-400" />
-      ) : (
-        <Moon size={20} className="text-black" />
-      )}
+      {/* Sun icon — highlighted in light mode */}
+      <span className={`p-1 rounded-full transition-all duration-300 ${!darkMode ? "bg-orange-500 text-white" : "text-slate-400"}`}>
+        <Sun size={14} />
+      </span>
+      {/* Moon icon — highlighted in dark mode */}
+      <span className={`p-1 rounded-full transition-all duration-300 ${darkMode ? "bg-slate-700 text-yellow-300" : "text-slate-400"}`}>
+        <Moon size={14} />
+      </span>
     </button>
   );
 }

@@ -1,30 +1,117 @@
-import Navbar from '../../components/navbar/Navbar'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, LogIn } from "lucide-react";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [showPass, setShowPass] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) =>
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    if (!form.email || !form.password) {
+      setError("Please fill in all fields.");
+      return;
+    }
+    setLoading(true);
+    // Simulated login — replace with real API call
+    setTimeout(() => {
+      login({ name: "User", email: form.email });
+      setLoading(false);
+      navigate("/dashboard");
+    }, 900);
+  };
+
   return (
-    <div className='min-h-screen bg-white dark:bg-[#121212] text-gray-900 dark:text-white transition-colors duration-300'>
-      <Navbar />
-      <div className='flex items-center justify-center py-20 px-4'>
-        <div className='bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-10 rounded-3xl w-full max-w-md'>
-          <h2 className='text-3xl font-bold mb-6'>Login</h2>
+    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#0B1120] text-black dark:text-white flex items-center justify-center px-4 transition-all duration-300">
+      <div className="w-full max-w-md">
 
-          <input
-            type='email'
-            placeholder='Email'
-            className='w-full p-4 rounded-xl bg-white dark:bg-black/30 border border-gray-300 dark:border-white/10 mb-4 text-gray-900 dark:text-white placeholder-gray-400 outline-none'
-          />
-
-          <input
-            type='password'
-            placeholder='Password'
-            className='w-full p-4 rounded-xl bg-white dark:bg-black/30 border border-gray-300 dark:border-white/10 mb-6 text-gray-900 dark:text-white placeholder-gray-400 outline-none'
-          />
-
-          <button className='w-full bg-orange-500 hover:bg-orange-400 text-white py-3 rounded-xl transition-colors'>
-            Login
-          </button>
+        {/* LOGO */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-orange-500 mb-1">CookAI</h1>
+          <p className="text-slate-500 dark:text-slate-400 text-sm">Welcome back — let's get cooking</p>
         </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-3xl p-8 shadow-sm"
+        >
+          <h2 className="text-2xl font-bold mb-6">Login</h2>
+
+          {error && (
+            <p className="text-red-500 text-sm mb-4 bg-red-50 dark:bg-red-500/10 px-4 py-3 rounded-xl">
+              {error}
+            </p>
+          )}
+
+          {/* EMAIL */}
+          <div className="mb-4">
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5 block">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="you@example.com"
+              className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/30 border border-black/10 dark:border-white/10 outline-none focus:border-orange-400/60 text-sm transition"
+            />
+          </div>
+
+          {/* PASSWORD */}
+          <div className="mb-6">
+            <label className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1.5 block">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="••••••••"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/30 border border-black/10 dark:border-white/10 outline-none focus:border-orange-400/60 text-sm transition pr-11"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass((p) => !p)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-orange-500 transition"
+              >
+                {showPass ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3.5 rounded-xl bg-orange-500 hover:bg-orange-400 disabled:opacity-60 text-white font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-orange-500/20"
+          >
+            {loading ? (
+              <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+            ) : (
+              <><LogIn size={17} /> Login</>
+            )}
+          </button>
+
+          <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-5">
+            Don&apos;t have an account?{" "}
+            <Link to="/register" className="text-orange-500 hover:underline font-medium">
+              Sign up
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
-  )
+  );
 }

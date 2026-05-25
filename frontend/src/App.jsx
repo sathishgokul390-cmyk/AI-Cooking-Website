@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import AppRoutes from './routes/AppRoutes';
 import PanLoader from './components/PanLoader/PanLoader';
+import { AuthProvider } from './context/AuthContext';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <>
+    <AuthProvider>
       <AnimatePresence>
         {loading && (
           <PanLoader key="pan-loader" onComplete={() => setLoading(false)} />
@@ -21,6 +22,6 @@ export default function App() {
       >
         <AppRoutes />
       </motion.div>
-    </>
+    </AuthProvider>
   );
 }

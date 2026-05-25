@@ -1,333 +1,151 @@
-// import { Moon, Sun } from 'lucide-react'
-// import { useState } from 'react'
-
-// export default function Navbar() {
-//   const [darkMode, setDarkMode] = useState(true)
-
-//   const toggleTheme = () => {
-//     document.documentElement.classList.toggle('dark')
-//     setDarkMode(!darkMode)
-//   }
-
-//   return (
-//     <nav className='sticky top-0 z-50 bg-black/40 backdrop-blur-xl border-b border-white/10'>
-//       <div className='max-w-7xl mx-auto px-6 py-4 flex justify-between items-center'>
-//         <h1 className='text-2xl font-bold text-orange-400'>🍳 CookAI</h1>
-
-//         <div className='hidden md:flex gap-8 text-slate-300'>
-//           <a href='/'>Home</a>
-//           <a href='/recipe'>Recipes</a>
-//           <a href='/ai_generate'>AI Generator</a>
-//           <a href='/features'>Features</a>
-//         </div>
-
-//         <div className='flex gap-4 items-center'>
-//           <button
-//             onClick={toggleTheme}
-//             className='p-2 rounded-xl bg-white/10'
-//           >
-//             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-//           </button>
-
-//           <button className='bg-orange-500 hover:bg-orange-400 px-5 py-2 rounded-xl'>
-//             Login
-//           </button>
-//         </div>
-//       </div>
-//     </nav>
-//   )
-// }
-
-// import { Moon, Sun, Menu, X } from 'lucide-react'
-// import { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
-// import logo from '../../assets/images/logo.png'
-
-// export default function Navbar() {
-//   const [darkMode, setDarkMode] = useState(() => {
-//     const saved = localStorage.getItem('theme')
-//     return saved ? saved === 'dark' : true
-//   })
-//   const [menuOpen, setMenuOpen] = useState(false)
-
-//   useEffect(() => {
-//     const html = document.documentElement
-//     if (darkMode) {
-//       html.classList.add('dark')
-//     } else {
-//       html.classList.remove('dark')
-//     }
-//     localStorage.setItem('theme', darkMode ? 'dark' : 'light')
-//   }, [darkMode])
-
-//   const toggleTheme = () => setDarkMode(prev => !prev)
-
-//   return (
-//     <nav className='sticky top-0 z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 relative'>
-//       <div className='max-w-7xl mx-auto px-6 py-4 flex justify-between items-center'>
-
-        
-//         <div className='flex items-center gap-3'>
-         
-//           <button
-//             onClick={() => setMenuOpen(prev => !prev)}
-//             className='p-2 rounded-xl bg-white/10 hover:bg-white/20 transition text-white'
-//           >
-//             {menuOpen ? <X size={20} /> : <Menu size={20} />}
-//           </button>
-
-//           <h1 className='text-2xl font-bold text-orange-400'>
-//             <Link to='/' className='flex items-center gap-3'>
-//               <img src={logo} alt="CookAI Logo" className='h-12 w-12 object-contain' />
-//               <span className='text-3xl font-bold text-orange-400'>CookAI</span>
-//             </Link>
-//           </h1>
-//         </div>
-
-       
-//         <div className='hidden md:flex gap-8 text-slate-300 items-center'>
-//           <Link to='/' className='hover:text-orange-400 transition'>Home</Link>
-//           <Link to='/about' className='hover:text-orange-400 transition'>About</Link>
-//           <Link to='/recipe' className='hover:text-orange-400 transition'>Recipes</Link>
-//           <Link to='/aiGenerate' className='hover:text-orange-400 transition'>AI Generator</Link>
-//           <Link to='/features' className='hover:text-orange-400 transition'>Features</Link>
-//           <Link to='/trendingRecipes' className='hover:text-orange-400 transition'>TrendingRecipes</Link>
-//         </div>
-
-       
-//         <div className='flex gap-4 items-center'>
-//           <button
-//             onClick={toggleTheme}
-//             className='p-2 rounded-xl bg-white/10 hover:bg-white/20 transition'
-//           >
-//             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-//           </button>
-
-//           <Link
-//             to='/login'
-//             className='bg-orange-500 hover:bg-orange-400 px-5 py-2 rounded-xl transition'
-//           >
-//             Login
-//           </Link>
-//         </div>
-
-//       </div>
-
-      
-//       {menuOpen && (
-//         <div className='absolute left-0 top-full w-56 bg-black/80 backdrop-blur-xl border border-white/10 rounded-b-2xl shadow-2xl z-50 py-3'>
-//           {[
-//             { label: '🥦 Veg', emoji: '' },
-//             { label: '🍗 Non-Veg', emoji: '' },
-//             { label: '🥚 Egg', emoji: '' },
-//             { label: '🥗 Diet', emoji: '' },
-//             { label: '🍿 Snacks', emoji: '' },
-//             { label: '🥤 Drinks', emoji: '' },
-//             { label: '🍰 Desserts', emoji: '' },
-//           ].map(({ label }) => (
-//             <button
-//               key={label}
-//               onClick={() => setMenuOpen(false)}
-//               className='w-full text-left px-5 py-3 text-slate-300 hover:text-orange-400 hover:bg-white/5 transition text-sm'
-//             >
-//               {label}
-//             </button>
-//           ))}
-//         </div>
-//       )}
-//     </nav>
-//   )
-// }
-import { Menu, X } from "lucide-react";
-import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+﻿import { Menu, X, Search } from "lucide-react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import ThemeToggle from "../ui/ThemeToggle";
+import { useAuth } from "../../hooks/useAuth";
+
+const navLinks = [
+  { label: "Home", to: "/" },
+  { label: "Recipes", to: "/recipe" },
+  { label: "AI Chef", to: "/ai" },
+  { label: "Favorites", to: "/favorites" },
+  { label: "Meal Planner", to: "/mealplanner" },
+];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const { isAuthenticated, user, logout } = useAuth();
+
+  // Get initials for avatar
+  const initials = user?.name
+    ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
+    : "U";
+
   return (
-    <nav
-      className="
-        sticky top-0 z-50
-        bg-white/70
-        dark:bg-black/50
-        backdrop-blur-xl
-        border-b
-        border-black/10
-        dark:border-white/10
-        transition-all duration-300
-      "
-    >
-      <div
-        className="
-          max-w-7xl
-          mx-auto
-          px-6 py-4
-          flex items-center justify-between
-        "
-      >
-        
-        {/* LEFT SIDE */}
-        <div className="flex items-center gap-4">
+    <nav className="sticky top-0 z-50 bg-white/80 dark:bg-[#0B1120]/90 backdrop-blur-xl border-b border-black/10 dark:border-white/10 transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
 
-          {/* MENU BUTTON */}
-          <button
-            onClick={() => setMenuOpen(prev => !prev)}
-            className="
-              p-2 rounded-xl
-              bg-black/5
-              dark:bg-white/10
-              hover:bg-black/10
-              dark:hover:bg-white/20
-              transition-all duration-300
-            "
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-            {/* <Menu
-              size={22}
-              className="text-black dark:text-white"
-            /> */}
-          </button>
+        {/* LOGO */}
+        <Link to="/" className="flex items-center gap-2 shrink-0">
+          <img src={logo} alt="CookAI" className="h-10 w-10 object-contain" />
+          <span className="text-2xl font-bold text-orange-500">CookAI</span>
+        </Link>
 
-          {/* LOGO */}
-          <Link
-            to="/"
-            className="flex items-center gap-3"
-          >
-            <img
-              src={logo}
-              alt="CookAI Logo"
-              className="h-12 w-12 object-contain"
-            />
-
-            <h1
-              className="
-                text-3xl font-bold
-                text-orange-500
-              "
+        {/* CENTER LINKS */}
+        <div className="hidden lg:flex items-center gap-7">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`text-sm font-medium transition-colors duration-200 ${location.pathname === link.to
+                  ? "text-orange-500 border-b-2 border-orange-500 pb-0.5"
+                  : "text-slate-600 dark:text-slate-300 hover:text-orange-500"
+                }`}
             >
-              CookAI
-            </h1>
-          </Link>
-        </div>
-        
-
-        {/* CENTER MENU */}
-        <div
-          className="
-            hidden lg:flex
-            items-center gap-8
-          "
-        >
-
-          <Link
-            to="/"
-            className="
-              text-slate-700
-              dark:text-slate-300
-              hover:text-orange-500
-              transition
-            "
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/about"
-            className="
-              text-slate-700
-              dark:text-slate-300
-              hover:text-orange-500
-              transition
-            "
-          >
-            About
-          </Link>
-
-          <Link
-            to="/recipe"
-            className="
-              text-slate-700
-              dark:text-slate-300
-              hover:text-orange-500
-              transition
-            "
-          >
-            Recipes
-          </Link>
-
-          <Link
-            to="/ai"
-            className="
-              text-slate-700
-              dark:text-slate-300
-              hover:text-orange-500
-              transition
-            "
-          >
-            AI Chef
-          </Link>
-
-          <Link
-            to="/features"
-            className="
-              text-slate-700
-              dark:text-slate-300
-              hover:text-orange-500
-              transition
-            "
-          >
-            Features
-          </Link>
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
 
-          {/* DARK MODE BUTTON */}
+          {/* SEARCH */}
+          <div className="hidden md:flex items-center gap-2 bg-slate-100 dark:bg-white/10 border border-black/10 dark:border-white/10 rounded-xl px-4 py-2">
+            <Search size={16} className="text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search recipes..."
+              className="bg-transparent outline-none text-sm w-32 text-black dark:text-white placeholder:text-slate-400"
+            />
+          </div>
+
+          {/* THEME TOGGLE — sun/moon pill */}
           <ThemeToggle />
 
-          {/* LOGIN BUTTON */}
-          <Link
-            to="/login"
-            className="
-              px-5 py-2
-              rounded-xl
-              bg-orange-500
-              hover:bg-orange-400
-              text-white
-              font-medium
-              transition-all duration-300
-              shadow-lg
-              shadow-orange-500/20
-            "
-          >
-            Login
-          </Link>
-          {menuOpen && (
-        <div className='absolute left-0 top-full w-56 bg-black/80 backdrop-blur-xl border border-white/10 rounded-b-2xl shadow-2xl z-50 py-3'>
-          {[
-            { label: '🥦 Veg', emoji: '' },
-            { label: '🍗 Non-Veg', emoji: '' },
-            { label: '🥚 Egg', emoji: '' },
-            { label: '🥗 Diet', emoji: '' },
-            { label: '🍿 Snacks', emoji: '' },
-            { label: '🥤 Drinks', emoji: '' },
-            { label: '🍰 Desserts', emoji: '' },
-          ].map(({ label }) => (
-            <button
-              key={label}
-              onClick={() => setMenuOpen(false)}
-              className='w-full text-left px-5 py-3 text-slate-300 hover:text-orange-400 hover:bg-white/5 transition text-sm'
+          {/* AVATAR / LOGIN */}
+          {isAuthenticated ? (
+            <div className="relative group">
+              <button className="w-9 h-9 rounded-full bg-orange-500 hover:bg-orange-400 text-white text-sm font-bold flex items-center justify-center transition-all duration-300 shadow-md shadow-orange-500/30">
+                {initials}
+              </button>
+              {/* dropdown */}
+              <div className="absolute right-0 top-full mt-2 w-44 bg-white dark:bg-[#0F172A] border border-black/10 dark:border-white/10 rounded-2xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <Link
+                  to="/dashboard"
+                  className="block px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:text-orange-500 hover:bg-slate-50 dark:hover:bg-white/5 transition"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={logout}
+                  className="w-full text-left px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="w-9 h-9 rounded-full bg-orange-500 hover:bg-orange-400 text-white text-sm font-bold flex items-center justify-center transition-all duration-300 shadow-md shadow-orange-500/30"
             >
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
+              ?
+            </Link>
+          )}
+
+          {/* MOBILE MENU BUTTON */}
+          <button
+            onClick={() => setMenuOpen((p) => !p)}
+            className="lg:hidden p-2 rounded-xl bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
+
+      {/* MOBILE DROPDOWN */}
+      {menuOpen && (
+        <div className="lg:hidden border-t border-black/10 dark:border-white/10 bg-white dark:bg-[#0B1120] px-6 py-4 flex flex-col gap-3">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              onClick={() => setMenuOpen(false)}
+              className="text-slate-700 dark:text-slate-300 hover:text-orange-500 transition py-1"
+            >
+              {link.label}
+            </Link>
+          ))}
+          {isAuthenticated ? (
+            <>
+              <Link
+                to="/dashboard"
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-700 dark:text-slate-300 hover:text-orange-500 transition py-1"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => { logout(); setMenuOpen(false); }}
+                className="text-left text-red-500 py-1"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-orange-500 font-medium py-1"
+            >
+              Login
+            </Link>
+          )}
+        </div>
+      )}
     </nav>
   );
 }
