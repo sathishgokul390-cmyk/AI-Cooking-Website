@@ -131,13 +131,21 @@ import ThemeToggle from "../../components/ui/ThemeToggle";
 export default function Dashboard() {
   const [active, setActive] = useState("dashboard");
   const [liked, setLiked] = useState([]);
+  const [tooltip, setTooltip] = useState({ visible: false, label: "", y: 0 });
+
+  const showTooltip = (e, label) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setTooltip({ visible: true, label, y: rect.top + rect.height / 2 });
+  };
+
+  const hideTooltip = () => setTooltip({ visible: false, label: "", y: 0 });
 
   const sidebar = [
-    { id: "dashboard", icon: LayoutGrid },
-    { id: "analytics", icon: BarChart3 },
-    { id: "saved", icon: Bookmark },
-    { id: "recipes", icon: BookOpen },
-    { id: "calendar", icon: Calendar },
+    { id: "dashboard", icon: LayoutGrid, label: "Dashboard" },
+    { id: "analytics", icon: BarChart3, label: "Analytics" },
+    { id: "saved", icon: Bookmark, label: "Saved" },
+    { id: "recipes", icon: BookOpen, label: "Recipes" },
+    { id: "calendar", icon: Calendar, label: "Calendar" },
   ];
 
   const recipes = [
@@ -209,10 +217,10 @@ export default function Dashboard() {
 
       <div className="relative z-10 max-w-[1700px] mx-auto flex gap-8">
         {/* SIDEBAR */}
-        <div className="sticky top-4 h-[95vh] w-[110px] rounded-[40px] bg-white dark:bg-[#111827]/95 border border-gray-200 dark:border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.12)] backdrop-blur-2xl flex flex-col justify-between items-center py-6">
+        <div className="sticky top-4 h-[137vh] w-[110px] rounded-[40px] bg-white dark:bg-[#111827]/95 border border-gray-200 dark:border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.12)] backdrop-blur-2xl flex flex-col justify-between items-center py-6 overflow-visible">
 
           {/* Top */}
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-4">
 
             {/* Logo Space */}
             <div className="w-16 h-16 rounded-[22px] bg-[#f3f4f6] dark:bg-white/5 flex items-center justify-center">
@@ -222,21 +230,18 @@ export default function Dashboard() {
             {/* Menu */}
             {sidebar.map((item, index) => {
               const Icon = item.icon;
-
               return (
                 <motion.button
                   key={index}
-                  whileHover={{
-                    scale: 1.08,
-                    y: -2,
-                  }}
+                  whileHover={{ scale: 1.08, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActive(item.id)}
-                  className={`w-16 h-16 rounded-[22px] flex items-center justify-center transition-all duration-300 ${
-                    active === item.id
-                      ? "bg-gradient-to-br from-pink-500 to-red-500 text-white shadow-lg"
-                      : "bg-[#f3f4f6] dark:bg-white/5 hover:bg-[#ececec] dark:hover:bg-white/10"
-                  }`}
+                  onMouseEnter={(e) => showTooltip(e, item.label)}
+                  onMouseLeave={hideTooltip}
+                  className={`w-16 h-16 rounded-[22px] flex items-center justify-center transition-all duration-300 ${active === item.id
+                    ? "bg-gradient-to-br from-pink-500 to-red-500 text-white shadow-lg"
+                    : "bg-[#f3f4f6] dark:bg-white/5 hover:bg-[#ececec] dark:hover:bg-white/10"
+                    }`}
                 >
                   <Icon size={26} />
                 </motion.button>
@@ -245,17 +250,14 @@ export default function Dashboard() {
           </div>
 
           {/* Bottom */}
-          <div className="flex flex-col items-center gap-5">
-
-            {/* Theme Toggle */}
-            <div className="scale-110">
-              <ThemeToggle />
-            </div>
+          <div className="flex flex-col items-center gap-4">
 
             {/* Settings */}
             <motion.button
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
+              onMouseEnter={(e) => showTooltip(e, "Settings")}
+              onMouseLeave={hideTooltip}
               className="w-16 h-16 rounded-[22px] bg-[#f3f4f6] dark:bg-white/5 hover:bg-[#ececec] dark:hover:bg-white/10 flex items-center justify-center transition-all"
             >
               <Settings size={26} />
@@ -265,6 +267,8 @@ export default function Dashboard() {
             <motion.button
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.95 }}
+              onMouseEnter={(e) => showTooltip(e, "Logout")}
+              onMouseLeave={hideTooltip}
               className="w-16 h-16 rounded-[22px] bg-[#f3f4f6] dark:bg-white/5 hover:bg-red-100 dark:hover:bg-red-500/20 flex items-center justify-center transition-all"
             >
               <Power size={26} />
@@ -361,11 +365,10 @@ export default function Dashboard() {
                         className="absolute top-5 right-5 w-12 h-12 rounded-full bg-black/30 backdrop-blur-md flex items-center justify-center"
                       >
                         <Heart
-                          className={`${
-                            liked.includes(item.id)
-                              ? "fill-red-500 text-red-500"
-                              : "text-white"
-                          }`}
+                          className={`${liked.includes(item.id)
+                            ? "fill-red-500 text-red-500"
+                            : "text-white"
+                            }`}
                         />
                       </button>
 
@@ -454,11 +457,10 @@ export default function Dashboard() {
                         </p>
 
                         <div
-                          className={`mt-2 w-11 h-11 rounded-full flex items-center justify-center ${
-                            day === "Wed"
-                              ? "bg-gradient-to-br from-pink-500 to-red-500 text-white"
-                              : "bg-[#f3f4f6] dark:bg-white/5"
-                          }`}
+                          className={`mt-2 w-11 h-11 rounded-full flex items-center justify-center ${day === "Wed"
+                            ? "bg-gradient-to-br from-pink-500 to-red-500 text-white"
+                            : "bg-[#f3f4f6] dark:bg-white/5"
+                            }`}
                         >
                           {13 + i}
                         </div>
@@ -535,6 +537,17 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Fixed Tooltip */}
+      {tooltip.visible && (
+        <div
+          className="fixed left-[130px] z-[9999] px-3 py-1.5 rounded-lg bg-gray-900 text-white text-sm font-medium whitespace-nowrap shadow-lg pointer-events-none -translate-y-1/2"
+          style={{ top: tooltip.y }}
+        >
+          {tooltip.label}
+          <span className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900" />
+        </div>
+      )}
     </div>
   );
 }
