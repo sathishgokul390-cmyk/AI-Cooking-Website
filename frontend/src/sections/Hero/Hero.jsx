@@ -368,7 +368,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Clock3, Star, Heart, Sparkles, ChevronRight, ArrowRight } from "lucide-react";
+import { Clock3, Star, Heart, Sparkles, ChevronRight, ArrowRight, Search } from "lucide-react";
 
 import AiCookingBanner from "../../assets/images/Ai_cooking_image.png";
 import breakfast from "../../assets/images/breakfast.avif";
@@ -444,8 +444,8 @@ export default function Hero() {
   const [liked, setLiked] = useState({});
   const toggleLike = (i) => setLiked((p) => ({ ...p, [i]: !p[i] }));
 
-  const floatUp   = { animate: { y: [0, -10, 0] }, transition: { duration: 3.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } };
-  const floatDown = { animate: { y: [0,  10, 0] }, transition: { duration: 3.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.6 } };
+  const floatUp   = { animate: { y: [0, -10, 0] }, transition: { duration: 4.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } };
+  const floatDown = { animate: { y: [0,  10, 0] }, transition: { duration: 4.4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.6 } };
 
   return (
     <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#121413] text-black dark:text-white transition-all duration-300">
@@ -458,8 +458,7 @@ export default function Hero() {
         {/* Full-width background image */}
         <img
           src={AiCookingBanner}
-          alt=""
-          aria-hidden="true"
+          alt="AI Chef robot preparing a meal in a modern kitchen"
           className="absolute inset-0 w-full h-550 object-cover object-center select-none"
         />
 
@@ -492,10 +491,10 @@ export default function Hero() {
                 className="w-full lg:w-[40%] flex flex-col justify-center"
                 initial={{ opacity: 0, x: -36 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               >
                 {/* Headline */}
-                <h1 className="text-4xl xl:text-5xl font-extrabold leading-[1.14] mb-4 text-gray-900 dark:text-white">
+                <h1 className="text-5xl xl:text-6xl font-extrabold leading-[1.08] mb-4 text-gray-900 dark:text-white">
                   Your{" "}
                   <span className="text-[#6BA539]">AI Chef</span>
                   <br />
@@ -504,29 +503,72 @@ export default function Hero() {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-gray-500 dark:text-gray-400 text-[15px] leading-relaxed mb-7 max-w-[300px]">
+                <p className="text-gray-500 dark:text-gray-400 text-[15px] leading-relaxed mb-4 max-w-[380px]">
                   Let AI create personalized recipes, tailored to your taste, ingredients, and health goals.
                 </p>
 
-                {/* CTA button */}
-                <motion.div className="mb-7" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <button
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-[15px] transition-all duration-300"
+                {/* Search — compact and accessible */}
+                <form className="mb-4" role="search" onSubmit={(e) => e.preventDefault()}>
+                  <div className="flex items-center gap-3 bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-full px-3 py-2 max-w-md shadow-sm">
+                    <Search size={16} className="text-gray-400" />
+                    <input
+                      aria-label="Search recipes or ingredients"
+                      placeholder="Search recipes, ingredients, or cuisines"
+                      className="flex-1 bg-transparent outline-none text-sm placeholder-gray-400 text-gray-700 dark:text-gray-200"
+                    />
+                    <button aria-label="Search" className="ml-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6BA539] hover:bg-[#568a2e] text-white text-sm font-medium transition-colors">
+                      Search
+                    </button>
+                  </div>
+                </form>
+
+                {/* CTA group — primary + secondary (glass wrapper for emphasis) */}
+                <div className="mb-7">
+                  <div className="inline-flex items-center gap-3 rounded-full p-1 bg-white/40 dark:bg-black/20 backdrop-blur-sm">
+                    <div className="flex items-center">
+                      <div className="flex items-center">
+                        <div className="flex items-center">
+                          <div className="flex">
+                            <div className="">
+                              <div className="">
+                                <div className="">
+                                  <div className="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 gap-3">
+                  <motion.button
+                    type="button"
+                    aria-label="Get Cooking — generate a personalized recipe"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-[15px] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#6BA539]/30"
                     style={{
                       background: "linear-gradient(135deg, #6BA539 0%, #4d8822 100%)",
-                      boxShadow: "0 8px 28px rgba(107,165,57,0.42)",
+                      boxShadow: "0 10px 30px rgba(75,140,40,0.24)",
                     }}
                   >
                     Get Cooking
-                    <motion.span
-                      className="flex items-center"
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    >
+                    <motion.span className="flex items-center" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
                       <ArrowRight size={16} />
                     </motion.span>
+                  </motion.button>
+
+                  <button
+                    type="button"
+                    aria-label="Explore Recipes"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white dark:bg-black/30 border border-black/10 dark:border-white/10 text-sm text-gray-800 dark:text-gray-200 font-medium transition-shadow shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#6BA539]/20"
+                  >
+                    Explore Recipes
                   </button>
-                </motion.div>
+                </div>
+              </div>
+                </div>
 
                 {/* Social proof */}
                 <div className="flex items-center gap-3">

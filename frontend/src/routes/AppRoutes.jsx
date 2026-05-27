@@ -13,16 +13,17 @@ import TrendingRecipes from '../pages/TrendingRecipe/TrendingRecipes';
 import Favorites from '../pages/Favorites/Favorites';
 import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
+import Testimonials from '../sections/Testimonials/Testimonials';
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Auth pages — no shared Navbar/Footer */}
+        {/* Auth pages ï¿½ no shared Navbar/Footer */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* All other pages — shared Navbar + Footer */}
+        {/* All other pages ï¿½ shared Navbar + Footer */}
         <Route
           path="*"
           element={
@@ -38,6 +39,7 @@ export default function AppRoutes() {
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/features" element={<Features />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/testimonials" element={<Testimonials />} />
               </Routes>
               {/* <Footer /> */}
             </>
