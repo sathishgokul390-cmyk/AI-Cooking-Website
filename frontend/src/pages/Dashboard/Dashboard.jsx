@@ -126,7 +126,6 @@ import {
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ThemeToggle from "../../components/ui/ThemeToggle";
 
 export default function Dashboard() {
   const [active, setActive] = useState("dashboard");
@@ -279,7 +278,12 @@ export default function Dashboard() {
         {/* MAIN CONTENT */}
         <div className="flex-1">
           {/* Navbar */}
-          <div className="flex justify-between items-center mb-7">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-between items-center mb-7"
+          >
             <div>
               <h1 className="text-3xl font-bold">
                 Welcome Back 👋
@@ -322,7 +326,7 @@ export default function Dashboard() {
                 className="w-12 h-12 rounded-full border-2 border-pink-500 object-cover"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* CONTENT GRID */}
           <div className="grid grid-cols-12 gap-6">
@@ -331,7 +335,12 @@ export default function Dashboard() {
             <div className="col-span-8 flex flex-col gap-6">
 
               {/* Chef Recommendation */}
-              <div className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl"
+              >
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-semibold">
                     Chef Recommendation
@@ -343,9 +352,12 @@ export default function Dashboard() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-5">
-                  {recipes.map((item) => (
+                  {recipes.map((item, idx) => (
                     <motion.div
                       key={item.id}
+                      initial={{ opacity: 0, y: 30, scale: 0.93 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.55, delay: 0.2 + idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
                       whileHover={{
                         y: -8,
                         scale: 1.02,
@@ -390,10 +402,15 @@ export default function Dashboard() {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Favorites */}
-              <div className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl"
+              >
                 <div className="flex justify-between items-center mb-5">
                   <h2 className="text-2xl font-semibold">
                     Favorite Recipes
@@ -432,14 +449,19 @@ export default function Dashboard() {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* RIGHT */}
             <div className="col-span-4 flex flex-col gap-6">
 
               {/* Meal Plan */}
-              <div className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl">
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl"
+              >
                 <h2 className="text-2xl font-semibold mb-6">
                   Meal Plan
                 </h2>
@@ -491,10 +513,15 @@ export default function Dashboard() {
                     </div>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {/* Daily Goal */}
-              <div className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl">
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.65, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-[35px] bg-white dark:bg-[#111827]/90 border border-gray-200 dark:border-white/10 p-6 shadow-2xl backdrop-blur-2xl"
+              >
                 <div className="flex justify-between items-center mb-8">
                   <h2 className="text-2xl font-semibold">
                     Daily Goal
@@ -531,23 +558,25 @@ export default function Dashboard() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
             </div>
           </div>
         </div>
-      </div>
+      </div >
 
       {/* Fixed Tooltip */}
-      {tooltip.visible && (
-        <div
-          className="fixed left-[130px] z-[9999] px-3 py-1.5 rounded-lg bg-gray-900 text-white text-sm font-medium whitespace-nowrap shadow-lg pointer-events-none -translate-y-1/2"
-          style={{ top: tooltip.y }}
-        >
-          {tooltip.label}
-          <span className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900" />
-        </div>
-      )}
-    </div>
+      {
+        tooltip.visible && (
+          <div
+            className="fixed left-[130px] z-[9999] px-3 py-1.5 rounded-lg bg-gray-900 text-white text-sm font-medium whitespace-nowrap shadow-lg pointer-events-none -translate-y-1/2"
+            style={{ top: tooltip.y }}
+          >
+            {tooltip.label}
+            <span className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900" />
+          </div>
+        )
+      }
+    </div >
   );
 }

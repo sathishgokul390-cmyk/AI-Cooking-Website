@@ -386,18 +386,18 @@ import vegSandwich from "../../assets/images/veg_sandwich.avif";
 
 const categories = [
   { title: "Breakfast", recipes: "25 Recipes", image: breakfast },
-  { title: "Lunch",     recipes: "40 Recipes", image: lunch },
-  { title: "Dinner",    recipes: "60 Recipes", image: dinner },
-  { title: "Desserts",  recipes: "30 Recipes", image: dessert },
-  { title: "Snacks",    recipes: "35 Recipes", image: snackes },
-  { title: "Drinks",    recipes: "20 Recipes", image: drink },
+  { title: "Lunch", recipes: "40 Recipes", image: lunch },
+  { title: "Dinner", recipes: "60 Recipes", image: dinner },
+  { title: "Desserts", recipes: "30 Recipes", image: dessert },
+  { title: "Snacks", recipes: "35 Recipes", image: snackes },
+  { title: "Drinks", recipes: "20 Recipes", image: drink },
 ];
 
 const recipes = [
-  { title: "Chicken Biryani",       image: chickenBriyani,      time: "45 min", difficulty: "Medium", rating: "4.8", reviews: 320 },
-  { title: "Paneer Butter Masala",  image: pannerButterMasala,  time: "30 min", difficulty: "Easy",   rating: "4.7", reviews: 180 },
-  { title: "Chocolate Lava Cake",   image: chocolateLavaCake,   time: "25 min", difficulty: "Easy",   rating: "4.9", reviews: 215 },
-  { title: "Veg Sandwich",          image: vegSandwich,         time: "15 min", difficulty: "Easy",   rating: "4.6", reviews: 98  },
+  { title: "Chicken Biryani", image: chickenBriyani, time: "45 min", difficulty: "Medium", rating: "4.8", reviews: 320 },
+  { title: "Paneer Butter Masala", image: pannerButterMasala, time: "30 min", difficulty: "Easy", rating: "4.7", reviews: 180 },
+  { title: "Chocolate Lava Cake", image: chocolateLavaCake, time: "25 min", difficulty: "Easy", rating: "4.9", reviews: 215 },
+  { title: "Veg Sandwich", image: vegSandwich, time: "15 min", difficulty: "Easy", rating: "4.6", reviews: 98 },
 ];
 
 const avatars = [
@@ -411,7 +411,7 @@ const ingredients = [
   { label: "Chicken", emoji: "🍗" },
   { label: "Avocado", emoji: "🥑" },
   { label: "Broccoli", emoji: "🥦" },
-  { label: "Quinoa",  emoji: "🌾" },
+  { label: "Quinoa", emoji: "🌾" },
 ];
 
 // 20 waveform bar heights
@@ -444,8 +444,8 @@ export default function Hero() {
   const [liked, setLiked] = useState({});
   const toggleLike = (i) => setLiked((p) => ({ ...p, [i]: !p[i] }));
 
-  const floatUp   = { animate: { y: [0, -10, 0] }, transition: { duration: 3.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } };
-  const floatDown = { animate: { y: [0,  10, 0] }, transition: { duration: 3.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.6 } };
+  const floatUp = { animate: { y: [0, -10, 0] }, transition: { duration: 3.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } };
+  const floatDown = { animate: { y: [0, 10, 0] }, transition: { duration: 3.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.6 } };
 
   return (
     <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#121413] text-black dark:text-white transition-all duration-300">
@@ -669,8 +669,8 @@ export default function Hero() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <h3 className="font-semibold text-sm">{cat.title}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{cat.recipes}</p>
+              <h3 className="font-semibold text-sm opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">{cat.title}</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75 ease-out">{cat.recipes}</p>
             </motion.div>
           ))}
         </div>
