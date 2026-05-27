@@ -1,4 +1,4 @@
-// import { useState } from "react";
+﻿// import { useState } from "react";
 // import { motion } from "framer-motion";
 // import { Clock3, Star, Heart, Sparkles, ChevronRight, ArrowRight } from "lucide-react";
 
@@ -370,7 +370,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Clock3, Star, Heart, Sparkles, ChevronRight, ArrowRight } from "lucide-react";
 
-import AiCookingBanner from "../../assets/images/ai_cooking_banner.png";
+import AiCookingBanner from "../../assets/images/Ai_cooking_image.png";
 import breakfast from "../../assets/images/breakfast.avif";
 import lunch from "../../assets/images/lunch.avif";
 import dinner from "../../assets/images/dinner.avif";
@@ -453,14 +453,14 @@ export default function Hero() {
       {/* ═══════════════════════════════════════════════════════════════════════
           HERO BANNER
       ════════════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full overflow-hidden" style={{ minHeight: 520 }}>
+      <section className="relative w-full overflow-hidden" style={{ minHeight: 720 }}>
 
         {/* Full-width background image */}
         <img
           src={AiCookingBanner}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center select-none"
+          className="absolute inset-0 w-full h-550 object-cover object-center select-none"
         />
 
         {/* ── Light mode overlay: solid cream on left → fully transparent at 58%
