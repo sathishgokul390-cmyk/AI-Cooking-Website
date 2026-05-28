@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:6.0
+    container_name: ai-cooking-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ai-cooking-network
+
+  # Backend API Server
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.server
+    container_name: ai-cooking-backend
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://admin:password123@mongodb:27017/ai-cooking
+      JWT_SECRET: your_jwt_secret_key
+      CLOUDINARY_NAME: ${CLOUDINARY_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    depends_on:
+      - mongodb
+    networks:
+      - ai-cooking-network
+    restart: unless-stopped
+
+  # Frontend Application
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.client
+    container_name: ai-cooking-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_API_URL: http://localhost:5000/api
+    depends_on:
+      - backend
+    networks:
+      - ai-cooking-network
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+
+networks:
+  ai-cooking-network:
+    driver: bridge
