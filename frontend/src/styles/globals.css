@@ -26,3 +26,13 @@ html.dark {
   background-color: #121413;
   color: #ffffff;
 }
+
+/* hide scrollbar on category tab nav */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -368,7 +368,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Clock3, Star, Heart, Sparkles, ChevronRight, ArrowRight, Search, Flame, X } from "lucide-react";
+import { Clock3, Star, Heart, Sparkles, ArrowRight, Search, Flame, ChevronRight } from "lucide-react";
 
 import AiCookingBanner from "../../assets/images/Ai_cooking_image.png";
 import breakfast from "../../assets/images/breakfast.avif";
@@ -411,39 +411,39 @@ import ProteinSmoothie from "../../assets/images/recipes/breakfast/Protein.jpg";
 
 // Lunch
 import ChickenBiryani from "../../assets/images/recipes/lunch/ChickenBiryani.avif";
-import MuttonBiryani from  "../../assets/images/recipes/lunch/MuttonBiryani.jpg";
-import FishBiryani from  "../../assets/images/recipes/lunch/FishBiryani.jpg";
-import EggBiryani from  "../../assets/images/recipes/lunch/EggBiryani.jpg";
-import VegBiryani from  "../../assets/images/recipes/lunch/VegBiryani.jpg";
-import FriedRice from  "../../assets/images/recipes/lunch/FriedRice.jpg";
-import ChickenFriedRice from  "../../assets/images/recipes/lunch/ChickenFriedRice.jpg";
-import SchezwanFriedRice from  "../../assets/images/recipes/lunch/SchezwanFriedRice.avif";
-import JeeraRice from  "../../assets/images/recipes/lunch/JeeraRice.jpg";
-import GheeRice from  "../../assets/images/recipes/lunch/GheeRice.webp";
-import TomatoRice from  "../../assets/images/recipes/lunch/TomatoRice.jpg";
-import LemonRice from  "../../assets/images/recipes/lunch/LemonRice.jpg";
-import CoconutRice from  "../../assets/images/recipes/lunch/CoconutRice.jpg";
-import SambarRice from  "../../assets/images/recipes/lunch/SambarRice.jpg";
-import CurdRice from  "../../assets/images/recipes/lunch/CurdRice.jpg";
-import Pulao from  "../../assets/images/recipes/lunch/Pulao.jpg";
-import VegPulao from  "../../assets/images/recipes/lunch/VegPulao.jpg";
-import MushroomRice from  "../../assets/images/recipes/lunch/MushroomFriedRice.jpeg";
-import PaneerRice from  "../../assets/images/recipes/lunch/PaneerRice.jpg";
-import Kuska from  "../../assets/images/recipes/lunch/kuska.jpg";
-import ChickenCurry from  "../../assets/images/recipes/lunch/ChickenCurry.jpg";
-import ButterChicken from  "../../assets/images/recipes/lunch/ButterChicken.avif";
-import ChilliChicken from  "../../assets/images/recipes/lunch/ChilliChicken.avif";
-import DragonChicken from  "../../assets/images/recipes/lunch/DragonChicken.jpg";
-import Chicken65 from  "../../assets/images/recipes/lunch/Chicken-65.jpg";
-import PepperChicken from  "../../assets/images/recipes/lunch/PepperChicken.webp";
-import GrilledChicken from  "../../assets/images/recipes/lunch/GrilledChicken.jpg";
-import TandooriChicken from  "../../assets/images/recipes/lunch/TandooriChicken.jpg";
-import FishFry from  "../../assets/images/recipes/lunch/FishFry.jpg";
-import PrawnFry from  "../../assets/images/recipes/lunch/PrawnFry.jpg";
-import MuttonCurry from  "../../assets/images/recipes/lunch/MuttonCurry.jpg";
-import EggCurry from  "../../assets/images/recipes/lunch/EggCurry.jpg";
+import MuttonBiryani from "../../assets/images/recipes/lunch/MuttonBiryani.jpg";
+import FishBiryani from "../../assets/images/recipes/lunch/FishBiryani.jpg";
+import EggBiryani from "../../assets/images/recipes/lunch/EggBiryani.jpg";
+import VegBiryani from "../../assets/images/recipes/lunch/VegBiryani.jpg";
+import FriedRice from "../../assets/images/recipes/lunch/FriedRice.jpg";
+import ChickenFriedRice from "../../assets/images/recipes/lunch/ChickenFriedRice.jpg";
+import SchezwanFriedRice from "../../assets/images/recipes/lunch/SchezwanFriedRice.avif";
+import JeeraRice from "../../assets/images/recipes/lunch/JeeraRice.jpg";
+import GheeRice from "../../assets/images/recipes/lunch/GheeRice.webp";
+import TomatoRice from "../../assets/images/recipes/lunch/TomatoRice.jpg";
+import LemonRice from "../../assets/images/recipes/lunch/LemonRice.jpg";
+import CoconutRice from "../../assets/images/recipes/lunch/CoconutRice.jpg";
+import SambarRice from "../../assets/images/recipes/lunch/SambarRice.jpg";
+import CurdRice from "../../assets/images/recipes/lunch/CurdRice.jpg";
+import Pulao from "../../assets/images/recipes/lunch/Pulao.jpg";
+import VegPulao from "../../assets/images/recipes/lunch/VegPulao.jpg";
+import MushroomRice from "../../assets/images/recipes/lunch/MushroomFriedRice.jpeg";
+import PaneerRice from "../../assets/images/recipes/lunch/PaneerRice.jpg";
+import Kuska from "../../assets/images/recipes/lunch/kuska.jpg";
+import ChickenCurry from "../../assets/images/recipes/lunch/ChickenCurry.jpg";
+import ButterChicken from "../../assets/images/recipes/lunch/ButterChicken.avif";
+import ChilliChicken from "../../assets/images/recipes/lunch/ChilliChicken.avif";
+import DragonChicken from "../../assets/images/recipes/lunch/DragonChicken.jpg";
+import Chicken65 from "../../assets/images/recipes/lunch/Chicken-65.jpg";
+import PepperChicken from "../../assets/images/recipes/lunch/PepperChicken.webp";
+import GrilledChicken from "../../assets/images/recipes/lunch/GrilledChicken.jpg";
+import TandooriChicken from "../../assets/images/recipes/lunch/TandooriChicken.jpg";
+import FishFry from "../../assets/images/recipes/lunch/FishFry.jpg";
+import PrawnFry from "../../assets/images/recipes/lunch/PrawnFry.jpg";
+import MuttonCurry from "../../assets/images/recipes/lunch/MuttonCurry.jpg";
+import EggCurry from "../../assets/images/recipes/lunch/EggCurry.jpg";
 import PannerButterMasala from "../../assets/images/recipes/lunch/PaneerButterMasala.jpg";
-import KadaiPaneer from  "../../assets/images/recipes/lunch/KadaiPaneer.jpg";
+import KadaiPaneer from "../../assets/images/recipes/lunch/KadaiPaneer.jpg";
 import GobiManchurian from "../../assets/images/recipes/lunch/GobiManchurian.jpg";
 import VegManchurian from "../../assets/images/recipes/lunch/VegManchurian.jpg";
 import MushroomPepperFry from "../../assets/images/recipes/lunch/MushroomPepperFry.webp";
@@ -451,7 +451,68 @@ import DalTadka from "../../assets/images/recipes/lunch/DalTadka.webp";
 import DalMakhani from "../../assets/images/recipes/lunch/DalMakhani.jpg";
 import MixedVegetableCurry from "../../assets/images/recipes/lunch/MixedVegetableCurry.jpg";
 
-
+// Dinner
+import Idli from "../../assets/images/recipes/dinner/Idli.jpg";
+import PodiIdli from "../../assets/images/recipes/dinner/PodiIdli.jpg";
+import MiniIdliSambar from "../../assets/images/recipes/dinner/MiniIdliSambar.jpg";
+import Dosa from "../../assets/images/recipes/dinner/Dosa.jpg";
+import GheeDosa from "../../assets/images/recipes/dinner/GheeDosa.jpg";
+// import MasalaDosa from "../../assets/images/recipes/dinner/MasalaDosa.jpg";
+import SeafoodPaella from "../../assets/images/recipes/dinner/SeafoodPaella.jpg"
+import OnionDosa from "../../assets/images/recipes/dinner/OnionDosa.jpg";
+import KalDosa from "../../assets/images/recipes/dinner/KalDosa.jpg";
+import RavaDosa from "../../assets/images/recipes/dinner/RavaDosa.jpg";
+import SetDosa from "../../assets/images/recipes/dinner/SetDosa.webp";
+import Appam from "../../assets/images/recipes/dinner/Appam.jpg";
+import Idiyappam from "../../assets/images/recipes/dinner/Idiyappam.jpg";
+import Parotta from "../../assets/images/recipes/dinner/Parotta.jpg";
+import KothuParotta from "../../assets/images/recipes/dinner/KothuParotta.jpg";
+import Chapati from "../../assets/images/recipes/dinner/Chapati.jpg";
+import ButterNaan from "../../assets/images/recipes/dinner/ButterNaan.jpg";
+import GarlicNaan from "../../assets/images/recipes/dinner/GarlicNaan.jpg";
+import Poori from "../../assets/images/recipes/dinner/Poori.webp";
+import BeefWellington from "../../assets/images/recipes/dinner/BeefWellington.jpg";
+import LobsterThermidor from "../../assets/images/recipes/dinner/LobsterThermidor.jpg";
+import SalmonTeriyakiBowl from "../../assets/images/recipes/dinner/SalmonTeriyakiBowl.jpg";
+import TruffleMushroomRisotto from "../../assets/images/recipes/dinner/TruffleMushroomRisotto.jpg";
+import ChickenAlfredoPasta from "../../assets/images/recipes/dinner/ChickenAlfredoPasta.jpg";
+import ShrimpTacos from "../../assets/images/recipes/dinner/ShrimpTacos.jpg";
+import KoreanBBQBeef from "../../assets/images/recipes/dinner/KoreanBBQBeef.jpg";
+import PalakPaneer from "../../assets/images/recipes/dinner/PalakPaneer.jpg"
+import ThaiGreenCurry from "../../assets/images/recipes/dinner/ThaiGreenCurry.jpg";
+import SushiPlatter from "../../assets/images/recipes/dinner/SushiPlatter.jpg";
+import ChickenParmesan from "../../assets/images/recipes/dinner/ChickenParmesan.jpg";
+import MoroccanLambTagine from "../../assets/images/recipes/dinner/MoroccanLambTagine.jpg";
+import MediterraneanGrilledChicken from "../../assets/images/recipes/dinner/MediterraneanGrilledChicken.jpg";
+import StuffedBellPeppers from "../../assets/images/recipes/dinner/StuffedBellPeppers.jpg";
+import DuckConfit from "../../assets/images/recipes/dinner/DuckConfit.jpeg";
+import ChickenShawarma from "../../assets/images/recipes/dinner/ChickenShawarma.jpg";
+import FalafelWrap from "../../assets/images/recipes/dinner/FalafelWrap.jpg";
+import ChickenWrap from "../../assets/images/recipes/dinner/ChickenWrap.jpg";
+import VegWrap from "../../assets/images/recipes/dinner/VegWrap.jpg";
+import ChickenBurger from "../../assets/images/recipes/dinner/ChickenBurger.jpg";
+import CheeseBurger from "../../assets/images/recipes/dinner/CheeseBurger.webp";
+import VegBurger from "../../assets/images/recipes/dinner/VegBurger.webp";
+import ChickenPizza from "../../assets/images/recipes/dinner/ChickenPizza.jpg";
+import MargheritaPizza from "../../assets/images/recipes/dinner/MargheritaPizza.jpg";
+import WhiteSaucePasta from "../../assets/images/recipes/dinner/WhiteSaucePasta.jpg";
+import RedSaucePasta from "../../assets/images/recipes/dinner/RedSaucePasta.jpg";
+import AlfredoPasta from "../../assets/images/recipes/dinner/AlfredoPasta.jpg";
+import HakkaNoodles from "../../assets/images/recipes/dinner/HakkaNoodles.jpg";
+import SchezwanNoodles from "../../assets/images/recipes/dinner/SchezwanNoodles.jpg";
+import ChickenNoodles from "../../assets/images/recipes/dinner/ChickenNoodles.jpg";
+import JowarBhakriwithCurry from "../../assets/images/recipes/dinner/JowarBhakriwithCurry.jpg";
+import RagiMuddewithChicken from "../../assets/images/recipes/dinner/RagiMuddewithChicken.jpg";
+import AmritsariCholeKulche from "../../assets/images/recipes/dinner/AmritsariCholeKulche.jpg";
+import PathiriwithChickenCurry from "../../assets/images/recipes/dinner/PathiriwithChickenCurry.webp";
+import NeerDosa from "../../assets/images/recipes/dinner/NeerDosa.jpg";
+import LittiChokha from "../../assets/images/recipes/dinner/LittiChokha.avif";
+import VanjaramFishFry from "../../assets/images/recipes/dinner/VanjaramFishFry.jpg";
+import RajmaChawal from "../../assets/images/recipes/dinner/RajmaChawal.jpg";
+import VegJalfrezi from "../../assets/images/recipes/dinner/VegJalfrezi.jpg";
+import TandooriRotiwithDalFry from "../../assets/images/recipes/dinner/TandooriRotiwithDalFry.jpg";
+import AlooParatha from "../../assets/images/recipes/dinner/AlooParatha.jpg";
+import MaduraiKariDosa from "../../assets/images/recipes/dinner/MaduraiKariDosa.webp";
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const categories = [
@@ -465,7 +526,7 @@ const categories = [
 
 // ─── Per-category dish data ──────────────────────────────────────────────────
 const categoryDishes = {
-  
+
   Breakfast: [
     { title: "Fluffy Pancakes", time: "20 min", rating: 4.8, calories: 380, price: 8.99, difficulty: "Easy", image: FluffyPancakes },
     { title: "Avocado Toast", time: "10 min", rating: 4.7, calories: 290, price: 7.49, difficulty: "Easy", image: AvocadoToast },
@@ -510,7 +571,7 @@ const categoryDishes = {
     { title: "Sambar Rice", time: "30 min", rating: 4.6, calories: 350, price: 7.49, difficulty: "Medium", image: SambarRice },
     { title: "Curd Rice", time: "10 min", rating: 4.5, calories: 250, price: 4.99, difficulty: "Easy", image: CurdRice },
     { title: "Pulao", time: "25 min", rating: 4.5, calories: 330, price: 7.99, difficulty: "Easy", image: Pulao },
-    { title: "Veg Pulao", time: "25 min", rating: 4.5, calories: 340, price: 7.99, difficulty: "Easy", image: VegPulao},
+    { title: "Veg Pulao", time: "25 min", rating: 4.5, calories: 340, price: 7.99, difficulty: "Easy", image: VegPulao },
     { title: "Mushroom Rice", time: "20 min", rating: 4.5, calories: 320, price: 8.49, difficulty: "Easy", image: MushroomRice },
     { title: "Paneer Rice", time: "20 min", rating: 4.6, calories: 390, price: 9.99, difficulty: "Medium", image: PaneerRice },
     { title: "Kuska", time: "20 min", rating: 4.4, calories: 300, price: 6.99, difficulty: "Easy", image: Kuska },
@@ -523,7 +584,7 @@ const categoryDishes = {
     { title: "Grilled Chicken", time: "35 min", rating: 4.7, calories: 350, price: 12.99, difficulty: "Medium", image: GrilledChicken },
     { title: "Tandoori Chicken", time: "40 min", rating: 4.8, calories: 370, price: 13.49, difficulty: "Hard", image: TandooriChicken },
     { title: "Fish Fry", time: "20 min", rating: 4.5, calories: 300, price: 9.99, difficulty: "Easy", image: FishFry },
-    { title: "Prawn Fry", time: "20 min", rating: 4.6, calories: 320, price: 12.99, difficulty: "Easy", image: PrawnFry},
+    { title: "Prawn Fry", time: "20 min", rating: 4.6, calories: 320, price: 12.99, difficulty: "Easy", image: PrawnFry },
     { title: "Mutton Curry", time: "50 min", rating: 4.7, calories: 500, price: 15.99, difficulty: "Hard", image: MuttonCurry },
     { title: "Egg Curry", time: "20 min", rating: 4.4, calories: 280, price: 7.99, difficulty: "Easy", image: EggCurry },
     { title: "Paneer Butter Masala", time: "25 min", rating: 4.8, calories: 420, price: 12.49, difficulty: "Medium", image: PannerButterMasala },
@@ -535,68 +596,69 @@ const categoryDishes = {
     { title: "Dal Makhani", time: "40 min", rating: 4.7, calories: 350, price: 9.99, difficulty: "Medium", image: DalMakhani },
     { title: "Mixed Vegetable Curry", time: "25 min", rating: 4.4, calories: 230, price: 7.49, difficulty: "Easy", image: MixedVegetableCurry },
   ],
-  Dinner: [
-    { title: "Idli", time: "15 min", rating: 4.5, calories: 120, price: 3.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80" },
-    { title: "Podi Idli", time: "20 min", rating: 4.5, calories: 220, price: 4.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80" },
-    { title: "Mini Idli Sambar", time: "20 min", rating: 4.6, calories: 250, price: 5.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80" },
-    { title: "Dosa", time: "20 min", rating: 4.6, calories: 150, price: 4.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Ghee Dosa", time: "20 min", rating: 4.6, calories: 220, price: 5.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Masala Dosa", time: "30 min", rating: 4.8, calories: 320, price: 7.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80" },
-    { title: "Onion Dosa", time: "25 min", rating: 4.5, calories: 260, price: 5.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Kal Dosa", time: "20 min", rating: 4.4, calories: 200, price: 4.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80" },
-    { title: "Rava Dosa", time: "25 min", rating: 4.6, calories: 280, price: 6.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Set Dosa", time: "20 min", rating: 4.5, calories: 240, price: 5.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80" },
-    { title: "Appam", time: "25 min", rating: 4.6, calories: 170, price: 5.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" },
-    { title: "Idiyappam", time: "25 min", rating: 4.5, calories: 180, price: 5.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" },
-    { title: "Parotta", time: "25 min", rating: 4.7, calories: 260, price: 5.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=400&q=80" },
-    { title: "Kothu Parotta", time: "30 min", rating: 4.8, calories: 450, price: 9.99, difficulty: "Hard", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80" },
-    { title: "Chapati", time: "15 min", rating: 4.5, calories: 120, price: 3.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=400&q=80" },
-    { title: "Butter Naan", time: "20 min", rating: 4.7, calories: 220, price: 4.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80" },
-    { title: "Garlic Naan", time: "20 min", rating: 4.7, calories: 230, price: 5.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80" },
-    { title: "Poori", time: "20 min", rating: 4.5, calories: 300, price: 4.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Chappathi Kurma", time: "30 min", rating: 4.6, calories: 350, price: 8.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" },
-    { title: "Paneer Butter Masala", time: "25 min", rating: 4.8, calories: 420, price: 12.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&q=80" },
-    { title: "Kadai Paneer", time: "25 min", rating: 4.7, calories: 390, price: 11.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" },
-    { title: "Mushroom Masala", time: "25 min", rating: 4.5, calories: 280, price: 9.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80" },
-    { title: "Veg Kurma", time: "30 min", rating: 4.5, calories: 260, price: 8.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&q=80" },
-    { title: "Dal Tadka", time: "25 min", rating: 4.5, calories: 240, price: 6.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&q=80" },
-    { title: "Dal Makhani", time: "40 min", rating: 4.7, calories: 350, price: 9.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&q=80" },
-    { title: "Egg Curry", time: "20 min", rating: 4.4, calories: 280, price: 7.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Chicken Curry", time: "35 min", rating: 4.6, calories: 380, price: 10.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&q=80" },
-    { title: "Butter Chicken", time: "40 min", rating: 4.8, calories: 480, price: 13.99, difficulty: "Hard", image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&q=80" },
-    { title: "Pepper Chicken", time: "30 min", rating: 4.5, calories: 390, price: 11.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=400&q=80" },
-    { title: "Grilled Chicken", time: "35 min", rating: 4.7, calories: 350, price: 12.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" },
-    { title: "Tandoori Chicken", time: "40 min", rating: 4.8, calories: 370, price: 13.49, difficulty: "Hard", image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&q=80" },
-    { title: "Fish Fry", time: "20 min", rating: 4.5, calories: 300, price: 9.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80" },
-    { title: "Prawn Fry", time: "20 min", rating: 4.6, calories: 320, price: 12.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80" },
-    { title: "Chicken Shawarma", time: "25 min", rating: 4.7, calories: 430, price: 10.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80" },
-    { title: "Falafel Wrap", time: "20 min", rating: 4.5, calories: 340, price: 8.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=400&q=80" },
-    { title: "Chicken Wrap", time: "20 min", rating: 4.5, calories: 390, price: 9.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80" },
-    { title: "Veg Wrap", time: "15 min", rating: 4.4, calories: 280, price: 7.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&q=80" },
-    { title: "Chicken Burger", time: "25 min", rating: 4.6, calories: 520, price: 11.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" },
-    { title: "Cheese Burger", time: "20 min", rating: 4.6, calories: 540, price: 12.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" },
-    { title: "Veg Burger", time: "20 min", rating: 4.4, calories: 420, price: 9.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" },
-    { title: "Chicken Pizza", time: "35 min", rating: 4.7, calories: 600, price: 14.99, difficulty: "Hard", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" },
-    { title: "Margherita Pizza", time: "30 min", rating: 4.6, calories: 500, price: 12.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" },
-    { title: "White Sauce Pasta", time: "25 min", rating: 4.6, calories: 480, price: 11.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80" },
-    { title: "Red Sauce Pasta", time: "25 min", rating: 4.5, calories: 430, price: 10.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80" },
-    { title: "Alfredo Pasta", time: "30 min", rating: 4.7, calories: 520, price: 12.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80" },
-    { title: "Hakka Noodles", time: "20 min", rating: 4.5, calories: 410, price: 9.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80" },
-    { title: "Schezwan Noodles", time: "25 min", rating: 4.6, calories: 450, price: 10.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80" },
-    { title: "Chicken Noodles", time: "25 min", rating: 4.6, calories: 470, price: 11.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80" },
-    { title: "Gobi Manchurian", time: "20 min", rating: 4.5, calories: 310, price: 8.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" },
-    { title: "Veg Manchurian", time: "20 min", rating: 4.4, calories: 300, price: 7.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&q=80" },
-    { title: "Chilli Chicken", time: "25 min", rating: 4.6, calories: 420, price: 11.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80" },
-    { title: "Dragon Chicken", time: "30 min", rating: 4.6, calories: 450, price: 12.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" },
-    { title: "Chicken 65", time: "25 min", rating: 4.7, calories: 430, price: 11.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80" },
-    { title: "Caesar Salad", time: "15 min", rating: 4.5, calories: 220, price: 7.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&q=80" },
-    { title: "Greek Salad", time: "15 min", rating: 4.5, calories: 200, price: 7.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80" },
-    { title: "Garlic Bread", time: "15 min", rating: 4.5, calories: 180, price: 4.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=400&q=80" },
-    { title: "Cheese Garlic Bread", time: "20 min", rating: 4.6, calories: 260, price: 5.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=400&q=80" },
-    { title: "Momos", time: "30 min", rating: 4.7, calories: 320, price: 7.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80" },
-    { title: "Dumplings", time: "30 min", rating: 4.6, calories: 300, price: 7.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80" },
-    { title: "Soup with Bread", time: "20 min", rating: 4.4, calories: 250, price: 6.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80" },
+   Dinner: [
+    { title: "Idli", time: "15 min", rating: 4.5, calories: 120, price: 3.99, difficulty: "Easy", image: Idli },
+    { title: "Podi Idli", time: "20 min", rating: 4.5, calories: 220, price: 4.99, difficulty: "Easy", image: PodiIdli },
+    { title: "Mini Idli Sambar", time: "20 min", rating: 4.6, calories: 250, price: 5.49, difficulty: "Easy", image: MiniIdliSambar },
+    { title: "Dosa", time: "20 min", rating: 4.6, calories: 150, price: 4.49, difficulty: "Easy", image: Dosa },
+    { title: "Ghee Dosa", time: "20 min", rating: 4.6, calories: 220, price: 5.49, difficulty: "Easy", image: GheeDosa },
+    { title: "Seafood Paella", time: "55 min", rating: 4.8, calories: 640, price: 28.99, difficulty: "Hard", image: SeafoodPaella },
+    { title: "Onion Dosa", time: "25 min", rating: 4.5, calories: 260, price: 5.99, difficulty: "Easy", image: OnionDosa },
+    { title: "Kal Dosa", time: "20 min", rating: 4.4, calories: 200, price: 4.99, difficulty: "Easy", image: KalDosa },
+    { title: "Rava Dosa", time: "25 min", rating: 4.6, calories: 280, price: 6.49, difficulty: "Medium", image: RavaDosa },
+    { title: "Set Dosa", time: "20 min", rating: 4.5, calories: 240, price: 5.49, difficulty: "Easy", image: SetDosa },
+    { title: "Appam", time: "25 min", rating: 4.6, calories: 170, price: 5.99, difficulty: "Medium", image: Appam },
+    { title: "Idiyappam", time: "25 min", rating: 4.5, calories: 180, price: 5.49, difficulty: "Medium", image: Idiyappam },
+    { title: "Parotta", time: "25 min", rating: 4.7, calories: 260, price: 5.99, difficulty: "Medium", image: Parotta },
+    { title: "Kothu Parotta", time: "30 min", rating: 4.8, calories: 450, price: 9.99, difficulty: "Hard", image: KothuParotta },
+    { title: "Chapati", time: "15 min", rating: 4.5, calories: 120, price: 3.49, difficulty: "Easy", image: Chapati },
+    { title: "Butter Naan", time: "20 min", rating: 4.7, calories: 220, price: 4.99, difficulty: "Medium", image: ButterNaan },
+    { title: "Garlic Naan", time: "20 min", rating: 4.7, calories: 230, price: 5.49, difficulty: "Medium", image: GarlicNaan },
+    { title: "Poori", time: "20 min", rating: 4.5, calories: 300, price: 4.99, difficulty: "Medium", image: Poori },
+    { title: "Beef Wellington", time: "90 min", rating: 4.9, calories: 780, price: 32.99, difficulty: "Hard", image: BeefWellington },
+    { title: "Lobster Thermidor", time: "60 min", rating: 4.8, calories: 690, price: 39.99, difficulty: "Hard", image: LobsterThermidor },    
+    { title: "Salmon Teriyaki Bowl", time: "30 min", rating: 4.7, calories: 580, price: 22.99, difficulty: "Medium", image: SalmonTeriyakiBowl },
+    { title: "Truffle Mushroom Risotto", time: "45 min", rating: 4.8, calories: 540, price: 24.99, difficulty: "Medium", image: TruffleMushroomRisotto },
+    { title: "Chicken Alfredo Pasta", time: "35 min", rating: 4.8, calories: 620, price: 18.99, difficulty: "Easy", image: ChickenAlfredoPasta },    
+    { title: "Shrimp Tacos", time: "25 min", rating: 4.7, calories: 490, price: 16.99, difficulty: "Easy", image: ShrimpTacos },
+    { title: "Korean BBQ Beef", time: "40 min", rating: 4.9, calories: 650, price: 21.99, difficulty: "Medium", image: KoreanBBQBeef },
+    { title: "Palak Paneer", time: "35 min", rating: 4.7, calories: 480, price: 8.99, difficulty: "Medium", image: PalakPaneer },    
+    { title: "Thai Green Curry", time: "35 min", rating: 4.8, calories: 530, price: 17.99, difficulty: "Medium", image: ThaiGreenCurry },    
+    { title: "Sushi Platter", time: "50 min", rating: 4.9, calories: 450, price: 29.99, difficulty: "Hard", image: SushiPlatter },
+    { title: "Chicken Parmesan", time: "45 min", rating: 4.8, calories: 670, price: 19.99, difficulty: "Medium", image: ChickenParmesan },
+    { title: "Moroccan Lamb Tagine", time: "70 min", rating: 4.8, calories: 720, price: 27.99, difficulty: "Hard", image: MoroccanLambTagine },
+    { title: "Mediterranean Grilled Chicken", time: "30 min", rating: 4.7, calories: 510, price: 18.99, difficulty: "Easy", image: MediterraneanGrilledChicken },
+    { title: "Stuffed Bell Peppers", time: "40 min", rating: 4.6, calories: 420, price: 15.99, difficulty: "Medium", image: StuffedBellPeppers },
+    { title: "Duck Confit", time: "120 min", rating: 4.9, calories: 750, price: 34.99, difficulty: "Hard", image: DuckConfit },
+    { title: "Chicken Shawarma", time: "25 min", rating: 4.7, calories: 430, price: 10.99, difficulty: "Medium", image: ChickenShawarma },
+    { title: "Falafel Wrap", time: "20 min", rating: 4.5, calories: 340, price: 8.99, difficulty: "Easy", image: FalafelWrap },
+    { title: "Chicken Wrap", time: "20 min", rating: 4.5, calories: 390, price: 9.49, difficulty: "Easy", image: ChickenWrap },
+    { title: "Veg Wrap", time: "15 min", rating: 4.4, calories: 280, price: 7.49, difficulty: "Easy", image: VegWrap },
+    { title: "Chicken Burger", time: "25 min", rating: 4.6, calories: 520, price: 11.99, difficulty: "Medium", image: ChickenBurger },
+    { title: "Cheese Burger", time: "20 min", rating: 4.6, calories: 540, price: 12.49, difficulty: "Medium", image: CheeseBurger },
+    { title: "Veg Burger", time: "20 min", rating: 4.4, calories: 420, price: 9.99, difficulty: "Easy", image: VegBurger },
+    { title: "Chicken Pizza", time: "35 min", rating: 4.7, calories: 600, price: 14.99, difficulty: "Hard", image: ChickenPizza },
+    { title: "Margherita Pizza", time: "30 min", rating: 4.6, calories: 500, price: 12.99, difficulty: "Medium", image: MargheritaPizza },
+    { title: "White Sauce Pasta", time: "25 min", rating: 4.6, calories: 480, price: 11.49, difficulty: "Medium", image: WhiteSaucePasta },
+    { title: "Red Sauce Pasta", time: "25 min", rating: 4.5, calories: 430, price: 10.99, difficulty: "Easy", image: RedSaucePasta },
+    { title: "Alfredo Pasta", time: "30 min", rating: 4.7, calories: 520, price: 12.49, difficulty: "Medium", image: AlfredoPasta },
+    { title: "Hakka Noodles", time: "20 min", rating: 4.5, calories: 410, price: 9.49, difficulty: "Easy", image: HakkaNoodles },
+    { title: "Schezwan Noodles", time: "25 min", rating: 4.6, calories: 450, price: 10.49, difficulty: "Medium", image: SchezwanNoodles },
+    { title: "Chicken Noodles", time: "25 min", rating: 4.6, calories: 470, price: 11.49, difficulty: "Medium", image: ChickenNoodles },
+    { title: "Jowar Bhakri with Curry", time: "35 min", rating: 4.6, calories: 450, price: 6.49, difficulty: "Medium", image: JowarBhakriwithCurry },    
+    { title: "Ragi Mudde with Chicken", time: "40 min", rating: 4.7, calories: 480, price: 6.99, difficulty: "Medium", image: RagiMuddewithChicken },
+    { title: "Amritsari Chole Kulche", time: "35 min", rating: 4.9, calories: 610, price: 8.99, difficulty: "Medium", image: AmritsariCholeKulche },
+    { title: "Pathiri with Chicken Curry", time: "40 min", rating: 4.8, calories: 560, price: 8.99, difficulty: "Medium", image: PathiriwithChickenCurry },
+    { title: "Neer Dosa", time: "20 min", rating: 4.6, calories: 340, price: 5.49, difficulty: "Easy", image: NeerDosa },
+    { title: "Litti Chokha", time: "45 min", rating: 4.8, calories: 590, price: 7.99, difficulty: "Medium", image: LittiChokha },
+    { title: "Vanjaram Fish Fry", time: "30 min", rating: 4.9, calories: 510, price: 11.99, difficulty: "Easy", image: VanjaramFishFry },
+    { title: "Rajma Chawal", time: "35 min", rating: 4.8, calories: 550, price: 7.99, difficulty: "Easy", image: RajmaChawal },
+    { title: "Veg Jalfrezi", time: "35 min", rating: 4.6, calories: 440, price: 7.49, difficulty: "Medium", image: VegJalfrezi },
+    { title: "Tandoori Roti with Dal Fry", time: "30 min", rating: 4.7, calories: 480, price: 6.99, difficulty: "Easy", image: TandooriRotiwithDalFry },
+    { title: "Aloo Paratha", time: "25 min", rating: 4.7, calories: 450, price: 5.99, difficulty: "Easy", image: AlooParatha },
+    { title: "Madurai Kari Dosa", time: "45 min", rating: 4.9, calories: 740, price: 11.49, difficulty: "Hard", image: MaduraiKariDosa },
   ],
+  
   Desserts: [
     { title: "Chocolate Lava Cake", time: "25 min", rating: 4.9, calories: 520, price: 8.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80" },
     { title: "Mango Cheesecake", time: "90 min", rating: 4.8, calories: 480, price: 11.99, difficulty: "Hard", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80" },
@@ -684,16 +746,20 @@ function Waveform() {
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function Hero() {
   const [liked, setLiked] = useState({});
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("Breakfast");
+  const [showAll, setShowAll] = useState(false);
   const toggleLike = (i) => setLiked((p) => ({ ...p, [i]: !p[i] }));
 
   const activeDishes = useMemo(
-    () => (activeCategory ? categoryDishes[activeCategory] ?? [] : []),
+    () => categoryDishes[activeCategory] ?? [],
     [activeCategory]
   );
 
+  const visibleDishes = showAll ? activeDishes : activeDishes.slice(0, 8);;
+
   const handleCategoryClick = (title) => {
-    setActiveCategory((prev) => (prev === title ? null : title));
+    setActiveCategory(title);
+    setShowAll(false);
   };
 
   const floatUp = { animate: { y: [0, -10, 0] }, transition: { duration: 4.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" } };
@@ -937,189 +1003,179 @@ export default function Hero() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
-          CATEGORIES
+          CATEGORY TAB NAVBAR + DISH GRID
       ════════════════════════════════════════════════════════════════════════ */}
-      <div className="max-w-7xl mx-auto px-6 py-14">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold">Categories</h2>
-          <button className="text-[#3a7d44] hover:text-[#2d6235] font-medium transition flex items-center gap-1 text-sm">
-            View all <ChevronRight size={15} />
-          </button>
+      <div className="w-full">
+
+        {/* ── Sticky tab navbar — sits right below hero image ── */}
+        <div className="sticky top-0 z-20 bg-[#F9F7F4] dark:bg-[#121413] border-b border-black/8 dark:border-white/8 shadow-sm">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6">
+            {/* Scrollable on small phones, flex on wider */}
+            <div
+              className="flex overflow-x-auto scrollbar-hide gap-1 py-0"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              role="tablist"
+              aria-label="Recipe categories"
+            >
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat.title;
+                return (
+                  <button
+                    key={cat.title}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => handleCategoryClick(cat.title)}
+                    className={`
+                      relative flex-shrink-0 flex items-center gap-1.5
+                      px-3 sm:px-5 py-3.5 sm:py-4
+                      text-[13px] sm:text-sm font-semibold whitespace-nowrap
+                      transition-colors duration-200 focus:outline-none
+                      ${isActive
+                        ? "text-[#6BA539]"
+                        : "text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                      }
+                    `}
+                  >
+                    {/* tab label */}
+                    {cat.title}
+
+                    {/* active underline */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="tab-underline"
+                        className="absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full bg-[#6BA539]"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
-        {/* Category cards — click to filter dishes below */}
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-          {categories.map((cat, i) => {
-            const isActive = activeCategory === cat.title;
-            return (
-              <motion.button
-                key={cat.title}
-                onClick={() => handleCategoryClick(cat.title)}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                whileTap={{ scale: 0.94 }}
-                aria-pressed={isActive}
-                className={`relative bg-white dark:bg-black/40 border rounded-3xl p-4 text-center transition-all duration-300 cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6BA539]
-                  ${isActive
-                    ? "border-[#6BA539] shadow-lg shadow-[#6BA539]/20 -translate-y-2"
-                    : "border-black/10 dark:border-white/10 hover:-translate-y-2"
-                  }`}
-              >
-                {/* Active glow ring */}
-                {isActive && (
-                  <motion.span
-                    layoutId="cat-glow"
-                    className="absolute inset-0 rounded-3xl ring-2 ring-[#6BA539]/60 pointer-events-none"
-                    transition={{ type: "spring", stiffness: 300, damping: 28 }}
-                  />
-                )}
+        {/* ── Dish grid — always visible, swaps on tab click ── */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 pt-5 pb-10">
 
-                <div className={`w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden ring-2 transition-all duration-300
-                  ${isActive ? "ring-[#6BA539]/70 scale-105" : "ring-[#3a7d44]/20 group-hover:ring-[#3a7d44]/60"}`}>
-                  <img
-                    src={cat.image}
-                    alt={cat.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
+          {/* Section header */}
+          <div className="flex items-center gap-2 mb-4 sm:mb-5">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
+              {activeCategory}
+            </h2>
+            <span className="text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-[#6BA539]/10 text-[#6BA539]">
+              {activeDishes.length} recipes
+            </span>
+          </div>
 
-                <h3 className={`font-semibold text-sm opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out
-                  ${isActive ? "text-[#6BA539] opacity-100 translate-y-0" : ""}`}>
-                  {cat.title}
-                </h3>
-                <p className={`text-xs text-slate-500 dark:text-slate-400 mt-1 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75 ease-out
-                  ${isActive ? "opacity-100 translate-y-0" : ""}`}>
-                  {cat.recipes}
-                </p>
-
-                {/* Active indicator dot */}
-                {isActive && (
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="absolute bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#6BA539]"
-                  />
-                )}
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {/* ── Dish feed — appears instantly when a category is active ── */}
-        <AnimatePresence mode="wait">
-          {activeCategory && (
+          <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="mt-10"
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              /* 2 cols on phones (320–430px), 3 on sm, 4 on lg */
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5"
             >
-              {/* Feed header */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-3">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {activeCategory} Dishes
-                  </h3>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#6BA539]/10 text-[#6BA539]">
-                    {activeDishes.length} recipes
-                  </span>
-                </div>
-                <button
-                  onClick={() => setActiveCategory(null)}
-                  className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
-                  aria-label="Close dish feed"
+              {visibleDishes.map((dish, idx) => (
+                <motion.div
+                  key={dish.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.22, delay: idx * 0.025 }}
+                  whileHover={{ y: -4, transition: { duration: 0.18 } }}
+                  className="group rounded-xl sm:rounded-2xl overflow-hidden bg-white dark:bg-white/5 border border-black/8 dark:border-white/10 shadow-sm hover:shadow-lg hover:shadow-[#6BA539]/10 transition-shadow duration-300 cursor-pointer"
                 >
-                  <X size={14} /> Close
-                </button>
-              </div>
+                  {/* Image */}
+                  <div className="relative overflow-hidden bg-gray-100 dark:bg-white/5"
+                    style={{ paddingTop: "62%" }}>
+                    <img
+                      src={dish.image}
+                      alt={dish.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      onError={(e) => { e.target.style.display = "none"; }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              {/* Dish grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-                {activeDishes.map((dish, idx) => (
-                  <motion.div
-                    key={dish.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: idx * 0.04 }}
-                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                    className="group rounded-2xl overflow-hidden bg-white/70 dark:bg-white/5 backdrop-blur-md border border-black/8 dark:border-white/10 shadow-md hover:shadow-xl hover:shadow-[#6BA539]/10 transition-shadow duration-300 cursor-pointer"
-                  >
-                    {/* Image */}
-                    <div className="relative h-44 overflow-hidden bg-gray-100 dark:bg-white/5">
-                      <img
-                        src={dish.image}
-                        alt={dish.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        onError={(e) => { e.target.style.display = "none"; }}
+                    {/* Rating pill */}
+                    <div className="absolute bottom-1.5 left-1.5 flex items-center gap-0.5 bg-black/60 backdrop-blur-sm text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
+                      <Star size={9} className="fill-yellow-400 text-yellow-400" />
+                      {dish.rating}
+                    </div>
+
+                    {/* Heart */}
+                    <motion.button
+                      whileTap={{ scale: 0.8 }}
+                      onClick={(e) => { e.stopPropagation(); toggleLike(`cat-${idx}`); }}
+                      aria-label="Toggle favorite"
+                      className="absolute top-1.5 right-1.5 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 dark:bg-black/50 backdrop-blur-sm flex items-center justify-center shadow"
+                    >
+                      <Heart
+                        size={11}
+                        className={liked[`cat-${idx}`] ? "fill-red-500 text-red-500" : "text-gray-400"}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </motion.button>
+                  </div>
 
-                      {/* Rating pill */}
-                      <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-2 py-0.5 rounded-full">
-                        <Star size={10} className="fill-yellow-400 text-yellow-400" />
-                        {dish.rating}
-                      </div>
+                  {/* Content */}
+                  <div className="p-2.5 sm:p-3.5">
+                    <h4 className="font-bold text-[12px] sm:text-sm text-gray-900 dark:text-white truncate mb-1.5">
+                      {dish.title}
+                    </h4>
 
-                      {/* Heart */}
+                    {/* Meta row — stacked on 320px, inline on larger */}
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mb-2.5">
+                      <span className="flex items-center gap-0.5">
+                        <Clock3 size={10} className="text-orange-400" />
+                        {dish.time}
+                      </span>
+                      <span className="flex items-center gap-0.5">
+                        <Flame size={10} className="text-red-400" />
+                        {dish.calories} cal
+                      </span>
+                      <span className={`px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold
+                        ${dish.difficulty === "Easy"
+                          ? "bg-green-100 dark:bg-green-500/15 text-green-600 dark:text-green-400"
+                          : dish.difficulty === "Medium"
+                            ? "bg-yellow-100 dark:bg-yellow-500/15 text-yellow-600 dark:text-yellow-400"
+                            : "bg-red-100 dark:bg-red-500/15 text-red-600 dark:text-red-400"}`}>
+                        {dish.difficulty}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-[13px] sm:text-sm font-extrabold text-orange-500">
+                        ${dish.price.toFixed(2)}
+                      </span>
                       <motion.button
-                        whileTap={{ scale: 0.8 }}
-                        onClick={(e) => { e.stopPropagation(); toggleLike(`cat-${idx}`); }}
-                        aria-label="Toggle favorite"
-                        className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 dark:bg-black/50 backdrop-blur-sm flex items-center justify-center shadow"
+                        whileTap={{ scale: 0.94 }}
+                        className="text-[10px] sm:text-xs font-semibold px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-[#6BA539] hover:bg-[#568a2e] text-white shadow-sm transition-colors duration-200"
                       >
-                        <Heart
-                          size={13}
-                          className={liked[`cat-${idx}`] ? "fill-red-500 text-red-500" : "text-gray-400"}
-                        />
+                        View
                       </motion.button>
                     </div>
-
-                    {/* Content */}
-                    <div className="p-3.5">
-                      <h4 className="font-bold text-sm text-gray-900 dark:text-white truncate mb-1.5">
-                        {dish.title}
-                      </h4>
-
-                      <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400 mb-3">
-                        <span className="flex items-center gap-1">
-                          <Clock3 size={11} className="text-orange-400" />
-                          {dish.time}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Flame size={11} className="text-red-400" />
-                          {dish.calories} cal
-                        </span>
-                        <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-semibold
-                          ${dish.difficulty === "Easy" ? "bg-green-100 dark:bg-green-500/15 text-green-600 dark:text-green-400" :
-                            dish.difficulty === "Medium" ? "bg-yellow-100 dark:bg-yellow-500/15 text-yellow-600 dark:text-yellow-400" :
-                              "bg-red-100 dark:bg-red-500/15 text-red-600 dark:text-red-400"}`}>
-                          {dish.difficulty}
-                        </span>
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <span className="text-base font-extrabold text-orange-500">
-                          ${dish.price.toFixed(2)}
-                        </span>
-                        <motion.button
-                          whileTap={{ scale: 0.94 }}
-                          className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-[#6BA539] hover:bg-[#568a2e] text-white shadow-md shadow-[#6BA539]/30 transition-colors duration-200"
-                        >
-                          View Recipe
-                        </motion.button>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
+          </AnimatePresence>
+
+          {/* View all / show less button */}
+          {activeDishes.length > 20 && (
+            <div className="flex justify-center mt-6 sm:mt-8">
+              <motion.button
+                whileTap={{ scale: 0.96 }}
+                onClick={() => setShowAll((prev) => !prev)}
+                className="px-6 sm:px-8 py-2.5 sm:py-3 rounded-full border-2 border-[#6BA539] text-[#6BA539] font-semibold text-sm sm:text-base hover:bg-[#6BA539] hover:text-white transition-colors duration-200"
+              >
+                {showAll
+                  ? "Show less"
+                  : `View all recipes (${activeDishes.length - 20} more)`}
+              </motion.button>
+            </div>
           )}
-        </AnimatePresence>
+        </div>
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════════════
@@ -1238,4 +1294,4 @@ export default function Hero() {
 
     </div>
   );
-}
+}   
