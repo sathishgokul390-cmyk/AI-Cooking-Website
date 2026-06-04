@@ -457,7 +457,6 @@ import PodiIdli from "../../assets/images/recipes/dinner/PodiIdli.jpg";
 import MiniIdliSambar from "../../assets/images/recipes/dinner/MiniIdliSambar.jpg";
 import Dosa from "../../assets/images/recipes/dinner/Dosa.jpg";
 import GheeDosa from "../../assets/images/recipes/dinner/GheeDosa.jpg";
-// import MasalaDosa from "../../assets/images/recipes/dinner/MasalaDosa.jpg";
 import SeafoodPaella from "../../assets/images/recipes/dinner/SeafoodPaella.jpg"
 import OnionDosa from "../../assets/images/recipes/dinner/OnionDosa.jpg";
 import KalDosa from "../../assets/images/recipes/dinner/KalDosa.jpg";
@@ -513,13 +512,111 @@ import VegJalfrezi from "../../assets/images/recipes/dinner/VegJalfrezi.jpg";
 import TandooriRotiwithDalFry from "../../assets/images/recipes/dinner/TandooriRotiwithDalFry.jpg";
 import AlooParatha from "../../assets/images/recipes/dinner/AlooParatha.jpg";
 import MaduraiKariDosa from "../../assets/images/recipes/dinner/MaduraiKariDosa.webp";
+
+// Desserts
+import ChocolateLavaCake from "../../assets/images/recipes/desserts/ChocolateLavaCake.jpg";
+import Tiramisu from "../../assets/images/recipes/desserts/Tiramisu.jpg";
+import Cheesecake from "../../assets/images/recipes/desserts/Cheesecake.jpg";
+import BrownieSundae from "../../assets/images/recipes/desserts/BrownieSundae.jpg";
+import RedVelvetCake from "../../assets/images/recipes/desserts/RedVelvetCake.webp";
+import ApplePie from "../../assets/images/recipes/desserts/ApplePie.jpg";
+import GulabJamun from "../../assets/images/recipes/desserts/GulabJamun.jpg";
+import Rasmalai from "../../assets/images/recipes/desserts/Rasmalai.jpg";
+import CarrotCake from "../../assets/images/recipes/desserts/CarrotCake.jpg";
+import BlackForestCake from "../../assets/images/recipes/desserts/BlackForestCake.webp";
+import IceCreamSundae from "../../assets/images/recipes/desserts/IceCreamSundae.jpg";
+import MangoMousse from "../../assets/images/recipes/desserts/MangoMousse.jpeg";
+import Donuts from "../../assets/images/recipes/desserts/Donuts.webp";
+import Macarons from "../../assets/images/recipes/desserts/Macarons.jpg";
+import Churros from "../../assets/images/recipes/desserts/Churros.jpg";
+import PannaCotta from "../../assets/images/recipes/desserts/PannaCotta.jpg";
+import CremeBrulee from "../../assets/images/recipes/desserts/CremeBrulee.jpg";
+import BananaSplit from "../../assets/images/recipes/desserts/BananaSplit.jpg";
+import LemonTart from "../../assets/images/recipes/desserts/LemonTart.webp";
+import StrawberryShortcake from "../../assets/images/recipes/desserts/StrawberryShortcake.jpg";
+import BreadPudding from "../../assets/images/recipes/desserts/BreadPudding.jpg";
+import CoconutLadoo from "../../assets/images/recipes/desserts/CoconutLadoo.jpg";
+import KajuKatli from "../../assets/images/recipes/desserts/KajuKatli.webp";
+import Jalebi from "../../assets/images/recipes/desserts/Jalebi.avif";
+import MoongDalHalwa from "../../assets/images/recipes/desserts/MoongDalHalwa.jpg";
+import GajarHalwa from "../../assets/images/recipes/desserts/GajarHalwa.jpg";
+import Kulfi from "../../assets/images/recipes/desserts/Kulfi.avif";
+import Falooda from "../../assets/images/recipes/desserts/Falooda.jpg";
+import RiceKheer from "../../assets/images/recipes/desserts/RiceKheer.jpg";
+import ShahiTukda from "../../assets/images/recipes/desserts/ShahiTukda.jpg";
+
+// Snacks
+import Samosa from "../../assets/images/recipes/snacks/Samosa.jpg";
+import VegPuff from "../../assets/images/recipes/snacks/VegPuff.jpg";
+import ChickenPuff from "../../assets/images/recipes/snacks/ChickenPuff.jpg";
+import SpringRolls from "../../assets/images/recipes/snacks/SpringRolls.jpg";
+import FrenchFries from "../../assets/images/recipes/snacks/FrenchFries.jpg";
+import OnionRings from "../../assets/images/recipes/snacks/OnionRings.jpg";
+import Nachos from "../../assets/images/recipes/snacks/Nachos.jpg";
+import Popcorn from "../../assets/images/recipes/snacks/Popcorn.jpg";
+import GarlicBread from "../../assets/images/recipes/snacks/GarlicBread.jpg";
+import MozzarellaSticks from "../../assets/images/recipes/snacks/MozzarellaSticks.jpg";
+import ChickenWings from "../../assets/images/recipes/snacks/ChickenWings.jpg";
+import ChickenNuggets from "../../assets/images/recipes/snacks/ChickenNuggets.avif";
+import FishFingers from "../../assets/images/recipes/snacks/FishFingers.jpg";
+import PaneerTikka from "../../assets/images/recipes/snacks/PaneerTikka.jpg";
+import AlooTikki from "../../assets/images/recipes/snacks/AlooTikki.jpg";
+import BhelPuri from "../../assets/images/recipes/snacks/BhelPuri.jpg";
+import PaniPuri from "../../assets/images/recipes/snacks/PaniPuri.jpg";
+import SevPuri from "../../assets/images/recipes/snacks/SevPuri.jpg";
+import DahiPuri from "../../assets/images/recipes/snacks/DahiPuri.webp";
+import VadaPav from "../../assets/images/recipes/snacks/VadaPav.avif";
+import PavBhaji from "../../assets/images/recipes/snacks/PavBhaji.jpg";
+import MasalaCorn from "../../assets/images/recipes/snacks/MasalaCorn.jpg";
+import Murukku from "../../assets/images/recipes/snacks/Murukku.jpg";
+import Mixture from "../../assets/images/recipes/snacks/Mixture.jpg";
+import BananaChips from "../../assets/images/recipes/snacks/BananaChips.jpg";
+import PotatoChips from "../../assets/images/recipes/snacks/PotatoChips.jpg";
+import CheeseBalls from "../../assets/images/recipes/snacks/CheeseBalls.jpg";
+import BreadPakora from "../../assets/images/recipes/snacks/BreadPakora.jpg";
+import VegCutlet from "../../assets/images/recipes/snacks/VegCutlet.webp";
+import MeduVada from "../../assets/images/recipes/snacks/MeduVada.webp";
+import CornChaat from "../../assets/images/recipes/snacks/CornChaat.jpg";
+import Momos from "../../assets/images/recipes/snacks/Momos.jpg";
+import PaneerPakora from "../../assets/images/recipes/snacks/PaneerPakora.avif";
+import ChickenSandwich from "../../assets/images/recipes/snacks/ChickenSandwich.jpg";
+import PeriPeriFries from "../../assets/images/recipes/snacks/PeriPeriFries.jpg";
+
+
+// Drinks
+import MangoSmoothie from "../assets/drinks/MangoSmoothie.jpg";
+import StrawberryMilkshake from "../assets/drinks/StrawberryMilkshake.jpg";
+import ChocolateMilkshake from "../assets/drinks/ChocolateMilkshake.jpg";
+import VanillaMilkshake from "../assets/drinks/VanillaMilkshake.jpg";
+import BananaSmoothie from "../assets/drinks/BananaSmoothie.jpg";
+import OreoShake from "../assets/drinks/OreoShake.jpg";
+import ColdCoffee from "../assets/drinks/ColdCoffee.jpg";
+import IcedLatte from "../assets/drinks/IcedLatte.jpg";
+import Cappuccino from "../assets/drinks/Cappuccino.jpg";
+import MochaCoffee from "../assets/drinks/MochaCoffee.jpg";
+import LemonJuice from "../assets/drinks/LemonJuice.jpg";
+import OrangeJuice from "../assets/drinks/OrangeJuice.jpg";
+import WatermelonJuice from "../assets/drinks/WatermelonJuice.jpg";
+import PineappleJuice from "../assets/drinks/PineappleJuice.jpg";
+import AppleJuice from "../assets/drinks/AppleJuice.jpg";
+import Mojito from "../assets/drinks/Mojito.jpg";
+import BlueLagoon from "../assets/drinks/BlueLagoon.jpg";
+import VirginMargarita from "../assets/drinks/VirginMargarita.jpg";
+import MintLimeCooler from "../assets/drinks/MintLimeCooler.jpg";
+import FruitPunch from "../assets/drinks/FruitPunch.jpg";
+import RoseMilk from "../assets/drinks/RoseMilk.jpg";
+import BadamMilk from "../assets/drinks/BadamMilk.jpg";
+import MasalaChai from "../assets/drinks/MasalaChai.jpg";
+import GreenTea from "../assets/drinks/GreenTea.jpg";
+import HotChocolate from "../assets/drinks/HotChocolate.jpg";
+
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const categories = [
   { title: "Breakfast", recipes: "25 Recipes", image: breakfast },
   { title: "Lunch", recipes: "40 Recipes", image: lunch },
   { title: "Dinner", recipes: "60 Recipes", image: dinner },
-  { title: "Desserts", recipes: "30 Recipes", image: dessert },
+  { title: "Desserts", recipes: "40 Recipes", image: dessert },
   { title: "Snacks", recipes: "35 Recipes", image: snackes },
   { title: "Drinks", recipes: "20 Recipes", image: drink },
 ];
@@ -596,7 +693,7 @@ const categoryDishes = {
     { title: "Dal Makhani", time: "40 min", rating: 4.7, calories: 350, price: 9.99, difficulty: "Medium", image: DalMakhani },
     { title: "Mixed Vegetable Curry", time: "25 min", rating: 4.4, calories: 230, price: 7.49, difficulty: "Easy", image: MixedVegetableCurry },
   ],
-   Dinner: [
+  Dinner: [
     { title: "Idli", time: "15 min", rating: 4.5, calories: 120, price: 3.99, difficulty: "Easy", image: Idli },
     { title: "Podi Idli", time: "20 min", rating: 4.5, calories: 220, price: 4.99, difficulty: "Easy", image: PodiIdli },
     { title: "Mini Idli Sambar", time: "20 min", rating: 4.6, calories: 250, price: 5.49, difficulty: "Easy", image: MiniIdliSambar },
@@ -616,14 +713,14 @@ const categoryDishes = {
     { title: "Garlic Naan", time: "20 min", rating: 4.7, calories: 230, price: 5.49, difficulty: "Medium", image: GarlicNaan },
     { title: "Poori", time: "20 min", rating: 4.5, calories: 300, price: 4.99, difficulty: "Medium", image: Poori },
     { title: "Beef Wellington", time: "90 min", rating: 4.9, calories: 780, price: 32.99, difficulty: "Hard", image: BeefWellington },
-    { title: "Lobster Thermidor", time: "60 min", rating: 4.8, calories: 690, price: 39.99, difficulty: "Hard", image: LobsterThermidor },    
+    { title: "Lobster Thermidor", time: "60 min", rating: 4.8, calories: 690, price: 39.99, difficulty: "Hard", image: LobsterThermidor },
     { title: "Salmon Teriyaki Bowl", time: "30 min", rating: 4.7, calories: 580, price: 22.99, difficulty: "Medium", image: SalmonTeriyakiBowl },
     { title: "Truffle Mushroom Risotto", time: "45 min", rating: 4.8, calories: 540, price: 24.99, difficulty: "Medium", image: TruffleMushroomRisotto },
-    { title: "Chicken Alfredo Pasta", time: "35 min", rating: 4.8, calories: 620, price: 18.99, difficulty: "Easy", image: ChickenAlfredoPasta },    
+    { title: "Chicken Alfredo Pasta", time: "35 min", rating: 4.8, calories: 620, price: 18.99, difficulty: "Easy", image: ChickenAlfredoPasta },
     { title: "Shrimp Tacos", time: "25 min", rating: 4.7, calories: 490, price: 16.99, difficulty: "Easy", image: ShrimpTacos },
     { title: "Korean BBQ Beef", time: "40 min", rating: 4.9, calories: 650, price: 21.99, difficulty: "Medium", image: KoreanBBQBeef },
-    { title: "Palak Paneer", time: "35 min", rating: 4.7, calories: 480, price: 8.99, difficulty: "Medium", image: PalakPaneer },    
-    { title: "Thai Green Curry", time: "35 min", rating: 4.8, calories: 530, price: 17.99, difficulty: "Medium", image: ThaiGreenCurry },    
+    { title: "Palak Paneer", time: "35 min", rating: 4.7, calories: 480, price: 8.99, difficulty: "Medium", image: PalakPaneer },
+    { title: "Thai Green Curry", time: "35 min", rating: 4.8, calories: 530, price: 17.99, difficulty: "Medium", image: ThaiGreenCurry },
     { title: "Sushi Platter", time: "50 min", rating: 4.9, calories: 450, price: 29.99, difficulty: "Hard", image: SushiPlatter },
     { title: "Chicken Parmesan", time: "45 min", rating: 4.8, calories: 670, price: 19.99, difficulty: "Medium", image: ChickenParmesan },
     { title: "Moroccan Lamb Tagine", time: "70 min", rating: 4.8, calories: 720, price: 27.99, difficulty: "Hard", image: MoroccanLambTagine },
@@ -645,7 +742,7 @@ const categoryDishes = {
     { title: "Hakka Noodles", time: "20 min", rating: 4.5, calories: 410, price: 9.49, difficulty: "Easy", image: HakkaNoodles },
     { title: "Schezwan Noodles", time: "25 min", rating: 4.6, calories: 450, price: 10.49, difficulty: "Medium", image: SchezwanNoodles },
     { title: "Chicken Noodles", time: "25 min", rating: 4.6, calories: 470, price: 11.49, difficulty: "Medium", image: ChickenNoodles },
-    { title: "Jowar Bhakri with Curry", time: "35 min", rating: 4.6, calories: 450, price: 6.49, difficulty: "Medium", image: JowarBhakriwithCurry },    
+    { title: "Jowar Bhakri with Curry", time: "35 min", rating: 4.6, calories: 450, price: 6.49, difficulty: "Medium", image: JowarBhakriwithCurry },
     { title: "Ragi Mudde with Chicken", time: "40 min", rating: 4.7, calories: 480, price: 6.99, difficulty: "Medium", image: RagiMuddewithChicken },
     { title: "Amritsari Chole Kulche", time: "35 min", rating: 4.9, calories: 610, price: 8.99, difficulty: "Medium", image: AmritsariCholeKulche },
     { title: "Pathiri with Chicken Curry", time: "40 min", rating: 4.8, calories: 560, price: 8.99, difficulty: "Medium", image: PathiriwithChickenCurry },
@@ -658,42 +755,102 @@ const categoryDishes = {
     { title: "Aloo Paratha", time: "25 min", rating: 4.7, calories: 450, price: 5.99, difficulty: "Easy", image: AlooParatha },
     { title: "Madurai Kari Dosa", time: "45 min", rating: 4.9, calories: 740, price: 11.49, difficulty: "Hard", image: MaduraiKariDosa },
   ],
-  
+
   Desserts: [
-    { title: "Chocolate Lava Cake", time: "25 min", rating: 4.9, calories: 520, price: 8.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80" },
-    { title: "Mango Cheesecake", time: "90 min", rating: 4.8, calories: 480, price: 11.99, difficulty: "Hard", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80" },
-    { title: "Tiramisu", time: "40 min", rating: 4.7, calories: 440, price: 9.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80" },
-    { title: "Gulab Jamun", time: "30 min", rating: 4.6, calories: 360, price: 6.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Crème Brûlée", time: "60 min", rating: 4.8, calories: 400, price: 10.99, difficulty: "Hard", image: "https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=400&q=80" },
-    { title: "Brownie Sundae", time: "20 min", rating: 4.9, calories: 580, price: 9.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80" },
-    { title: "Panna Cotta", time: "30 min", rating: 4.7, calories: 320, price: 8.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&q=80" },
-    { title: "Kheer", time: "40 min", rating: 4.6, calories: 340, price: 5.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Macarons", time: "60 min", rating: 4.8, calories: 280, price: 12.99, difficulty: "Hard", image: "https://images.unsplash.com/photo-1558326567-98ae2405596b?w=400&q=80" },
-    { title: "Banana Foster", time: "15 min", rating: 4.7, calories: 460, price: 8.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80" },
+    { title: "Chocolate Lava Cake", time: "30 min", rating: 4.9, calories: 420, price: 8.99, difficulty: "Medium", image: ChocolateLavaCake },
+    { title: "Tiramisu", time: "40 min", rating: 4.8, calories: 380, price: 9.99, difficulty: "Medium", image: Tiramisu },
+    { title: "Cheesecake", time: "60 min", rating: 4.9, calories: 450, price: 10.99, difficulty: "Hard", image: Cheesecake },
+    { title: "Brownie Sundae", time: "20 min", rating: 4.7, calories: 520, price: 7.99, difficulty: "Easy", image: BrownieSundae },
+    { title: "Red Velvet Cake", time: "90 min", rating: 4.8, calories: 480, price: 12.99, difficulty: "Hard", image: RedVelvetCake },
+    { title: "Apple Pie", time: "70 min", rating: 4.7, calories: 350, price: 8.49, difficulty: "Medium", image: ApplePie },
+    { title: "Gulab Jamun", time: "35 min", rating: 4.9, calories: 300, price: 5.99, difficulty: "Easy", image: GulabJamun },
+    { title: "Rasmalai", time: "45 min", rating: 4.8, calories: 280, price: 6.99, difficulty: "Medium", image: Rasmalai },
+    { title: "Carrot Cake", time: "75 min", rating: 4.6, calories: 410, price: 9.49, difficulty: "Medium", image: CarrotCake },
+    { title: "Black Forest Cake", time: "80 min", rating: 4.8, calories: 470, price: 11.99, difficulty: "Hard", image: BlackForestCake },
+    { title: "Ice Cream Sundae", time: "10 min", rating: 4.7, calories: 390, price: 6.49, difficulty: "Easy", image: IceCreamSundae },
+    { title: "Mango Mousse", time: "25 min", rating: 4.6, calories: 250, price: 5.99, difficulty: "Easy", image: MangoMousse },
+    { title: "Donuts", time: "50 min", rating: 4.7, calories: 320, price: 4.99, difficulty: "Medium", image: Donuts },
+    { title: "Macarons", time: "90 min", rating: 4.8, calories: 280, price: 13.99, difficulty: "Hard", image: Macarons },
+    { title: "Churros", time: "30 min", rating: 4.7, calories: 340, price: 5.49, difficulty: "Medium", image: Churros },
+    { title: "Panna Cotta", time: "35 min", rating: 4.6, calories: 260, price: 7.49, difficulty: "Medium", image: PannaCotta },
+    { title: "Creme Brulee", time: "50 min", rating: 4.8, calories: 370, price: 9.99, difficulty: "Hard", image: CremeBrulee },
+    { title: "Banana Split", time: "15 min", rating: 4.7, calories: 450, price: 7.99, difficulty: "Easy", image: BananaSplit },
+    { title: "Lemon Tart", time: "60 min", rating: 4.6, calories: 330, price: 8.99, difficulty: "Medium", image: LemonTart },
+    { title: "Strawberry Shortcake", time: "40 min", rating: 4.8, calories: 360, price: 8.49, difficulty: "Medium", image: StrawberryShortcake },
+    { title: "Bread Pudding", time: "45 min", rating: 4.5, calories: 310, price: 6.99, difficulty: "Easy", image: BreadPudding },
+    { title: "Coconut Ladoo", time: "25 min", rating: 4.7, calories: 220, price: 4.49, difficulty: "Easy", image: CoconutLadoo },
+    { title: "Kaju Katli", time: "40 min", rating: 4.8, calories: 240, price: 7.99, difficulty: "Medium", image: KajuKatli },
+    { title: "Jalebi", time: "35 min", rating: 4.8, calories: 290, price: 4.99, difficulty: "Medium", image: Jalebi },
+    { title: "Moong Dal Halwa", time: "60 min", rating: 4.9, calories: 430, price: 7.49, difficulty: "Hard", image: MoongDalHalwa },
+    { title: "Gajar Halwa", time: "50 min", rating: 4.8, calories: 360, price: 6.99, difficulty: "Medium", image: GajarHalwa },
+    { title: "Kulfi", time: "240 min", rating: 4.9, calories: 280, price: 5.99, difficulty: "Medium", image: Kulfi },
+    { title: "Falooda", time: "20 min", rating: 4.7, calories: 410, price: 6.49, difficulty: "Easy", image: Falooda },
+    { title: "Rice Kheer", time: "45 min", rating: 4.6, calories: 260, price: 4.99, difficulty: "Easy", image: RiceKheer },
+    { title: "Shahi Tukda", time: "35 min", rating: 4.8, calories: 390, price: 7.99, difficulty: "Medium", image: ShahiTukda },
   ],
   Snacks: [
-    { title: "Loaded Nachos", time: "20 min", rating: 4.5, calories: 590, price: 8.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=400&q=80" },
-    { title: "Samosa", time: "40 min", rating: 4.7, calories: 320, price: 4.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&q=80" },
-    { title: "Spring Rolls", time: "30 min", rating: 4.6, calories: 280, price: 6.49, difficulty: "Medium", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80" },
-    { title: "Bruschetta", time: "15 min", rating: 4.5, calories: 240, price: 5.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=400&q=80" },
-    { title: "Cheese Quesadilla", time: "15 min", rating: 4.6, calories: 380, price: 7.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80" },
-    { title: "Onion Rings", time: "20 min", rating: 4.4, calories: 340, price: 5.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80" },
-    { title: "Pani Puri", time: "20 min", rating: 4.8, calories: 180, price: 3.99, difficulty: "Medium", image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400&q=80" },
-    { title: "Garlic Bread", time: "10 min", rating: 4.5, calories: 260, price: 4.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=400&q=80" },
-    { title: "Stuffed Mushrooms", time: "25 min", rating: 4.6, calories: 220, price: 7.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=80" },
-    { title: "Popcorn Chicken", time: "25 min", rating: 4.7, calories: 410, price: 8.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80" },
+    { title: "Samosa", time: "20 min", rating: 4.7, calories: 250, price: 3.99, difficulty: "Easy", image: Samosa },
+    { title: "Veg Puff", time: "25 min", rating: 4.6, calories: 280, price: 2.99, difficulty: "Easy", image: VegPuff },
+    { title: "Chicken Puff", time: "25 min", rating: 4.8, calories: 320, price: 3.99, difficulty: "Easy", image: ChickenPuff },
+    { title: "Spring Rolls", time: "30 min", rating: 4.7, calories: 270, price: 5.99, difficulty: "Medium", image: SpringRolls },
+    { title: "French Fries", time: "15 min", rating: 4.8, calories: 365, price: 3.49, difficulty: "Easy", image: FrenchFries },
+    { title: "Onion Rings", time: "20 min", rating: 4.6, calories: 310, price: 4.49, difficulty: "Easy", image: OnionRings },
+    { title: "Nachos", time: "15 min", rating: 4.7, calories: 340, price: 5.99, difficulty: "Easy", image: Nachos },
+    { title: "Popcorn", time: "10 min", rating: 4.5, calories: 180, price: 2.99, difficulty: "Easy", image: Popcorn },
+    { title: "Garlic Bread", time: "15 min", rating: 4.8, calories: 290, price: 4.99, difficulty: "Easy", image: GarlicBread },
+    { title: "Mozzarella Sticks", time: "20 min", rating: 4.8, calories: 350, price: 6.49, difficulty: "Medium", image: MozzarellaSticks },
+    { title: "Chicken Wings", time: "35 min", rating: 4.9, calories: 420, price: 8.99, difficulty: "Medium", image: ChickenWings },
+    { title: "Chicken Nuggets", time: "20 min", rating: 4.8, calories: 320, price: 6.99, difficulty: "Easy", image: ChickenNuggets },
+    { title: "Fish Fingers", time: "25 min", rating: 4.7, calories: 280, price: 7.49, difficulty: "Medium", image: FishFingers },
+    { title: "Paneer Tikka", time: "30 min", rating: 4.8, calories: 290, price: 6.99, difficulty: "Medium", image: PaneerTikka },
+    { title: "Aloo Tikki", time: "20 min", rating: 4.6, calories: 240, price: 3.99, difficulty: "Easy", image: AlooTikki },
+    { title: "Bhel Puri", time: "15 min", rating: 4.7, calories: 220, price: 3.49, difficulty: "Easy", image: BhelPuri },
+    { title: "Pani Puri", time: "20 min", rating: 4.9, calories: 180, price: 3.99, difficulty: "Easy", image: PaniPuri },
+    { title: "Sev Puri", time: "15 min", rating: 4.7, calories: 210, price: 3.99, difficulty: "Easy", image: SevPuri },
+    { title: "Dahi Puri", time: "20 min", rating: 4.8, calories: 240, price: 4.49, difficulty: "Easy", image: DahiPuri },
+    { title: "Vada Pav", time: "20 min", rating: 4.8, calories: 320, price: 3.99, difficulty: "Easy", image: VadaPav },
+    { title: "Pav Bhaji", time: "30 min", rating: 4.9, calories: 420, price: 5.99, difficulty: "Medium", image: PavBhaji },
+    { title: "Masala Corn", time: "10 min", rating: 4.5, calories: 170, price: 2.99, difficulty: "Easy", image: MasalaCorn },
+    { title: "Murukku", time: "40 min", rating: 4.7, calories: 260, price: 4.49, difficulty: "Medium", image: Murukku },
+    { title: "Mixture", time: "30 min", rating: 4.6, calories: 280, price: 4.99, difficulty: "Medium", image: Mixture },
+    { title: "Banana Chips", time: "20 min", rating: 4.7, calories: 240, price: 3.99, difficulty: "Easy", image: BananaChips },
+    { title: "Potato Chips", time: "20 min", rating: 4.8, calories: 280, price: 3.99, difficulty: "Easy", image: PotatoChips },
+    { title: "Cheese Balls", time: "25 min", rating: 4.7, calories: 330, price: 5.49, difficulty: "Medium", image: CheeseBalls },
+    { title: "Bread Pakora", time: "20 min", rating: 4.6, calories: 290, price: 4.49, difficulty: "Easy", image: BreadPakora },
+    { title: "Veg Cutlet", time: "25 min", rating: 4.7, calories: 260, price: 4.99, difficulty: "Easy", image: VegCutlet },
+    {title: "Medu Vada", time: "20 min", rating: 4.8, calories: 220, price: 3.49, difficulty: "Easy", image: MeduVada },
+    { title: "Corn Chaat", time: "15 min", rating: 4.6, calories: 180, price: 3.99, difficulty: "Easy", image: CornChaat },
+    { title: "Momos", time: "25 min", rating: 4.8, calories: 250, price: 5.49, difficulty: "Medium", image: Momos },
+    { title: "Paneer Pakora", time: "25 min", rating: 4.8, calories: 290, price: 5.99, difficulty: "Medium", image: PaneerPakora },
+    { title: "Chicken Sandwich", time: "20 min", rating: 4.8, calories: 370, price: 6.49, difficulty: "Easy", image: ChickenSandwich },
+    { title: "Peri Peri Fries", time: "15 min", rating: 4.8, calories: 370, price: 5.49, difficulty: "Easy", image: PeriPeriFries },
   ],
   Drinks: [
-    { title: "Mango Lassi", time: "5 min", rating: 4.8, calories: 180, price: 4.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&q=80" },
-    { title: "Cold Brew Coffee", time: "5 min", rating: 4.7, calories: 80, price: 5.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" },
-    { title: "Berry Smoothie", time: "5 min", rating: 4.9, calories: 160, price: 6.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&q=80" },
-    { title: "Matcha Latte", time: "5 min", rating: 4.6, calories: 120, price: 5.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400&q=80" },
-    { title: "Watermelon Juice", time: "5 min", rating: 4.7, calories: 90, price: 4.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&q=80" },
-    { title: "Masala Chai", time: "10 min", rating: 4.8, calories: 110, price: 3.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" },
-    { title: "Lemonade", time: "5 min", rating: 4.5, calories: 100, price: 3.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&q=80" },
-    { title: "Coconut Water", time: "2 min", rating: 4.6, calories: 60, price: 3.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400&q=80" },
-    { title: "Turmeric Latte", time: "5 min", rating: 4.7, calories: 130, price: 5.49, difficulty: "Easy", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" },
-    { title: "Iced Americano", time: "5 min", rating: 4.8, calories: 15, price: 4.99, difficulty: "Easy", image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80" },
+    { title: "Mango Smoothie", time: "10 min", rating: 4.8, calories: 180, price: 4.99, difficulty: "Easy", image: MangoSmoothie },
+    { title: "Strawberry Milkshake", time: "10 min", rating: 4.7, calories: 250, price: 5.49, difficulty: "Easy", image: StrawberryMilkshake },
+    { title: "Chocolate Milkshake", time: "10 min", rating: 4.9, calories: 320, price: 5.99, difficulty: "Easy", image: ChocolateMilkshake },
+    { title: "Vanilla Milkshake", time: "10 min", rating: 4.6, calories: 280, price: 5.49, difficulty: "Easy", image: VanillaMilkshake },
+    { title: "Banana Smoothie", time: "8 min", rating: 4.7, calories: 210, price: 4.49, difficulty: "Easy", image: BananaSmoothie },
+    { title: "Oreo Shake", time: "10 min", rating: 4.9, calories: 350, price: 6.49, difficulty: "Easy", image: OreoShake },
+    { title: "Cold Coffee", time: "5 min", rating: 4.8, calories: 190, price: 4.99, difficulty: "Easy", image: ColdCoffee },
+    { title: "Iced Latte", time: "5 min", rating: 4.7, calories: 140, price: 5.49, difficulty: "Easy", image: IcedLatte },
+    { title: "Cappuccino", time: "7 min", rating: 4.8, calories: 120, price: 4.99, difficulty: "Easy", image: Cappuccino },
+    { title: "Mocha Coffee", time: "8 min", rating: 4.8, calories: 220, price: 5.99, difficulty: "Easy", image: MochaCoffee },
+    { title: "Lemon Juice", time: "5 min", rating: 4.6, calories: 60, price: 2.99, difficulty: "Easy", image: LemonJuice },
+    { title: "Orange Juice", time: "5 min", rating: 4.7, calories: 90, price: 3.99, difficulty: "Easy", image: OrangeJuice },
+    { title: "Watermelon Juice", time: "8 min", rating: 4.8, calories: 80, price: 3.99, difficulty: "Easy", image: WatermelonJuice },
+    { title: "Pineapple Juice", time: "8 min", rating: 4.7, calories: 100, price: 4.49, difficulty: "Easy", image: PineappleJuice },
+    { title: "Apple Juice", time: "5 min", rating: 4.6, calories: 110, price: 3.99, difficulty: "Easy", image: AppleJuice },
+    { title: "Mojito", time: "10 min", rating: 4.8, calories: 120, price: 5.99, difficulty: "Easy", image: Mojito },
+    { title: "Blue Lagoon", time: "10 min", rating: 4.7, calories: 150, price: 6.49, difficulty: "Easy", image: BlueLagoon },
+    { title: "Virgin Margarita", time: "10 min", rating: 4.8, calories: 130, price: 6.99, difficulty: "Easy", image: VirginMargarita },
+    { title: "Mint Lime Cooler", time: "5 min", rating: 4.7, calories: 70, price: 3.99, difficulty: "Easy", image: MintLimeCooler },
+    { title: "Fruit Punch", time: "10 min", rating: 4.8, calories: 140, price: 5.49, difficulty: "Easy", image: FruitPunch },
+    { title: "Rose Milk", time: "5 min", rating: 4.7, calories: 180, price: 3.99, difficulty: "Easy", image: RoseMilk },
+    { title: "Badam Milk", time: "10 min", rating: 4.8, calories: 220, price: 4.99, difficulty: "Easy", image: BadamMilk },
+    { title: "Masala Chai", time: "10 min", rating: 4.9, calories: 110, price: 2.99, difficulty: "Easy", image: MasalaChai },
+    { title: "Green Tea", time: "5 min", rating: 4.6, calories: 20, price: 2.49, difficulty: "Easy", image: GreenTea },
+    { title: "Hot Chocolate", time: "10 min", rating: 4.8, calories: 260, price: 5.99, difficulty: "Easy", image: HotChocolate }
   ],
 };
 
