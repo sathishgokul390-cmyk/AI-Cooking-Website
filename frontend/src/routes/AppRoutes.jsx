@@ -5,6 +5,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import RecipeDetails from '../pages/RecipeDetails/RecipeDetails';
+import RecipeDetailsPage from '../pages/RecipeDetailsPage/RecipeDetailsPage';
 import AiGenerator from '../pages/AiGenerator/AiGenerator';
 import MealPlanner from '../pages/MealPlanner/MealPlanner';
 import Features from '../pages/Features/Features';
@@ -33,6 +34,7 @@ export default function AppRoutes() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/recipe" element={<RecipeDetails />} />
+                <Route path="/recipe/detail" element={<RecipeDetailsPage />} />
                 <Route path="/ai" element={<AiGenerator />} />
                 <Route path="/mealplanner" element={<MealPlanner />} />
                 <Route path="/trendingRecipes" element={<TrendingRecipes />} />

@@ -1,4 +1,5 @@
 ﻿import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Clock3, Bookmark, Search, Star, Heart } from "lucide-react";
 import Sidenav from "../../components/navbar/sidenavbar/Sidenav";
 
@@ -77,6 +78,7 @@ export default function RecipeDetails() {
   const [query, setQuery] = useState("");
   const [saved, setSaved] = useState({});
   const [liked, setLiked] = useState({});
+  const navigate = useNavigate();
 
   const filtered = query.trim()
     ? recipes.filter((r) => r.title.toLowerCase().includes(query.toLowerCase()))
@@ -113,7 +115,8 @@ export default function RecipeDetails() {
           {filtered.map((recipe) => (
             <div
               key={recipe.id}
-              className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/5 rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-400/30 transition-all duration-300 group"
+              onClick={() => navigate("/recipe/detail", { state: { recipe } })}
+              className="bg-white dark:bg-black/40 border border-black/10 dark:border-white/5 rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-400/30 transition-all duration-300 group cursor-pointer"
             >
               {/* IMAGE */}
               <div className="relative overflow-hidden">
