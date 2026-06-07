@@ -99,3 +99,20 @@ Production:
 ```bash
 npm start
 ```
+
+## Initialize the database (collections & indexes)
+
+To create the required collections and indexes (and optionally seed demo data), run this from the `server` folder:
+
+```bash
+# installs deps (if needed)
+npm install
+
+# initialize collections/indexes
+npm run db:init
+
+# initialize + insert demo documents
+SEED=true npm run db:init
+```
+
+You can verify the collections with MongoDB Compass by connecting to the same `MONGO_URI` you use in `.env`.

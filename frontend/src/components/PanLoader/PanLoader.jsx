@@ -378,8 +378,9 @@ export default function PanLoader({ onComplete }) {
                                 ].map(([bx, by, br], i) => (
                                     <motion.circle key={i} cx={bx} cy={by} r={br}
                                         fill="rgba(255,200,80,0.22)"
-                                        animate={{ r: [br, br * 1.6, br], opacity: [0.3, 0.6, 0.3] }}
+                                        animate={{ scale: [1, 1.6, 1], opacity: [0.3, 0.6, 0.3] }}
                                         transition={{ duration: 0.8 + i * 0.15, repeat: Infinity, delay: i * 0.2 }}
+                                        style={{ transformOrigin: `${bx}px ${by}px` }}
                                     />
                                 ))}
                             </g>
