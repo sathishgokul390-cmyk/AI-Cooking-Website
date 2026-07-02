@@ -1,4 +1,4 @@
-import { Menu, X, Search } from "lucide-react";
+﻿import { Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 // import logo from "../../assets/images/logo.png";
@@ -8,6 +8,8 @@ import { useAuth } from "../../hooks/useAuth";
 
 const navLinks = [
   { label: "Home", to: "/" },
+  { label: "Discover", to: "/discover" },
+  { label: "My Ingredients", to: "/myIngredients" },
   { label: "Recipes", to: "/recipe" },
   { label: "AI Chef", to: "/ai" },
   { label: "Favorites", to: "/favorites" },
@@ -66,7 +68,7 @@ export default function Navbar() {
             />
           </div> */}
 
-          {/* THEME TOGGLE � sun/moon pill */}
+          {/* THEME TOGGLE � sun/moon pill */}
           <ThemeToggle />
 
           {/* AVATAR / LOGIN */}
@@ -96,7 +98,7 @@ export default function Navbar() {
               to="/login"
               className="w-9 h-9 rounded-full bg-orange-500 hover:bg-orange-400 text-white text-sm font-bold flex items-center justify-center transition-all duration-300 shadow-md shadow-orange-500/30"
             >
-              ?
+              👤
             </Link>
           )}
 

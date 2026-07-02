@@ -460,7 +460,7 @@
 //   Drinks: [
 //     { title: "Mango Smoothie", time: "10 min", rating: 4.8, calories: 180, price: 4.99, difficulty: "Easy", image: MangoSmoothie },
 //     { title: "Strawberry Milkshake", time: "10 min", rating: 4.7, calories: 250, price: 5.49, difficulty: "Easy", image: StrawberryMilkshake },
-//     { title: "Chocolate Milkshake", time: "10 min", rating: 4.9, calories: 320, price: 5.99, difficulty: "Easy", image: ChocolateMilkshake },
+//     { title: "Chocolate Milkshake", time: "10 min", rating: 4.9, caWaveformlories: 320, price: 5.99, difficulty: "Easy", image: ChocolateMilkshake },
 //     { title: "Vanilla Milkshake", time: "10 min", rating: 4.6, calories: 280, price: 5.49, difficulty: "Easy", image: VanillaMilkshake },
 //     { title: "Banana Smoothie", time: "8 min", rating: 4.7, calories: 210, price: 4.49, difficulty: "Easy", image: BananaSmoothie },
 //     { title: "Oreo Shake", time: "10 min", rating: 4.9, calories: 350, price: 6.49, difficulty: "Easy", image: OreoShake },
@@ -1089,22 +1089,422 @@
 
 // New hero section
 
-import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Search, Sparkles, ChevronRight } from "lucide-react";
+// import { useState, useMemo } from "react";
+// import { motion, AnimatePresence } from "framer-motion";
+// import { ArrowRight, Search, Sparkles, ChevronRight } from "lucide-react";
 
-import AiCookingBanner from "../../assets/images/Ai_cooking_image.png";
-import { categories } from "../../data/categories";
-import { recipes } from "../../data/recipes";
-import { categoryDishes } from "../../utils/categoryDishes";
+// import AiCookingBanner from "../../assets/images/Ai_cooking_image.png";
+// import { categories } from "../../data/categories";
+// import { recipes } from "../../data/recipes";
+// import { categoryDishes } from "../../utils/categoryDishes";
 
+// import Waveform from "../../components/Waveform/Waveform";
+// import DishCard from "../../components/DishCard/DishCard";
+// import RecipeCard from "../../components/RecipeCard/RecipeCard";
+// import CategoryCard from "../../components/CategoryCard/CategoryCard";
+
+// // ─── Static data ──────────────────────────────────────────────────────────────
+
+// const avatars = [
+//   "https://i.pravatar.cc/40?img=3",
+//   "https://i.pravatar.cc/40?img=7",
+//   "https://i.pravatar.cc/40?img=11",
+//   "https://i.pravatar.cc/40?img=15",
+// ];
+
+// const ingredients = [
+//   { label: "Chicken", emoji: "🍗" },
+//   { label: "Avocado", emoji: "🥑" },
+//   { label: "Broccoli", emoji: "🥦" },
+//   { label: "Quinoa", emoji: "🌾" },
+// ];
+
+// const floatUp = {
+//   animate: { y: [0, -10, 0] },
+//   transition: { duration: 4.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
+// };
+// const floatDown = {
+//   animate: { y: [0, 10, 0] },
+//   transition: { duration: 4.4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.6 },
+// };
+
+// // ─── Component ────────────────────────────────────────────────────────────────
+
+// export default function Hero() {
+//   const [liked, setLiked] = useState({});
+//   const [activeCategory, setActiveCategory] = useState("Breakfast");
+//   const [showAll, setShowAll] = useState(false);
+
+//   const toggleLike = (key) => setLiked((p) => ({ ...p, [key]: !p[key] }));
+
+//   const activeDishes = useMemo(() => categoryDishes[activeCategory] ?? [], [activeCategory]);
+//   const visibleDishes = showAll ? activeDishes : activeDishes.slice(0, 8);
+
+//   const handleCategoryClick = (title) => {
+//     setActiveCategory(title);
+//     setShowAll(false);
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#121413] text-black dark:text-white transition-all duration-300">
+
+//       {/* ── HERO BANNER ──────────────────────────────────────────────────────── */}
+//       <section className="relative w-full overflow-hidden" style={{ minHeight: 720 }}>
+//         <img
+//           src={AiCookingBanner}
+//           alt="AI Chef robot preparing a meal in a modern kitchen"
+//           className="absolute inset-0 w-full h-full object-cover object-center select-none"
+//         />
+
+//         {/* Light overlay */}
+//         <div
+//           className="absolute inset-0 dark:hidden pointer-events-none"
+//           style={{ background: "linear-gradient(to right, #f5f0e8 0%, #f5f0e8 24%, rgba(245,240,232,0.93) 34%, rgba(245,240,232,0.65) 44%, rgba(245,240,232,0.18) 53%, transparent 60%)" }}
+//         />
+//         {/* Dark overlay */}
+//         <div
+//           className="absolute inset-0 hidden dark:block pointer-events-none"
+//           style={{ background: "linear-gradient(to right, #0f1410 0%, #0f1410 24%, rgba(15,20,16,0.93) 34%, rgba(15,20,16,0.65) 44%, rgba(15,20,16,0.18) 53%, transparent 60%)" }}
+//         />
+
+//         <div className="relative z-10 h-full" style={{ minHeight: 520 }}>
+//           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 w-full h-full flex items-center" style={{ minHeight: 520 }}>
+//             <div className="w-full flex items-center justify-between h-full py-12 lg:py-0 gap-6">
+
+//               {/* LEFT: Text content */}
+//               <motion.div
+//                 className="w-full lg:w-[40%] flex flex-col justify-center"
+//                 initial={{ opacity: 0, x: -36 }}
+//                 animate={{ opacity: 1, x: 0 }}
+//                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+//               >
+//                 <h1 className="text-5xl xl:text-6xl font-extrabold leading-[1.08] mb-4 text-gray-900 dark:text-white">
+//                   Your <span className="text-[#6BA539]">AI Chef</span>
+//                   <br />in Your Kitchen{" "}
+//                   <span className="text-gray-300 text-3xl align-middle">✦</span>
+//                 </h1>
+
+//                 <p className="text-gray-500 dark:text-gray-400 text-[15px] leading-relaxed mb-4 max-w-[380px]">
+//                   Let AI create personalized recipes, tailored to your taste, ingredients, and health goals.
+//                 </p>
+
+//                 <form className="mb-4" role="search" onSubmit={(e) => e.preventDefault()}>
+//                   <div className="flex items-center gap-3 bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-full px-3 py-2 max-w-md shadow-sm">
+//                     <Search size={16} className="text-gray-400" />
+//                     <input
+//                       aria-label="Search recipes or ingredients"
+//                       placeholder="Search recipes, ingredients, or cuisines"
+//                       className="flex-1 bg-transparent outline-none text-sm placeholder-gray-400 text-gray-700 dark:text-gray-200"
+//                     />
+//                     <button aria-label="Search" className="ml-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6BA539] hover:bg-[#568a2e] text-white text-sm font-medium transition-colors">
+//                       Search
+//                     </button>
+//                   </div>
+//                 </form>
+
+//                 <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 gap-3 mb-7">
+//                   <motion.button
+//                     type="button"
+//                     aria-label="Get Cooking"
+//                     whileHover={{ scale: 1.03 }}
+//                     whileTap={{ scale: 0.97 }}
+//                     className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-[15px] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#6BA539]/30"
+//                     style={{ background: "linear-gradient(135deg, #6BA539 0%, #4d8822 100%)", boxShadow: "0 10px 30px rgba(75,140,40,0.24)" }}
+//                   >
+//                     Get Cooking
+//                     <motion.span className="flex items-center" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+//                       <ArrowRight size={16} />
+//                     </motion.span>
+//                   </motion.button>
+
+//                   <button
+//                     type="button"
+//                     aria-label="Explore Recipes"
+//                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white dark:bg-black/30 border border-black/10 dark:border-white/10 text-sm text-gray-800 dark:text-gray-200 font-medium transition-shadow shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#6BA539]/20"
+//                   >
+//                     Explore Recipes
+//                   </button>
+//                 </div>
+
+//                 {/* Social proof */}
+//                 <div className="flex items-center gap-3">
+//                   <div className="flex -space-x-2.5">
+//                     {avatars.map((src, i) => (
+//                       <motion.img
+//                         key={i}
+//                         src={src}
+//                         alt="user"
+//                         className="w-9 h-9 rounded-full border-2 border-[#f5f0e8] dark:border-[#0f1410] object-cover"
+//                         initial={{ opacity: 0, x: -8 }}
+//                         animate={{ opacity: 1, x: 0 }}
+//                         transition={{ delay: 0.55 + i * 0.08 }}
+//                       />
+//                     ))}
+//                   </div>
+//                   <p className="text-[13px] text-gray-500 dark:text-gray-400 leading-snug">
+//                     Join <span className="font-bold text-gray-800 dark:text-gray-200">50K+</span> food lovers
+//                     <br />cooking smarter everyday!
+//                   </p>
+//                 </div>
+//               </motion.div>
+
+//               {/* RIGHT: Floating cards */}
+//               <div className="hidden lg:flex relative flex-1 h-full items-center justify-end" style={{ minHeight: 520 }}>
+
+//                 {/* Card 1 — AI Chef greeting */}
+//                 <motion.div
+//                   className="absolute top-8 right-2 z-20 w-[238px]"
+//                   initial={{ opacity: 0, y: -22, scale: 0.88 }}
+//                   animate={{ opacity: 1, y: 0, scale: 1 }}
+//                   transition={{ delay: 0.55, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+//                 >
+//                   <motion.div
+//                     animate={floatUp.animate}
+//                     transition={floatUp.transition}
+//                     className="bg-white/90 dark:bg-[#1c2b1e]/90 backdrop-blur-md rounded-2xl px-5 py-4 border border-white/70 dark:border-white/10"
+//                     style={{ boxShadow: "0 18px 50px rgba(0,0,0,0.13), 0 2px 10px rgba(0,0,0,0.07)" }}
+//                   >
+//                     <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-2xl pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.55), transparent)" }} />
+//                     <p className="font-bold text-[14px] text-gray-900 dark:text-white mb-1 relative z-10">👋 Hello, I'm AI Chef</p>
+//                     <p className="text-gray-500 dark:text-gray-400 text-[13px] leading-snug relative z-10">What would you like to cook today?</p>
+//                     <Waveform />
+//                   </motion.div>
+//                 </motion.div>
+
+//                 {/* Card 2 — Ingredient picker */}
+//                 <motion.div
+//                   className="absolute bottom-10 right-2 z-20 w-[300px]"
+//                   initial={{ opacity: 0, y: 22, scale: 0.88 }}
+//                   animate={{ opacity: 1, y: 0, scale: 1 }}
+//                   transition={{ delay: 0.75, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+//                 >
+//                   <motion.div
+//                     animate={floatDown.animate}
+//                     transition={floatDown.transition}
+//                     className="bg-white/90 dark:bg-[#1c2b1e]/90 backdrop-blur-md rounded-2xl px-5 py-4 border border-white/70 dark:border-white/10"
+//                     style={{ boxShadow: "0 18px 50px rgba(0,0,0,0.13), 0 2px 10px rgba(0,0,0,0.07)" }}
+//                   >
+//                     <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-2xl pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.55), transparent)" }} />
+//                     <div className="flex items-center justify-between gap-2 relative z-10">
+//                       {ingredients.map((ing, i) => (
+//                         <motion.div
+//                           key={ing.label}
+//                           className="flex flex-col items-center gap-1.5 cursor-pointer"
+//                           initial={{ opacity: 0, y: 10 }}
+//                           animate={{ opacity: 1, y: 0 }}
+//                           transition={{ delay: 0.85 + i * 0.09 }}
+//                           whileHover={{ y: -3, transition: { duration: 0.2 } }}
+//                         >
+//                           <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl border border-gray-100 shadow-md" style={{ background: "linear-gradient(135deg, #f8f6f0, #edeae0)" }}>
+//                             {ing.emoji}
+//                           </div>
+//                           <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">{ing.label}</span>
+//                         </motion.div>
+//                       ))}
+//                       <motion.div
+//                         className="flex flex-col items-center gap-1.5 cursor-pointer"
+//                         initial={{ opacity: 0, y: 10 }}
+//                         animate={{ opacity: 1, y: 0 }}
+//                         transition={{ delay: 1.25 }}
+//                         whileHover={{ y: -3, transition: { duration: 0.2 } }}
+//                       >
+//                         <div className="w-12 h-12 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-400 dark:text-gray-500 text-xl font-light">+</div>
+//                         <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">More</span>
+//                       </motion.div>
+//                     </div>
+//                   </motion.div>
+//                 </motion.div>
+
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* ── CATEGORY TAB NAVBAR + DISH GRID ─────────────────────────────────── */}
+//       <div className="w-full">
+//         <div className="sticky top-0 z-20 bg-[#F9F7F4] dark:bg-[#121413] border-b border-black/8 dark:border-white/8 shadow-sm">
+//           <div className="max-w-7xl mx-auto px-3 sm:px-6">
+//             <div
+//               className="flex overflow-x-auto scrollbar-hide gap-1 py-0"
+//               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+//               role="tablist"
+//               aria-label="Recipe categories"
+//             >
+//               {categories.map((cat, i) => (
+//                 <CategoryCard
+//                   key={cat.title}
+//                   category={cat}
+//                   index={i}
+//                   isActive={activeCategory === cat.title}
+//                   onClick={handleCategoryClick}
+//                 />
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+
+//         <div className="max-w-7xl mx-auto px-3 sm:px-6 pt-5 pb-10">
+//           <div className="flex items-center gap-2 mb-4 sm:mb-5">
+//             <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">{activeCategory}</h2>
+//             <span className="text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-[#6BA539]/10 text-[#6BA539]">
+//               {activeDishes.length} recipes
+//             </span>
+//           </div>
+
+//           <AnimatePresence mode="wait">
+//             <motion.div
+//               key={activeCategory}
+//               initial={{ opacity: 0, y: 16 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               exit={{ opacity: 0, y: -8 }}
+//               transition={{ duration: 0.25, ease: "easeOut" }}
+//               className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5"
+//             >
+//               {visibleDishes.map((dish, idx) => (
+//                 <DishCard
+//                   key={dish.title}
+//                   dish={dish}
+//                   index={idx}
+//                   liked={liked}
+//                   onToggleLike={toggleLike}
+//                 />
+//               ))}
+//             </motion.div>
+//           </AnimatePresence>
+
+//           {activeDishes.length > 8 && (
+//             <div className="flex justify-center mt-6 sm:mt-8">
+//               <motion.button
+//                 whileTap={{ scale: 0.96 }}
+//                 onClick={() => setShowAll((prev) => !prev)}
+//                 className="px-6 sm:px-8 py-2.5 sm:py-3 rounded-full border-2 border-[#6BA539] text-[#6BA539] font-semibold text-sm sm:text-base hover:bg-[#6BA539] hover:text-white transition-colors duration-200"
+//               >
+//                 {showAll ? "Show less" : `View all recipes (${activeDishes.length - 8} more)`}
+//               </motion.button>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+
+//       {/* ── POPULAR RECIPES ──────────────────────────────────────────────────── */}
+//       <div className="max-w-7xl mx-auto px-6 pb-14">
+//         <div className="flex items-center justify-between mb-8">
+//           <h2 className="text-3xl font-bold">Popular Recipes</h2>
+//           <button className="text-[#3a7d44] hover:text-[#2d6235] font-medium transition flex items-center gap-1 text-sm">
+//             View all <ChevronRight size={15} />
+//           </button>
+//         </div>
+//         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+//           {recipes.map((recipe, i) => (
+//             <RecipeCard
+//               key={recipe.title}
+//               recipe={recipe}
+//               index={i}
+//               liked={liked}
+//               onToggleLike={toggleLike}
+//             />
+//           ))}
+//         </div>
+//       </div>
+
+//       {/* ── ASK AI CHEF ──────────────────────────────────────────────────────── */}
+//       <div className="max-w-7xl mx-auto px-6 pb-20">
+//         <motion.div
+//           initial={{ opacity: 0, y: 24 }}
+//           whileInView={{ opacity: 1, y: 0 }}
+//           viewport={{ once: true }}
+//           className="relative overflow-hidden bg-gradient-to-br from-[#eef6ee] to-[#f5f0e8] dark:from-[#1a2e1c] dark:to-[#1a1f1a] border border-green-200/60 dark:border-green-800/30 rounded-[32px] p-10 flex flex-col lg:flex-row items-center justify-between gap-10"
+//         >
+//           <div className="absolute top-0 right-0 w-72 h-72 bg-green-300/10 rounded-full blur-3xl pointer-events-none" />
+//           <div className="flex-1 relative z-10">
+//             <div className="flex items-center gap-3 mb-4">
+//               <div className="w-10 h-10 rounded-2xl bg-[#3a7d44] flex items-center justify-center shadow-lg">
+//                 <Sparkles size={18} className="text-white" />
+//               </div>
+//               <h2 className="text-3xl font-bold">Ask AI Chef</h2>
+//             </div>
+//             <p className="text-slate-600 dark:text-slate-400 text-base mb-8 max-w-sm">
+//               Get personalized recipe suggestions, cooking tips, and step-by-step guidance powered by AI.
+//             </p>
+//             <div className="bg-white/80 dark:bg-black/30 border border-black/10 dark:border-white/10 rounded-2xl p-4 mb-8 max-w-sm">
+//               <div className="flex items-start gap-2 mb-3">
+//                 <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 mt-0.5" />
+//                 <div>
+//                   <p className="text-xs text-slate-400 mb-1">You</p>
+//                   <p className="text-sm text-slate-700 dark:text-slate-300">What can I cook with chicken and broccoli?</p>
+//                 </div>
+//               </div>
+//               <div className="flex items-start gap-2">
+//                 <div className="w-6 h-6 rounded-full bg-[#3a7d44] flex-shrink-0 mt-0.5 flex items-center justify-center">
+//                   <Sparkles size={10} className="text-white" />
+//                 </div>
+//                 <div>
+//                   <p className="text-xs text-slate-400 mb-1">AI Chef</p>
+//                   <p className="text-sm text-slate-700 dark:text-slate-300">Try a Chicken Broccoli Stir-fry! Ready in 20 mins...</p>
+//                 </div>
+//               </div>
+//             </div>
+//             <button className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#3a7d44] hover:bg-[#2d6235] text-white font-semibold transition-all duration-300 shadow-lg shadow-green-700/25 hover:-translate-y-0.5">
+//               <Sparkles size={15} />
+//               Start Chatting
+//             </button>
+//           </div>
+//           <div className="w-44 h-56 relative z-10 flex-shrink-0 flex items-center justify-center text-8xl select-none">🤖</div>
+//         </motion.div>
+//       </div>
+
+//     </div>
+//   );
+// }
+
+
+// 01/07/2026 Hero Section
+
+
+import { useState, useEffect } from "react";
+import React, { useRef } from 'react';
+import { motion } from "framer-motion";
 import Waveform from "../../components/Waveform/Waveform";
-import DishCard from "../../components/DishCard/DishCard";
-import RecipeCard from "../../components/RecipeCard/RecipeCard";
-import CategoryCard from "../../components/CategoryCard/CategoryCard";
+import PopularRecipesSection from "../../sections/PopularRecipesSection/PopularRecipesSection"
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  InputBase,
+  Paper,
+  // IconButton,
+  Avatar,
+  AvatarGroup,
+  Grid,
+  Chip,
+  Stack,
+  useTheme,
+  useMediaQuery,
+  LinearProgress
+} from "@mui/material";
+import {
+  Search,
+  ArrowRight,
+  Sparkles,
+  Camera,
+  Mic,
+  Clock,
+  Scale,
+  CheckCircle,
+  // ChessRookIcon,
+  // ChevronLeft,
+  // ChevronRight,
+  Heart
+} from "lucide-react";
+// import { Heart, ChevronRight } from 'lucide-react';
+import AiCookingBanner from "../../assets/images/Ai_cooking_image.png";
 
-// ─── Static data ──────────────────────────────────────────────────────────────
+// ─── MOTION WRAPPERS FOR MUI ──────────────────────────────────────────────────
+const MotionBox = motion(Box);
 
+// ─── MOCK DATA ────────────────────────────────────────────────────────────────
 const avatars = [
   "https://i.pravatar.cc/40?img=3",
   "https://i.pravatar.cc/40?img=7",
@@ -1112,348 +1512,780 @@ const avatars = [
   "https://i.pravatar.cc/40?img=15",
 ];
 
-const ingredients = [
+const trendingIngredients = [
   { label: "Chicken", emoji: "🍗" },
   { label: "Avocado", emoji: "🥑" },
   { label: "Broccoli", emoji: "🥦" },
   { label: "Quinoa", emoji: "🌾" },
 ];
 
-const floatUp = {
-  animate: { y: [0, -10, 0] },
-  transition: { duration: 4.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
-};
-const floatDown = {
-  animate: { y: [0, 10, 0] },
-  transition: { duration: 4.4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.6 },
-};
+const popularRecipes = [
+  { title: "Grilled Salmon with Avocado Salsa", time: "25 min", kcal: "520 kcal", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=500&q=80", tag: "Trending" },
+  { title: "Creamy Chicken Pasta", time: "30 min", kcal: "610 kcal", image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=500&q=80" },
+  { title: "Quinoa Salad Bowl", time: "20 min", kcal: "420 kcal", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80" },
+  { title: "Spicy Ramen Noodles", time: "15 min", kcal: "480 kcal", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&q=80" }
+];
 
-// ─── Component ────────────────────────────────────────────────────────────────
+// ─── ANIMATION VARIANCE DEFINITIONS ──────────────────────────────────────────
+
 
 export default function Hero() {
+  const theme = useTheme();
   const [liked, setLiked] = useState({});
-  const [activeCategory, setActiveCategory] = useState("Breakfast");
-  const [showAll, setShowAll] = useState(false);
 
-  const toggleLike = (key) => setLiked((p) => ({ ...p, [key]: !p[key] }));
+  // Precise Breakpoint Listeners based on requirement bounds
+  const isSmallMobile = useMediaQuery("(max-width:360px)");
+  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // up to 767px
+  const isTablet = useMediaQuery("(min-width:768px) and (max-width:1023px)");
+  const isDesktop = useMediaQuery("(min-width:1024px)");
 
-  const activeDishes = useMemo(() => categoryDishes[activeCategory] ?? [], [activeCategory]);
-  const visibleDishes = showAll ? activeDishes : activeDishes.slice(0, 8);
-
-  const handleCategoryClick = (title) => {
-    setActiveCategory(title);
-    setShowAll(false);
+  const toggleLike = (title) => {
+    setLiked((prev) => ({ ...prev, [title]: !prev[title] }));
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F7F4] dark:bg-[#121413] text-black dark:text-white transition-all duration-300">
+    <Box sx={{ minHeight: "screen", bgcolor: "background.default", color: "text.primary", overflow: "hidden", pb: 8 }}>
 
-      {/* ── HERO BANNER ──────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden" style={{ minHeight: 720 }}>
-        <img
+      {/* ─── SECTION 1: HERO CONTAINER & ROBOT GRAPHIC ─────────────────────── */}
+      <Box sx={{ position: "relative", minHeight: { lg: "820px" }, display: "flex", alignItems: "center", overflow: "hidden" }}>
+
+        {/* Desktop background image — right 60% */}
+        <Box
+          component="img"
           src={AiCookingBanner}
-          alt="AI Chef robot preparing a meal in a modern kitchen"
-          className="absolute inset-0 w-full h-full object-cover object-center select-none"
+          alt="AI Chef Landscape Layout"
+          sx={{
+            display: { xs: "none", lg: "block" },
+            position: "absolute",
+            right: 0,
+            top: 0,
+            width: "60%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "left center",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
         />
 
-        {/* Light overlay */}
-        <div
-          className="absolute inset-0 dark:hidden pointer-events-none"
-          style={{ background: "linear-gradient(to right, #f5f0e8 0%, #f5f0e8 24%, rgba(245,240,232,0.93) 34%, rgba(245,240,232,0.65) 44%, rgba(245,240,232,0.18) 53%, transparent 60%)" }}
-        />
-        {/* Dark overlay */}
-        <div
-          className="absolute inset-0 hidden dark:block pointer-events-none"
-          style={{ background: "linear-gradient(to right, #0f1410 0%, #0f1410 24%, rgba(15,20,16,0.93) 34%, rgba(15,20,16,0.65) 44%, rgba(15,20,16,0.18) 53%, transparent 60%)" }}
+        {/* Desktop gradient fade */}
+        <Box
+          sx={{
+            display: { xs: "none", lg: "block" },
+            position: "absolute",
+            inset: 0,
+            zIndex: 2,
+            pointerEvents: "none",
+            background:
+              "linear-gradient(to right, #F9F7F4 0%, #F9F7F4 38%, rgba(249,247,244,0.85) 50%, rgba(249,247,244,0) 68%)",
+          }}
         />
 
-        <div className="relative z-10 h-full" style={{ minHeight: 520 }}>
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 w-full h-full flex items-center" style={{ minHeight: 520 }}>
-            <div className="w-full flex items-center justify-between h-full py-12 lg:py-0 gap-6">
+        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 3, pt: { xs: 4, md: 6, lg: 10 }, pb: { xs: 4, lg: 10 }, px: { xs: 2, sm: 3, lg: 7 } }}>
+          <Grid container spacing={{ xs: 0, lg: 4 }} alignItems="center" sx={{ flexWrap: "wrap" }}>
 
-              {/* LEFT: Text content */}
-              <motion.div
-                className="w-full lg:w-[40%] flex flex-col justify-center"
-                initial={{ opacity: 0, x: -36 }}
+            {/* LEFT TEXT COLUMN — second on mobile, first on desktop */}
+            <Grid item xs={12} lg={5.5} sx={{ order: { xs: 2, lg: 1 } }}>
+              <MotionBox
+                initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                sx={{ display: "flex", flexDirection: "column", alignItems: { xs: "center", lg: "flex-start" }, textAlign: { xs: "center", lg: "left" } }}
               >
-                <h1 className="text-5xl xl:text-6xl font-extrabold leading-[1.08] mb-4 text-gray-900 dark:text-white">
-                  Your <span className="text-[#6BA539]">AI Chef</span>
-                  <br />in Your Kitchen{" "}
-                  <span className="text-gray-300 text-3xl align-middle">✦</span>
-                </h1>
+                {/* AI Powered Floating Badge */}
+                <Chip
+                  icon={<Sparkles size={14} color="#6BA539" />}
+                  label="AI Powered • Personalized for You"
+                  sx={{ bgcolor: "rgba(107, 165, 57, 0.1)", color: "#6BA539", fontWeight: 700, mb: 3, px: 1, border: "1px solid rgba(107, 165, 57, 0.2)" }}
+                />
 
-                <p className="text-gray-500 dark:text-gray-400 text-[15px] leading-relaxed mb-4 max-w-[380px]">
-                  Let AI create personalized recipes, tailored to your taste, ingredients, and health goals.
-                </p>
+                <Typography variant="h1" sx={{ fontSize: { xs: "2.5rem", sm: "3.5rem", xl: "4.25rem" }, fontWeight: 900, lineHeight: 1.1, color: "#121413", mb: 2 }}>
+                  Your <Box component="span" sx={{ color: "#6BA539" }}>AI Chef</Box> <br /> in Your Kitchen ✨
+                </Typography>
 
-                <form className="mb-4" role="search" onSubmit={(e) => e.preventDefault()}>
-                  <div className="flex items-center gap-3 bg-white dark:bg-black/40 border border-black/10 dark:border-white/10 rounded-full px-3 py-2 max-w-md shadow-sm">
-                    <Search size={16} className="text-gray-400" />
-                    <input
-                      aria-label="Search recipes or ingredients"
-                      placeholder="Search recipes, ingredients, or cuisines"
-                      className="flex-1 bg-transparent outline-none text-sm placeholder-gray-400 text-gray-700 dark:text-gray-200"
-                    />
-                    <button aria-label="Search" className="ml-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6BA539] hover:bg-[#568a2e] text-white text-sm font-medium transition-colors">
-                      Search
-                    </button>
-                  </div>
-                </form>
+                <Typography sx={{ color: "text.secondary", fontSize: { xs: "14px", sm: "16px" }, mb: 4, maxWidth: "420px" }}>
+                  Let AI create personalized recipes, tailored to your taste, available ingredients, and macro-health goals instantly.
+                </Typography>
 
-                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 gap-3 mb-7">
-                  <motion.button
-                    type="button"
-                    aria-label="Get Cooking"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-[15px] transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#6BA539]/30"
-                    style={{ background: "linear-gradient(135deg, #6BA539 0%, #4d8822 100%)", boxShadow: "0 10px 30px rgba(75,140,40,0.24)" }}
+                {/* Omni-search Input Bar */}
+                <Paper
+                  component="form"
+                  onSubmit={(e) => e.preventDefault()}
+                  sx={{
+                    p: "4px 8px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: "100%",
+                    maxWidth: "480px",
+                    borderRadius: "50px",
+                    boxShadow: "0px 4px 20px rgba(0,0,0,0.04)",
+                    border: "1px solid rgba(0,0,0,0.08)",
+                    mb: 4
+                  }}
+                >
+                  <Search size={18} style={{ marginLeft: 12, color: "#999" }} />
+                  <InputBase
+                    sx={{ ml: 1, flex: 1, fontSize: "14px" }}
+                    placeholder="Search recipes, ingredients..."
+                    inputProps={{ 'aria-label': 'Search recipes or ingredients' }}
+                  />
+                  <Button variant="contained" sx={{ bgcolor: "#6BA539", '&:hover': { bgcolor: "#55842e" }, borderRadius: "50px", px: 3, textTransform: "none", fontWeight: 600 }}>
+                    Search
+                  </Button>
+                </Paper>
+
+                {/* Main Action Buttons */}
+                <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ width: "100%", maxWidth: "440px", mb: 5 }}>
+                  <Button
+                    variant="contained"
+                    endIcon={<ArrowRight size={16} />}
+                    sx={{
+                      bgcolor: "#6BA539",
+                      '&:hover': { bgcolor: "#55842e" },
+                      borderRadius: "50px",
+                      py: 1.8,
+                      px: 4,
+                      fontWeight: 700,
+                      textTransform: "none",
+                      boxShadow: "0px 10px 25px rgba(107, 165, 57, 0.35)",
+                      flex: 1
+                    }}
                   >
                     Get Cooking
-                    <motion.span className="flex items-center" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
-                      <ArrowRight size={16} />
-                    </motion.span>
-                  </motion.button>
-
-                  <button
-                    type="button"
-                    aria-label="Explore Recipes"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white dark:bg-black/30 border border-black/10 dark:border-white/10 text-sm text-gray-800 dark:text-gray-200 font-medium transition-shadow shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#6BA539]/20"
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      color: "#121413",
+                      borderColor: "rgba(0,0,0,0.15)",
+                      '&:hover': { borderColor: "#121413", bgcolor: "rgba(0,0,0,0.02)" },
+                      borderRadius: "50px",
+                      py: 1.8,
+                      px: 4,
+                      fontWeight: 600,
+                      textTransform: "none",
+                      flex: 1
+                    }}
                   >
                     Explore Recipes
-                  </button>
-                </div>
+                  </Button>
+                </Stack>
 
-                {/* Social proof */}
-                <div className="flex items-center gap-3">
-                  <div className="flex -space-x-2.5">
-                    {avatars.map((src, i) => (
-                      <motion.img
-                        key={i}
-                        src={src}
-                        alt="user"
-                        className="w-9 h-9 rounded-full border-2 border-[#f5f0e8] dark:border-[#0f1410] object-cover"
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.55 + i * 0.08 }}
-                      />
+                {/* Social Proof metrics */}
+                <Stack direction={{ xs: "column", sm: "row" }} alignItems="center" spacing={2}>
+                  <AvatarGroup max={4}>
+                    {avatars.map((url, index) => (
+                      <Avatar key={index} src={url} sx={{ width: 36, height: 36 }} />
                     ))}
-                  </div>
-                  <p className="text-[13px] text-gray-500 dark:text-gray-400 leading-snug">
-                    Join <span className="font-bold text-gray-800 dark:text-gray-200">50K+</span> food lovers
-                    <br />cooking smarter everyday!
-                  </p>
-                </div>
-              </motion.div>
+                  </AvatarGroup>
+                  <Typography variant="body2" sx={{ color: "text.secondary", fontSize: "13px" }}>
+                    Join <Box component="span" sx={{ fontWeight: 800, color: "#121413" }}>50K+</Box> food lovers cooking smarter everyday!
+                  </Typography>
+                </Stack>
+              </MotionBox>
+            </Grid>
 
-              {/* RIGHT: Floating cards */}
-              <div className="hidden lg:flex relative flex-1 h-full items-center justify-end" style={{ minHeight: 520 }}>
-
-                {/* Card 1 — AI Chef greeting */}
-                <motion.div
-                  className="absolute top-8 right-2 z-20 w-[238px]"
-                  initial={{ opacity: 0, y: -22, scale: 0.88 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.55, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <motion.div
-                    animate={floatUp.animate}
-                    transition={floatUp.transition}
-                    className="bg-white/90 dark:bg-[#1c2b1e]/90 backdrop-blur-md rounded-2xl px-5 py-4 border border-white/70 dark:border-white/10"
-                    style={{ boxShadow: "0 18px 50px rgba(0,0,0,0.13), 0 2px 10px rgba(0,0,0,0.07)" }}
-                  >
-                    <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-2xl pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.55), transparent)" }} />
-                    <p className="font-bold text-[14px] text-gray-900 dark:text-white mb-1 relative z-10">👋 Hello, I'm AI Chef</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-[13px] leading-snug relative z-10">What would you like to cook today?</p>
-                    <Waveform />
-                  </motion.div>
-                </motion.div>
-
-                {/* Card 2 — Ingredient picker */}
-                <motion.div
-                  className="absolute bottom-10 right-2 z-20 w-[300px]"
-                  initial={{ opacity: 0, y: 22, scale: 0.88 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ delay: 0.75, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <motion.div
-                    animate={floatDown.animate}
-                    transition={floatDown.transition}
-                    className="bg-white/90 dark:bg-[#1c2b1e]/90 backdrop-blur-md rounded-2xl px-5 py-4 border border-white/70 dark:border-white/10"
-                    style={{ boxShadow: "0 18px 50px rgba(0,0,0,0.13), 0 2px 10px rgba(0,0,0,0.07)" }}
-                  >
-                    <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-2xl pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.55), transparent)" }} />
-                    <div className="flex items-center justify-between gap-2 relative z-10">
-                      {ingredients.map((ing, i) => (
-                        <motion.div
-                          key={ing.label}
-                          className="flex flex-col items-center gap-1.5 cursor-pointer"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.85 + i * 0.09 }}
-                          whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                        >
-                          <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl border border-gray-100 shadow-md" style={{ background: "linear-gradient(135deg, #f8f6f0, #edeae0)" }}>
-                            {ing.emoji}
-                          </div>
-                          <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">{ing.label}</span>
-                        </motion.div>
-                      ))}
-                      <motion.div
-                        className="flex flex-col items-center gap-1.5 cursor-pointer"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1.25 }}
-                        whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                      >
-                        <div className="w-12 h-12 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-400 dark:text-gray-500 text-xl font-light">+</div>
-                        <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">More</span>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CATEGORY TAB NAVBAR + DISH GRID ─────────────────────────────────── */}
-      <div className="w-full">
-        <div className="sticky top-0 z-20 bg-[#F9F7F4] dark:bg-[#121413] border-b border-black/8 dark:border-white/8 shadow-sm">
-          <div className="max-w-7xl mx-auto px-3 sm:px-6">
-            <div
-              className="flex overflow-x-auto scrollbar-hide gap-1 py-0"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-              role="tablist"
-              aria-label="Recipe categories"
+            {/* RIGHT COLUMN — image + cards: FIRST on mobile, second on desktop */}
+            <Grid
+              item
+              xs={12}
+              lg={6.5}
+              sx={{
+                order: { xs: 1, lg: 2 },
+                position: "relative",
+                minHeight: { lg: "660px" },
+              }}
             >
-              {categories.map((cat, i) => (
-                <CategoryCard
-                  key={cat.title}
-                  category={cat}
-                  index={i}
-                  isActive={activeCategory === cat.title}
-                  onClick={handleCategoryClick}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+              {/* ── Mobile / Tablet: image shown inline, full width ── */}
+              <Box
+                component="img"
+                src={AiCookingBanner}
+                alt="AI Chef cooking"
+                sx={{
+                  display: { xs: "block", lg: "none" },
+                  width: "100%",
+                  maxHeight: { xs: 260, sm: 380, md: 420 },
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  borderRadius: "20px",
+                  mb: 2,
+                }}
+              />
 
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 pt-5 pb-10">
-          <div className="flex items-center gap-2 mb-4 sm:mb-5">
-            <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">{activeCategory}</h2>
-            <span className="text-[11px] sm:text-xs font-semibold px-2 py-0.5 rounded-full bg-[#6BA539]/10 text-[#6BA539]">
-              {activeDishes.length} recipes
-            </span>
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5"
-            >
-              {visibleDishes.map((dish, idx) => (
-                <DishCard
-                  key={dish.title}
-                  dish={dish}
-                  index={idx}
-                  liked={liked}
-                  onToggleLike={toggleLike}
-                />
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {activeDishes.length > 8 && (
-            <div className="flex justify-center mt-6 sm:mt-8">
-              <motion.button
-                whileTap={{ scale: 0.96 }}
-                onClick={() => setShowAll((prev) => !prev)}
-                className="px-6 sm:px-8 py-2.5 sm:py-3 rounded-full border-2 border-[#6BA539] text-[#6BA539] font-semibold text-sm sm:text-base hover:bg-[#6BA539] hover:text-white transition-colors duration-200"
+              {/* ── AI Chef card — below image on mobile, absolute top-left on desktop ── */}
+              <MotionBox
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                sx={{
+                  /* mobile/tablet: inline block, full width */
+                  display: "block",
+                  mb: { xs: 2, lg: 0 },
+                  /* desktop: lift out of flow as overlay */
+                  position: { lg: "absolute" },
+                  top: { lg: 40 },
+                  left: { lg: 20 },
+                  zIndex: { lg: 10 },
+                  width: { xs: "100%", sm: "100%", md: "100%", lg: 240 },
+                }}
               >
-                {showAll ? "Show less" : `View all recipes (${activeDishes.length - 8} more)`}
-              </motion.button>
-            </div>
-          )}
-        </div>
-      </div>
+                <Paper
+                  sx={{
+                    p: "16px 20px",
+                    borderRadius: "16px",
+                    bgcolor: "rgba(255,255,255,0.95)",
+                    backdropFilter: "blur(14px)",
+                    border: "1px solid rgba(255,255,255,0.8)",
+                    boxShadow: "0 18px 50px rgba(0,0,0,0.10), 0 2px 10px rgba(0,0,0,0.06)",
+                    position: "relative",
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* gloss shimmer */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      top: 0,
+                      height: "50%",
+                      borderRadius: "16px 16px 0 0",
+                      background: "linear-gradient(to bottom, rgba(255,255,255,0.5), transparent)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                  <Typography sx={{ fontWeight: 700, fontSize: "14px", color: "#111", mb: 0.5, position: "relative" }}>
+                    👋 Hello, I'm AI Chef
+                  </Typography>
+                  <Typography sx={{ fontSize: "13px", color: "#666", lineHeight: 1.5, position: "relative" }}>
+                    What would you like to cook today?
+                  </Typography>
+                  <Box sx={{ position: "relative" }}>
+                    <Waveform />
+                  </Box>
+                </Paper>
+              </MotionBox>
 
-      {/* ── POPULAR RECIPES ──────────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 pb-14">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold">Popular Recipes</h2>
-          <button className="text-[#3a7d44] hover:text-[#2d6235] font-medium transition flex items-center gap-1 text-sm">
-            View all <ChevronRight size={15} />
-          </button>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {recipes.map((recipe, i) => (
-            <RecipeCard
-              key={recipe.title}
-              recipe={recipe}
-              index={i}
-              liked={liked}
-              onToggleLike={toggleLike}
-            />
-          ))}
-        </div>
-      </div>
+              {/* ── Trending Ingredients card — below AI card on mobile, absolute mid on desktop ── */}
+              <MotionBox
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.5 }}
+                sx={{
+                  display: "block",
+                  mb: { xs: 2, lg: 0 },
+                  position: { lg: "absolute" },
+                  bottom: { lg: 220 },
+                  left: { lg: -10 },
+                  zIndex: { lg: 10 },
+                  width: { xs: "100%", sm: "100%", md: "100%", lg: 300 },
+                }}
+              >
+                <Paper
+                  sx={{
+                    p: 2.5,
+                    borderRadius: "20px",
+                    bgcolor: "rgba(255,255,255,0.92)",
+                    backdropFilter: "blur(12px)",
+                    border: "1px solid rgba(255,255,255,0.8)",
+                    boxShadow: "0 15px 35px rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <Typography sx={{ fontWeight: 700, fontSize: "13px", mb: 2, color: "#111" }}>
+                    Trending Ingredients
+                  </Typography>
+                  <Stack direction="row" spacing={1.5} justifyContent="space-between">
+                    {trendingIngredients.map((ing) => (
+                      <Stack key={ing.label} spacing={0.5} alignItems="center">
+                        <Box
+                          sx={{
+                            width: 44,
+                            height: 44,
+                            borderRadius: "50%",
+                            bgcolor: "#F4F1EA",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            fontSize: "20px",
+                          }}
+                        >
+                          {ing.emoji}
+                        </Box>
+                        <Typography sx={{ fontSize: "10px", color: "text.secondary", fontWeight: 600 }}>
+                          {ing.label}
+                        </Typography>
+                      </Stack>
+                    ))}
+                    <Stack spacing={0.5} alignItems="center">
+                      <Box
+                        sx={{
+                          width: 44,
+                          height: 44,
+                          borderRadius: "50%",
+                          border: "2px dashed #ccc",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "18px",
+                          color: "#999",
+                          cursor: "pointer",
+                        }}
+                      >
+                        +
+                      </Box>
+                      <Typography sx={{ fontSize: "10px", color: "text.secondary", fontWeight: 600 }}>
+                        More
+                      </Typography>
+                    </Stack>
+                  </Stack>
+                </Paper>
+              </MotionBox>
 
-      {/* ── ASK AI CHEF ──────────────────────────────────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 pb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden bg-gradient-to-br from-[#eef6ee] to-[#f5f0e8] dark:from-[#1a2e1c] dark:to-[#1a1f1a] border border-green-200/60 dark:border-green-800/30 rounded-[32px] p-10 flex flex-col lg:flex-row items-center justify-between gap-10"
+              {/* ── Today's Pick card — only on desktop, bottom-center overlay ── */}
+              <MotionBox
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 1 }}
+                sx={{
+                  display: { xs: "none", lg: "block" },
+                  position: "absolute",
+                  bottom: 50,
+                  left: "500px",
+                  zIndex: 10,
+                  width: 195,
+                }}
+              >
+                <Paper
+                  sx={{
+                    p: 2,
+                    borderRadius: "22px",
+                    bgcolor: "#fff",
+                    boxShadow: "0 20px 40px rgba(0,0,0,0.10)",
+                  }}
+                >
+                  <Box sx={{ position: "relative", mb: 1.5 }}>
+                    <Box
+                      component="img"
+                      src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80"
+                      alt="Today's Pick"
+                      sx={{ width: "100%", height: 120, borderRadius: "14px", objectFit: "cover" }}
+                    />
+                    <Chip
+                      label="🔥 Today's Pick"
+                      sx={{
+                        position: "absolute",
+                        top: 8,
+                        left: 8,
+                        bgcolor: "rgba(255,255,255,0.92)",
+                        backdropFilter: "blur(4px)",
+                        height: 22,
+                        fontSize: "10px",
+                        fontWeight: 800,
+                      }}
+                    />
+                  </Box>
+                  <Typography sx={{ fontWeight: 800, fontSize: "13px", lineHeight: 1.2, mb: 0.4 }}>
+                    Protein Rich Bowl
+                  </Typography>
+                  <Typography sx={{ fontSize: "11px", color: "text.secondary" }}>
+                    24 min • 450 kcal
+                  </Typography>
+                </Paper>
+              </MotionBox>
+            </Grid>
+
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* ─── SECTION 2: SMART FUNCTIONAL GRID PANEL CONTROLS (ENHANCED FLEX ROW) ─── */}
+      <Container maxWidth="xl" sx={{ mt: { xs: 4, md: -4 }, position: "relative", zIndex: 10, px: { xs: 2, sm: 4, lg: 7 } }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 2,
+            width: "100%",
+            alignItems: "stretch",
+            overflowX: { md: "auto", lg: "visible" },
+            pb: { xs: 0, md: 1 },
+            '&::-webkit-scrollbar': { height: '6px' },
+            '&::-webkit-scrollbar-thumb': { bgcolor: 'rgba(0,0,0,0.1)', borderRadius: '4px' }
+          }}
         >
-          <div className="absolute top-0 right-0 w-72 h-72 bg-green-300/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex-1 relative z-10">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-[#3a7d44] flex items-center justify-center shadow-lg">
-                <Sparkles size={18} className="text-white" />
-              </div>
-              <h2 className="text-3xl font-bold">Ask AI Chef</h2>
-            </div>
-            <p className="text-slate-600 dark:text-slate-400 text-base mb-8 max-w-sm">
-              Get personalized recipe suggestions, cooking tips, and step-by-step guidance powered by AI.
-            </p>
-            <div className="bg-white/80 dark:bg-black/30 border border-black/10 dark:border-white/10 rounded-2xl p-4 mb-8 max-w-sm">
-              <div className="flex items-start gap-2 mb-3">
-                <div className="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-xs text-slate-400 mb-1">You</p>
-                  <p className="text-sm text-slate-700 dark:text-slate-300">What can I cook with chicken and broccoli?</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <div className="w-6 h-6 rounded-full bg-[#3a7d44] flex-shrink-0 mt-0.5 flex items-center justify-center">
-                  <Sparkles size={10} className="text-white" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 mb-1">AI Chef</p>
-                  <p className="text-sm text-slate-700 dark:text-slate-300">Try a Chicken Broccoli Stir-fry! Ready in 20 mins...</p>
-                </div>
-              </div>
-            </div>
-            <button className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#3a7d44] hover:bg-[#2d6235] text-white font-semibold transition-all duration-300 shadow-lg shadow-green-700/25 hover:-translate-y-0.5">
-              <Sparkles size={15} />
-              Start Chatting
-            </button>
-          </div>
-          <div className="w-44 h-56 relative z-10 flex-shrink-0 flex items-center justify-center text-8xl select-none">🤖</div>
-        </motion.div>
-      </div>
 
-    </div>
+          {/* Card A: Custom Pantry Generator Module */}
+          <Paper sx={{ p: 2.5, borderRadius: "18px", flex: { xs: "1 1 auto", md: "1 1 200px" }, minWidth: { md: "210px" }, display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0px 10px 35px rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.04)", bgcolor: "#FFFFFF" }}>
+            <Typography sx={{ fontWeight: 700, fontSize: "14px", color: "#1A1A1A", mb: 2 }}>What's in your kitchen?</Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 2.5 }}>
+              {["🍅", "🥚", "🥬", "🍗"].map((em, idx) => (
+                <Box key={idx} sx={{ width: 36, height: 36, borderRadius: "50%", bgcolor: "#FAF9F5", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(0,0,0,0.04)", fontSize: "15px", boxShadow: "0px 2px 4px rgba(0,0,0,0.02)" }}>{em}</Box>
+              ))}
+              <Box sx={{ width: 28, height: 28, borderRadius: "50%", border: "1px dashed #A0A0A0", display: "flex", alignItems: "center", justifyContent: "center", color: "#666", fontSize: "14px", cursor: "pointer", fontWeight: 500, '&:hover': { bgcolor: "#f5f5f5" } }}>+</Box>
+            </Stack>
+            <Button fullWidth variant="contained" sx={{ bgcolor: "#4B7A32", '&:hover': { bgcolor: "#3b6127" }, borderRadius: "50px", textTransform: "none", fontSize: "13px", fontWeight: 600, py: 1.2, boxShadow: "none" }}>
+              Generate Recipes
+            </Button>
+          </Paper>
+
+          {/* Card B: Live Micro-Nutrient Dashboard Matrix */}
+          <Paper sx={{ p: 2.5, borderRadius: "18px", flex: { xs: "1 1 auto", md: "1.3 1 270px" }, minWidth: { md: "260px" }, boxShadow: "0px 10px 35px rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.04)", bgcolor: "#FFFFFF" }}>
+            <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: 2 }}>
+              <Typography sx={{ fontWeight: 700, fontSize: "14px", color: "#1A1A1A" }}>AI Nutrition Analyzer</Typography>
+              <Typography sx={{ color: "#4B7A32", fontSize: "14px", fontWeight: 700, cursor: "pointer" }}>+</Typography>
+            </Stack>
+
+            <Stack direction="row" alignItems="center" spacing={2.5}>
+              <Box sx={{ position: "relative", display: "inline-flex" }}>
+                <Box sx={{ width: 68, height: 68, borderRadius: "50%", border: "4px solid #4B7A32", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: "inset 0px 2px 4px rgba(0,0,0,0.05)" }}>
+                  <Typography sx={{ fontWeight: 800, fontSize: "19px", color: "#1A1A1A", lineHeight: 1 }}>82</Typography>
+                  <Typography sx={{ fontSize: "9px", color: "#4B7A32", fontWeight: 600, mt: 0.2, textTransform: "uppercase", letterSpacing: "0.5px" }}>Good</Typography>
+                </Box>
+              </Box>
+              <Box sx={{ flex: 1 }}>
+                <Stack spacing={1}>
+                  <Box>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 0.3 }}><Typography sx={{ fontSize: '12px', color: '#555', fontWeight: 600 }}>Calories</Typography><Typography sx={{ fontSize: '11px', color: '#1A1A1A', fontWeight: 700 }}>82%</Typography></Stack>
+                    <LinearProgress variant="determinate" value={82} sx={{ height: 5, borderRadius: 3, bgcolor: "#F3F4F6", '& .MuiLinearProgress-bar': { bgcolor: "#4B7A32" } }} />
+                  </Box>
+                  <Box>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 0.3 }}><Typography sx={{ fontSize: '12px', color: '#555', fontWeight: 600 }}>Protein</Typography><Typography sx={{ fontSize: '11px', color: '#1A1A1A', fontWeight: 700 }}>74%</Typography></Stack>
+                    <LinearProgress variant="determinate" value={74} sx={{ height: 5, borderRadius: 3, bgcolor: "#F3F4F6", '& .MuiLinearProgress-bar': { bgcolor: "#F59E0B" } }} />
+                  </Box>
+                  <Box>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 0.3 }}><Typography sx={{ fontSize: '12px', color: '#555', fontWeight: 600 }}>Vitamins</Typography><Typography sx={{ fontSize: '11px', color: '#1A1A1A', fontWeight: 700 }}>90%</Typography></Stack>
+                    <LinearProgress variant="determinate" value={90} sx={{ height: 5, borderRadius: 3, bgcolor: "#F3F4F6", '& .MuiLinearProgress-bar': { bgcolor: "#3B82F6" } }} />
+                  </Box>
+                </Stack>
+              </Box>
+            </Stack>
+          </Paper>
+
+          {/* Card C: Time Slider Navigation */}
+          <Paper sx={{ p: 2.5, borderRadius: "18px", flex: { xs: "1 1 auto", md: "1.1 1 240px" }, minWidth: { md: "230px" }, boxShadow: "0px 10px 35px rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.04)", bgcolor: "#FFFFFF" }}>
+            <Typography sx={{ fontWeight: 700, fontSize: "14px", color: "#1A1A1A", mb: 2.5 }}>Cook by Time</Typography>
+            <Stack direction="row" spacing={1} justifyContent="space-between">
+              {["10 min", "20 min", "30 min", "1 Hour"].map((time, i) => (
+                <Stack key={i} spacing={1} alignItems="center" sx={{ cursor: "pointer", width: "23%", '&:hover Box': { transform: "scale(1.05)" } }}>
+                  <Box sx={{ width: 36, height: 36, borderRadius: "50%", border: "1.5px solid #1A1A1A", display: "flex", alignItems: "center", justifyContent: "center", transition: "transform 0.2s ease" }}>
+                    <Clock size={16} strokeWidth={2.5} color="#1A1A1A" />
+                  </Box>
+                  <Typography sx={{ fontSize: "11px", fontWeight: 600, color: "#1A1A1A", whiteSpace: "nowrap", textAlign: "center" }}>{time}</Typography>
+                </Stack>
+              ))}
+            </Stack>
+          </Paper>
+
+          {/* Card D: Targeted Wellness Filters */}
+          <Paper sx={{ p: 2.5, borderRadius: "18px", flex: { xs: "1 1 auto", md: "1.2 1 260px" }, minWidth: { md: "250px" }, boxShadow: "0px 10px 35px rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.04)", bgcolor: "#FFFFFF", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <Typography sx={{ fontWeight: 700, fontSize: "14px", color: "#1A1A1A", mb: 2, textAlign: "center" }}>Health Goals</Typography>
+            <Stack direction="row" spacing={1} justifyContent="center" alignItems="center" sx={{ mb: 1.5 }}>
+              {[
+                { label: "Weight Loss", icon: <Scale size={16} /> },
+                { label: "High Protein", icon: <CheckCircle size={16} /> },
+                { label: "Keto", icon: <Heart size={16} /> },
+                { label: "Vegan", icon: <Sparkles size={16} /> }
+              ].map((goal, i) => (
+                <Box key={i} sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "23%", cursor: "pointer" }}>
+                  <Box sx={{ width: 36, height: 36, borderRadius: "10px", border: "1.5px solid #1A1A1A", display: "flex", alignItems: "center", justifyContent: "center", color: "#1A1A1A", transition: "all 0.2s", '&:hover': { bgcolor: "#1A1A1A", color: "#FFF" } }}>
+                    {goal.icon}
+                  </Box>
+                  <Typography sx={{ fontSize: "10px", color: "#4A4A4A", fontWeight: 600, textAlign: "center", mt: 0.8, lineHeight: 1.2 }}>{goal.label}</Typography>
+                </Box>
+              ))}
+            </Stack>
+            <Typography sx={{ fontSize: "11px", color: "#757575", textAlign: "center", fontWeight: 500, mt: 0.5 }}>Get recipes that match your goals</Typography>
+          </Paper>
+
+          {/* Card E: Advanced Input Vectors (Scan & Voice Row Layout) */}
+          <Box sx={{ flex: { xs: "1 1 auto", md: "2 1 360px" }, minWidth: { md: "340px" }, display: "flex", gap: 2 }}>
+            <Paper sx={{ p: 2.5, borderRadius: "18px", flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: "0px 10px 35px rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.04)", bgcolor: "#FFFFFF", cursor: "pointer", '&:hover Box': { bgcolor: "#3b6127" } }}>
+              <Typography sx={{ fontWeight: 700, fontSize: "13px", color: "#1A1A1A", mb: 2, textAlign: "center", whiteSpace: "nowrap" }}>Scan Ingredients</Typography>
+              <Box sx={{ width: 44, height: 44, borderRadius: "50%", bgcolor: "#4B7A32", display: "flex", alignItems: "center", justifyContent: "center", color: "#FFFFFF", mb: 2, transition: "background-color 0.2s" }}><Camera size={18} strokeWidth={2.5} /></Box>
+              <Typography sx={{ fontSize: "11px", color: "#757575", textAlign: "center", lineHeight: 1.4, px: 0.5 }}>Take a picture or upload to detect ingredients</Typography>
+            </Paper>
+
+            <Paper sx={{ p: 2.5, borderRadius: "18px", flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: "0px 10px 35px rgba(0,0,0,0.03)", border: "1px solid rgba(0,0,0,0.04)", bgcolor: "#FFFFFF", cursor: "pointer", '&:hover .mic-master': { transform: "scale(1.05)" } }}>
+              <Typography sx={{ fontWeight: 700, fontSize: "13px", color: "#1A1A1A", mb: 2, textAlign: "center", whiteSpace: "nowrap" }}>Voice Chef</Typography>
+              <Stack direction="row" spacing={0.6} alignItems="center" sx={{ mb: 2, color: "#4B7A32" }}>
+                <Box sx={{ width: 2.5, height: 14, bgcolor: "currentColor", borderRadius: 1, opacity: 0.5 }} />
+                <Box sx={{ width: 2.5, height: 22, bgcolor: "currentColor", borderRadius: 1, opacity: 0.8 }} />
+                <Box className="mic-master" sx={{ width: 38, height: 38, borderRadius: "50%", border: "2px solid #4B7A32", display: "flex", alignItems: "center", justifyContent: "center", transition: "transform 0.2s", mx: 0.2 }}><Mic size={16} strokeWidth={2.5} /></Box>
+                <Box sx={{ width: 2.5, height: 22, bgcolor: "currentColor", borderRadius: 1, opacity: 0.8 }} />
+                <Box sx={{ width: 2.5, height: 14, bgcolor: "currentColor", borderRadius: 1, opacity: 0.5 }} />
+              </Stack>
+              <Typography sx={{ fontSize: "11px", color: "#757575", textAlign: "center", lineHeight: 1.4, px: 0.5 }}>Ask what you can cook using voice</Typography>
+            </Paper>
+          </Box>
+
+        </Box>
+      </Container>
+
+      {/* ─── SECTION 3: TRUSTED GLOBAL ACCREDITATION BANNER ─────────────────── */}
+      <Container maxWidth="xl" sx={{ mt: 6, px: { xs: 2, sm: 4, lg: 7 } }}>
+        <Paper
+          sx={{
+            px: { xs: 2, sm: 3, md: 4 },
+            py: { xs: 2.5, md: 2 },
+            borderRadius: "20px",
+            bgcolor: "#EBF2E8",
+            boxShadow: "none",
+            border: "1px solid rgba(107, 165, 57, 0.1)",
+          }}
+        >
+          {/* Single flex row — wraps to 2-col grid on mobile */}
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: { xs: "wrap", md: "nowrap" },
+              alignItems: "center",
+              gap: { xs: 3, sm: 2, md: 0 },
+              justifyContent: { xs: "center", md: "space-between" },
+            }}
+          >
+            {/* ── Stat helper: icon + number + label ── */}
+            {[
+              {
+                icon: (
+                  /* Chef hat */
+                  <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3B6B2E" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
+                    <line x1="6" y1="17" x2="18" y2="17" />
+                  </svg>
+                ),
+                value: "120K+",
+                label: "Recipes Generated",
+              },
+              {
+                icon: (
+                  /* People group */
+                  <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3B6B2E" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                ),
+                value: "75K+",
+                label: "Happy Users",
+              },
+              {
+                icon: (
+                  /* Mixing bowl */
+                  <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3B6B2E" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 11l19-9-9 19-2-8-8-2z" />
+                  </svg>
+                ),
+                value: "2M+",
+                label: "Ingredients Matched",
+              },
+              {
+                icon: (
+                  /* Target / crosshair */
+                  <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#3B6B2E" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
+                ),
+                value: "98%",
+                label: "AI Accuracy",
+              },
+            ].map((stat, idx, arr) => (
+              <Box
+                key={stat.label}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: { xs: 1.5, sm: 2 },
+                  flex: { xs: "1 1 calc(50% - 12px)", md: "0 0 auto" },
+                  minWidth: { xs: 0, md: "auto" },
+                  justifyContent: { xs: "flex-start", sm: "center", md: "flex-start" },
+                  px: { md: 2.5 },
+                  /* right-border divider between stats on md+ */
+                  borderRight: { xs: "none", md: idx < arr.length - 1 ? "1px solid rgba(0,0,0,0.10)" : "none" },
+                }}
+              >
+                {/* Icon */}
+                <Box sx={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
+                  {stat.icon}
+                </Box>
+                {/* Text */}
+                <Box>
+                  <Typography
+                    sx={{
+                      fontWeight: 800,
+                      fontSize: { xs: "20px", sm: "22px", md: "22px" },
+                      color: "#2E5A1E",
+                      lineHeight: 1.15,
+                    }}
+                  >
+                    {stat.value}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "11px", sm: "12px" },
+                      color: "#4D6B45",
+                      fontWeight: 500,
+                      whiteSpace: "nowrap",
+                      mt: 0.2,
+                    }}
+                  >
+                    {stat.label}
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
+
+            {/* ── Vertical divider before brands (md+) ── */}
+            <Box
+              sx={{
+                display: { xs: "none", md: "block" },
+                width: "1px",
+                height: 46,
+                bgcolor: "rgba(0,0,0,0.10)",
+                flexShrink: 0,
+              }}
+            />
+
+            {/* ── Brand logos cluster ── */}
+            <Box
+              sx={{
+                flex: { xs: "1 1 100%", md: "0 0 auto" },
+                display: "flex",
+                flexDirection: "column",
+                alignItems: { xs: "center", md: "flex-start" },
+                gap: 1,
+                pl: { md: 2 },
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  color: "#3B5E35",
+                  fontWeight: 600,
+                  whiteSpace: "nowrap",
+                  letterSpacing: "0.1px",
+                }}
+              >
+                Trusted by food lovers worldwide
+              </Typography>
+
+              {/* Brand name row */}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: { xs: 1.5, sm: 2 },
+                  alignItems: "center",
+                  justifyContent: { xs: "center", md: "flex-start" },
+                }}
+              >
+                {/* food (network-style: red circle + italic serif) */}
+                <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                  <Box
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      borderRadius: "50%",
+                      bgcolor: "#C0392B",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Typography sx={{ color: "#fff", fontSize: "9px", fontWeight: 900, fontStyle: "italic", lineHeight: 1 }}>
+                      f
+                    </Typography>
+                  </Box>
+                  <Typography
+                    sx={{
+                      fontSize: "13px",
+                      fontWeight: 900,
+                      fontStyle: "italic",
+                      fontFamily: "Georgia, serif",
+                      color: "#222",
+                      letterSpacing: "-0.3px",
+                    }}
+                  >
+                    food
+                  </Typography>
+                </Box>
+
+                {/* Tasty. */}
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 800,
+                    fontStyle: "italic",
+                    fontFamily: "Georgia, serif",
+                    color: "#111",
+                    letterSpacing: "-0.4px",
+                  }}
+                >
+                  Tasty.
+                </Typography>
+
+                {/* Yummy. */}
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    fontStyle: "italic",
+                    fontFamily: "'Palatino Linotype', Palatino, serif",
+                    color: "#111",
+                    letterSpacing: "-0.2px",
+                  }}
+                >
+                  Yummy.
+                </Typography>
+
+                {/* allrecipes! */}
+                <Typography
+                  sx={{
+                    fontSize: "13px",
+                    fontWeight: 800,
+                    fontFamily: "Arial, sans-serif",
+                    color: "#111",
+                    letterSpacing: "-0.3px",
+                  }}
+                >
+                  allrecipes!
+                </Typography>
+
+                {/* BBC good food */}
+                <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                  <Box
+                    sx={{
+                      bgcolor: "#2E5A1E",
+                      borderRadius: "3px",
+                      px: "5px",
+                      py: "1px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography sx={{ color: "#fff", fontSize: "9px", fontWeight: 900, letterSpacing: "0.5px" }}>
+                      BBC
+                    </Typography>
+                  </Box>
+                  <Typography
+                    sx={{
+                      fontSize: "13px",
+                      fontWeight: 700,
+                      fontFamily: "Arial, sans-serif",
+                      color: "#111",
+                    }}
+                  >
+                    good food
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Paper>
+      </Container>
+
+
+      {/* ─── SECTION 4: POPULAR RECIPES — PREMIUM CAROUSEL ─────────────────── */}
+      {/* <PopularRecipesSection /> */}
+
+    </Box>
   );
 }

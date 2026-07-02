@@ -43,6 +43,19 @@ export const authService = {
   },
 
   /**
+   * Google OAuth login — sends the ID token credential to the backend
+   * @param {string} credential - Google ID token from @react-oauth/google
+   */
+  async googleLogin(credential) {
+    const response = await api.post('/auth/google', { credential });
+    if (response.token) {
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.user));
+    }
+    return response;
+  },
+
+  /**
    * Get user profile
    */
   async getProfile() {

@@ -380,7 +380,7 @@ export default function RecipeDetailsPage() {
                     <motion.div id="steps-section" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }} className="lg:col-span-1 space-y-4">
 
                         {/* Timer */}
-                        <div className={`${card} p-5`}>
+                        {/* <div className={`${card} p-5`}>
                             <div className="flex items-center justify-between mb-3">
                                 <span className="text-sm font-bold text-gray-900 dark:text-white">Cooking Progress</span>
                                 <div className="flex items-center gap-2 font-mono text-amber-600 dark:text-amber-400 text-sm bg-amber-500/10 px-3 py-1.5 rounded-xl border border-amber-500/20">
@@ -414,7 +414,7 @@ export default function RecipeDetailsPage() {
                                     {voiceOn ? <Volume2 size={13} /> : <VolumeX size={13} />}
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Steps list */}
                         <div className={`${card} overflow-hidden`}>

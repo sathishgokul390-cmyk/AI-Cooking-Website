@@ -1,6 +1,8 @@
 ﻿import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from '../pages/Home/Home';
+import Discover from '../pages/Discover/Discover';
+import MyIngredients from '../pages/MyIngredients/MyIngredients';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import Dashboard from '../pages/Dashboard/Dashboard';
@@ -32,6 +34,8 @@ export default function AppRoutes() {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path='/discover' element={<Discover />} />
+                <Route path='/myIngredients' element={<MyIngredients />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/recipe" element={<RecipeDetails />} />
                 <Route path="/recipe/detail" element={<RecipeDetailsPage />} />

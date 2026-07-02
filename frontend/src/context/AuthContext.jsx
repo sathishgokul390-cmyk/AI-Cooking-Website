@@ -36,6 +36,18 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
+    const googleLogin = useCallback(async (credential) => {
+        try {
+            const response = await authService.googleLogin(credential);
+            setUser(response.user);
+            setIsAuthenticated(true);
+            return response;
+        } catch (error) {
+            console.error("Google login error:", error);
+            throw error;
+        }
+    }, []);
+
     const logout = useCallback(() => {
         authService.logout();
         setUser(null);
@@ -43,12 +55,13 @@ export function AuthProvider({ children }) {
     }, []);
 
     return (
-        <AuthContext.Provider 
-            value={{ 
-                user, 
-                login, 
+        <AuthContext.Provider
+            value={{
+                user,
+                login,
                 register,
-                logout, 
+                googleLogin,
+                logout,
                 isAuthenticated,
                 token: authService.getToken(),
             }}
