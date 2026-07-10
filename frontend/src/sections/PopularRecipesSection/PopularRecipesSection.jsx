@@ -1,320 +1,296 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { Box, Container, Typography, IconButton } from "@mui/material";
-import { Sparkles, ChevronRight, Heart, Clock, Scale } from "lucide-react";
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Box, 
+  Typography, 
+  Card, 
+  CardMedia, 
+  CardContent, 
+  IconButton, 
+  Chip 
+} from '@mui/material';
+import { 
+  ArrowBack as ArrowLeftIcon, 
+  ArrowForward as ArrowRightIcon, 
+  FavoriteBorder as HeartIconOutline,
+  Favorite as HeartIconFilled,
+  LocalFireDepartment as CalorieIcon
+} from '@mui/icons-material';
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
-const POPULAR_RECIPES = [
-    { id: 1, title: "Grilled Salmon with Avocado Salsa", time: "25 min", kcal: "520 kcal", rating: 4.9, difficulty: "Easy", category: "Seafood", aiPick: true, trending: true, image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80" },
-    { id: 2, title: "Creamy Tuscan Chicken Pasta", time: "30 min", kcal: "610 kcal", rating: 4.8, difficulty: "Medium", category: "Pasta", aiPick: false, trending: true, image: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=600&q=80" },
-    { id: 3, title: "Rainbow Quinoa Power Bowl", time: "20 min", kcal: "420 kcal", rating: 4.7, difficulty: "Easy", category: "Healthy", aiPick: true, trending: false, image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" },
-    { id: 4, title: "Spicy Tonkotsu Ramen", time: "15 min", kcal: "480 kcal", rating: 4.8, difficulty: "Easy", category: "Asian", aiPick: false, trending: true, image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80" },
-    { id: 5, title: "Truffle Mushroom Risotto", time: "40 min", kcal: "550 kcal", rating: 4.9, difficulty: "Hard", category: "Italian", aiPick: true, trending: false, image: "https://images.unsplash.com/photo-1633964913295-ceb43826e7cd?w=600&q=80" },
-    { id: 6, title: "Honey Garlic Butter Shrimp", time: "18 min", kcal: "390 kcal", rating: 4.7, difficulty: "Easy", category: "Seafood", aiPick: false, trending: true, image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" },
-    { id: 7, title: "Avocado Breakfast Toast Stack", time: "10 min", kcal: "310 kcal", rating: 4.6, difficulty: "Easy", category: "Breakfast", aiPick: true, trending: false, image: "https://images.unsplash.com/photo-1541519227354-08fa5d50c820?w=600&q=80" },
-    { id: 8, title: "Korean BBQ Beef Bulgogi Bowl", time: "35 min", kcal: "620 kcal", rating: 4.9, difficulty: "Medium", category: "Korean", aiPick: true, trending: true, image: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&q=80" },
-    { id: 9, title: "Mango Coconut Chia Pudding", time: "5 min", kcal: "220 kcal", rating: 4.5, difficulty: "Easy", category: "Dessert", aiPick: false, trending: false, image: "https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=600&q=80" },
-    { id: 10, title: "Smoked Brisket Street Tacos", time: "50 min", kcal: "740 kcal", rating: 4.8, difficulty: "Hard", category: "Mexican", aiPick: true, trending: true, image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" },
-    { id: 11, title: "Thai Green Curry & Jasmine Rice", time: "30 min", kcal: "580 kcal", rating: 4.7, difficulty: "Medium", category: "Thai", aiPick: false, trending: false, image: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&q=80" },
-    { id: 12, title: "Chocolate Lava Cake", time: "22 min", kcal: "490 kcal", rating: 4.9, difficulty: "Medium", category: "Dessert", aiPick: true, trending: true, image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" },
-    { id: 13, title: "Caprese Stuffed Avocado", time: "8 min", kcal: "280 kcal", rating: 4.6, difficulty: "Easy", category: "Healthy", aiPick: false, trending: false, image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" },
-    { id: 14, title: "Lamb Shawarma Flatbread", time: "45 min", kcal: "670 kcal", rating: 4.8, difficulty: "Hard", category: "Middle East", aiPick: true, trending: false, image: "https://images.unsplash.com/photo-1561043433-aaf687c4cf04?w=600&q=80" },
-    { id: 15, title: "Blueberry Lemon Pancake Stack", time: "20 min", kcal: "440 kcal", rating: 4.7, difficulty: "Easy", category: "Breakfast", aiPick: false, trending: true, image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" },
-    { id: 16, title: "Seared Duck Breast & Cherry Jus", time: "38 min", kcal: "590 kcal", rating: 4.9, difficulty: "Hard", category: "French", aiPick: true, trending: false, image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" },
-    { id: 17, title: "Poke Bowl with Sesame Tuna", time: "15 min", kcal: "430 kcal", rating: 4.7, difficulty: "Easy", category: "Hawaiian", aiPick: true, trending: true, image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" },
-    { id: 18, title: "Butter Chicken Masala", time: "40 min", kcal: "640 kcal", rating: 4.9, difficulty: "Medium", category: "Indian", aiPick: false, trending: true, image: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=600&q=80" },
-    { id: 19, title: "Acai Berry Smoothie Bowl", time: "7 min", kcal: "320 kcal", rating: 4.6, difficulty: "Easy", category: "Healthy", aiPick: true, trending: false, image: "https://images.unsplash.com/photo-1590301157284-bd0ca580bef7?w=600&q=80" },
-    { id: 20, title: "Wagyu Beef Fried Rice", time: "25 min", kcal: "710 kcal", rating: 4.9, difficulty: "Medium", category: "Japanese", aiPick: true, trending: true, image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&q=80" },
-    { id: 21, title: "Strawberry Shortcake Trifle", time: "15 min", kcal: "380 kcal", rating: 4.7, difficulty: "Easy", category: "Dessert", aiPick: false, trending: false, image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80" },
-    { id: 22, title: "Lobster Bisque with Croutons", time: "55 min", kcal: "560 kcal", rating: 4.8, difficulty: "Hard", category: "Seafood", aiPick: true, trending: false, image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" },
+// PopularRecipesSection image
+import GrilledSalmon from "../../assets/images/PopularRecipes/GrilledSalmon.jpg";
+import CreamyChickenPasta from "../../assets/images/PopularRecipes/CreamyChickenPasta.jpg";
+import QuinoaSaladBowl from "../../assets/images/PopularRecipes/QuinoaSaladBowl.jpg";
+import SpicyRamenNoodles from "../../assets/images/PopularRecipes/SpicyRamenNoodles.webp";
+import ChocolateAvocadoMousse from "../../assets/images/PopularRecipes/ChocolateAvocadoMousse.jpg";
+import MangoChiaPudding from "../../assets/images/PopularRecipes/MangoChiaPudding.jpg"
+
+const FOOD_RECIPES = [
+  { id: 1, title: "Grilled Salmon with Avocado Salsa", time: "25 min", calories: "520 kcal", isTrending: true, image: GrilledSalmon },
+  { id: 2, title: "Creamy Chicken Pasta", time: "30 min", calories: "610 kcal", isTrending: false, image: CreamyChickenPasta },
+  { id: 3, title: "Quinoa Salad Bowl", time: "20 min", calories: "420 kcal", isTrending: false, image: QuinoaSaladBowl },
+  { id: 4, title: "Spicy Ramen Noodles", time: "15 min", calories: "480 kcal", isTrending: false, image: SpicyRamenNoodles },
+  { id: 5, title: "Chocolate Avocado Mousse", time: "10 min", calories: "320 kcal", isTrending: false, image: ChocolateAvocadoMousse },
+  { id: 6, title: "Mango Chia Pudding", time: "8 min", calories: "250 kcal", isTrending: false, image: MangoChiaPudding }
 ];
 
-// ─── STYLES ───────────────────────────────────────────────────────────────────
-const CAROUSEL_CSS = `
-  @keyframes pr-pulse {
-    0%,100% { opacity:1; transform:scale(1); }
-    50%      { opacity:.72; transform:scale(.9); }
-  }
-  @keyframes pr-selected-pulse {
-    0%,100% { box-shadow:0 0 0 0 rgba(249,115,22,0); }
-    50%      { box-shadow:0 0 0 6px rgba(249,115,22,.3); }
-  }
-`;
+const INFINITE_SLIDES = [...FOOD_RECIPES, ...FOOD_RECIPES, ...FOOD_RECIPES];
 
-const DIFF_COLOR = {
-    Easy: { bg: "rgba(107,165,57,.2)", border: "rgba(107,165,57,.5)", text: "#6BA539" },
-    Medium: { bg: "rgba(249,115,22,.18)", border: "rgba(249,115,22,.45)", text: "#f97316" },
-    Hard: { bg: "rgba(239,68,68,.18)", border: "rgba(239,68,68,.45)", text: "#ef4444" },
+const PopularRecipesSection = () => {
+  const scrollContainerRef = useRef(null);
+  const autoScrollRef = useRef(null);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [wishlist, setWishlist] = useState([]);
+
+  const CARD_WIDTH_DESKTOP = 360; 
+  const CARD_WIDTH_MOBILE = 280;  
+  const GAP_SPACING = 16;
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const isMobile = window.innerWidth < 600;
+      const initialCardWidth = (isMobile ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP) + GAP_SPACING;
+      container.scrollLeft = initialCardWidth * FOOD_RECIPES.length;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isInteracting) {
+      autoScrollRef.current = setInterval(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollLeft += 1;
+        }
+      }, 25);
+    }
+    return () => {
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current);
+    };
+  }, [isInteracting]);
+
+  const handleScrollResetLoop = () => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const isMobile = container.clientWidth < 600;
+    const currentCardWidth = (isMobile ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP) + GAP_SPACING;
+    const sequenceTotalWidth = currentCardWidth * FOOD_RECIPES.length;
+
+    if (container.scrollLeft >= sequenceTotalWidth * 2) {
+      container.scrollLeft -= sequenceTotalWidth;
+    } else if (container.scrollLeft <= 0) {
+      container.scrollLeft += sequenceTotalWidth;
+    }
+  };
+
+  const handleArrowNavigation = (direction) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    setIsInteracting(true);
+    const isMobile = container.clientWidth < 600;
+    const currentCardWidth = (isMobile ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP) + GAP_SPACING;
+    const shiftDistance = direction === 'left' ? -currentCardWidth : currentCardWidth;
+
+    container.scrollTo({
+      left: container.scrollLeft + shiftDistance,
+      behavior: 'smooth'
+    });
+
+    setTimeout(() => {
+      setIsInteracting(false);
+    }, 750);
+  };
+
+  const toggleWishlist = (id) => {
+    setWishlist((prev) => 
+      prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
+    );
+  };
+
+  return (
+    <Box sx={{ 
+      width: '100%', 
+      py: 4, 
+      px: { xs: 2, sm: 4, md: 6 }, 
+      bgcolor: '#FAF9F6',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      
+      {/* Header Container Area */}
+      <Box sx={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        mb: 3,
+        maxWidth: 1400,
+        mx: 'auto'
+      }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Box component="span" sx={{ color: '#FF4F24', fontSize: '1.4rem' }}>✦</Box>
+          <Typography variant="h5" sx={{ fontWeight: 700, fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#1A1A1A', fontSize: { xs: '1.25rem', sm: '1.5rem' } }}>
+            Popular Recipes
+          </Typography>
+        </Box>
+        
+        {/* Navigation Control Buttons Placed in Header Box for All Viewports */}
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+          <IconButton 
+            onClick={() => handleArrowNavigation('left')}
+            sx={{
+              bgcolor: '#FFFFFF', color: '#1A1A1A', 
+              boxShadow: '0px 4px 12px rgba(0,0,0,0.08)',
+              transition: 'all 0.2s ease', borderRadius: '50%', p: { xs: 0.8, sm: 1.2 },
+              '&:hover': { bgcolor: '#FF4F24', color: '#FFFFFF' }
+            }}
+          >
+            <ArrowLeftIcon fontSize="small" />
+          </IconButton>
+
+          <IconButton 
+            onClick={() => handleArrowNavigation('right')}
+            sx={{
+              bgcolor: '#FFFFFF', color: '#1A1A1A', 
+              boxShadow: '0px 4px 12px rgba(0,0,0,0.08)',
+              transition: 'all 0.2s ease', borderRadius: '50%', p: { xs: 0.8, sm: 1.2 },
+              '&:hover': { bgcolor: '#FF4F24', color: '#FFFFFF' }
+            }}
+          >
+            <ArrowRightIcon fontSize="small" />
+          </IconButton>
+        </Box>
+      </Box>
+
+      {/* Interactive Deck Area */}
+      <Box sx={{ position: 'relative', maxWidth: 1400, mx: 'auto' }}>
+        
+        {/* Horizontal Scroll Track */}
+        <Box
+          ref={scrollContainerRef}
+          onScroll={handleScrollResetLoop}
+          onMouseEnter={() => setIsInteracting(true)}
+          onMouseLeave={() => setIsInteracting(false)}
+          onTouchStart={() => setIsInteracting(true)}
+          onTouchEnd={() => setIsInteracting(false)}
+          sx={{
+            display: 'flex',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            scrollbarWidth: 'none', 
+            '&::-webkit-scrollbar': { display: 'none' }, 
+            gap: `${GAP_SPACING}px`,
+            py: 2,
+            px: { xs: 0.5, sm: 0 },
+            scrollBehavior: 'auto',
+            cursor: 'grab',
+            '&:active': { cursor: 'grabbing' }
+          }}
+        >
+          {INFINITE_SLIDES.map((recipe, index) => {
+            const isFavorite = wishlist.includes(recipe.id);
+            return (
+              <Card
+                key={`${recipe.id}-${index}`}
+                sx={{
+                  borderRadius: '24px',
+                  boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.04)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  backgroundColor: '#FFFFFF',
+                  transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                  width: { xs: `${CARD_WIDTH_MOBILE}px`, sm: `${CARD_WIDTH_DESKTOP}px` },
+                  minWidth: { xs: `${CARD_WIDTH_MOBILE}px`, sm: `${CARD_WIDTH_DESKTOP}px` },
+                  maxWidth: { xs: `${CARD_WIDTH_MOBILE}px`, sm: `${CARD_WIDTH_DESKTOP}px` },
+                  height: '240px',
+                  '&:hover': {
+                    transform: 'translateY(-6px)'
+                  }
+                }}
+              >
+                <Box sx={{ position: 'relative', height: '100%', width: '100%', overflow: 'hidden' }}>
+                  <CardMedia
+                    component="img"
+                    image={recipe.image}
+                    alt={recipe.title}
+                    sx={{ height: '100%', width: '100%', objectFit: 'cover' }}
+                  />
+
+                  {/* Dark Gradient Veil Mask Overlay */}
+                  <Box 
+                    sx={{
+                      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+                      background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.85) 100%)',
+                      zIndex: 1
+                    }}
+                  />
+
+                  {/* Trending Label Badge Overlay */}
+                  {recipe.isTrending && (
+                    <Chip
+                      icon={<CalorieIcon sx={{ fill: '#FFFFFF !important', fontSize: '12px' }} />}
+                      label="Trending"
+                      sx={{
+                        position: 'absolute', top: 14, left: 14, zIndex: 2,
+                        bgcolor: '#FF4F24', color: '#FFFFFF', fontWeight: 700, fontSize: '10px',
+                        textTransform: 'uppercase', height: '22px', borderRadius: '6px',
+                        '& .MuiChip-label': { px: 1 }, '& .MuiChip-icon': { ml: '4px', mr: '-4px' }
+                      }}
+                    />
+                  )}
+
+                  {/* Wishlist Heart Button Overlay */}
+                  <IconButton
+                    onClick={(e) => {
+                      e.stopPropagation(); 
+                      toggleWishlist(recipe.id);
+                    }}
+                    sx={{
+                      position: 'absolute', top: 14, right: 14, zIndex: 5,
+                      bgcolor: isFavorite ? '#FFFFFF' : 'rgba(255,255,255,0.2)', 
+                      backdropFilter: isFavorite ? 'none' : 'blur(8px)',
+                      color: isFavorite ? '#FF4F24' : '#FFFFFF', 
+                      p: '8px', borderRadius: '50%',
+                      transition: 'all 0.2s ease',
+                      boxShadow: isFavorite ? '0px 4px 10px rgba(255, 79, 36, 0.3)' : 'none',
+                      '&:hover': { bgcolor: '#FFFFFF', color: '#FF4F24' }
+                    }}
+                  >
+                    {isFavorite ? <HeartIconFilled sx={{ fontSize: '18px' }} /> : <HeartIconOutline sx={{ fontSize: '18px' }} />}
+                  </IconButton>
+
+                  {/* Content Block */}
+                  <CardContent sx={{ 
+                    position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 2,
+                    p: '16px !important', display: 'flex', flexDirection: 'column', gap: 1
+                  }}>
+                    <Typography 
+                      variant="subtitle1" 
+                      sx={{ 
+                        fontWeight: 700, lineHeight: 1.2, 
+                        fontFamily: 'Plus Jakarta Sans, sans-serif', color: '#FFFFFF',
+                        textShadow: '0px 1px 2px rgba(0,0,0,0.5)', overflow: 'hidden',
+                        display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical'
+                      }}
+                    >
+                      {recipe.title}
+                    </Typography>
+
+                    {/* Horizontal Metadata String Alignments */}
+                    <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
+                      <Typography variant="caption" sx={{ fontWeight: 500, fontSize: '11px', color: 'rgba(255,255,255,0.85)' }}>{recipe.time}</Typography>
+                      <Box sx={{ width: '3px', height: '3px', bgcolor: 'rgba(255,255,255,0.5)', borderRadius: '50%' }} />
+                      <Typography variant="caption" sx={{ fontWeight: 500, fontSize: '11px', color: 'rgba(255,255,255,0.85)' }}>{recipe.calories}</Typography>
+                    </Box>
+                  </CardContent>
+                </Box>
+              </Card>
+            );
+          })}
+        </Box>
+
+      </Box>
+    </Box>
+  );
 };
 
-// ─── RECIPE CARD ──────────────────────────────────────────────────────────────
-const RecipeCarouselCard = React.memo(function RecipeCarouselCard({ recipe, isFav, onToggleFav, isSelected, onSelect }) {
-    const [hovered, setHovered] = useState(false);
-    const diff = DIFF_COLOR[recipe.difficulty] || DIFF_COLOR.Easy;
-    const active = isSelected || hovered;
-
-    const stars = useMemo(() => {
-        const full = Math.floor(recipe.rating);
-        const half = recipe.rating % 1 >= 0.5;
-        return Array.from({ length: 5 }, (_, i) =>
-            i < full ? "\u2605" : (i === full && half ? "\u00bd" : "\u2606")
-        ).join("");
-    }, [recipe.rating]);
-
-    return (
-        <Box
-            onClick={() => onSelect(recipe.id)}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            onTouchStart={() => setHovered(true)}
-            onTouchEnd={() => setHovered(false)}
-            role="article"
-            aria-label={recipe.title}
-            aria-pressed={isSelected}
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && onSelect(recipe.id)}
-            sx={{
-                position: "relative",
-                width: { xs: "220px", sm: "240px", md: "260px", lg: "280px" },
-                height: { xs: "320px", sm: "340px", md: "360px" },
-                flexShrink: 0,
-                borderRadius: "28px",
-                overflow: "hidden",
-                cursor: "pointer",
-                border: isSelected ? "2px solid #f97316" : hovered ? "1.5px solid rgba(249,115,22,.5)" : "1.5px solid rgba(255,255,255,.12)",
-                boxShadow: isSelected ? "0 0 0 3px rgba(249,115,22,.25), 0 24px 60px rgba(0,0,0,.6)" : hovered ? "0 24px 60px rgba(0,0,0,.5)" : "0 8px 32px rgba(0,0,0,.35)",
-                transform: active ? "translateY(-12px)" : "translateY(0)",
-                transition: "transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease, border-color .35s ease",
-                willChange: "transform",
-                outline: "none",
-                animation: isSelected ? "pr-selected-pulse 1.8s ease-in-out infinite" : "none",
-                "&:focus-visible": { outline: "2px solid #f97316", outlineOffset: "3px" },
-            }}
-        >
-            {/* Image */}
-            <Box component="img" src={recipe.image} alt={recipe.title} loading="lazy"
-                sx={{
-                    position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover",
-                    transform: active ? "scale(1.08)" : "scale(1)",
-                    transition: "transform .55s cubic-bezier(.25,.46,.45,.94)",
-                    willChange: "transform",
-                }}
-            />
-
-            {/* Gradient overlay */}
-            <Box sx={{
-                position: "absolute", inset: 0,
-                background: isSelected
-                    ? "linear-gradient(170deg,rgba(249,115,22,.22) 0%,rgba(18,20,19,.93) 100%)"
-                    : hovered
-                        ? "linear-gradient(170deg,rgba(0,0,0,.18) 0%,rgba(18,20,19,.92) 100%)"
-                        : "linear-gradient(170deg,rgba(0,0,0,.06) 0%,rgba(18,20,19,.82) 100%)",
-                transition: "background .4s ease",
-                pointerEvents: "none",
-            }} />
-
-            {/* Orange top strip when selected */}
-            {isSelected && (
-                <Box sx={{ position: "absolute", top: 0, left: 0, right: 0, height: "4px", background: "linear-gradient(90deg,#f97316,#fb923c,#f97316)" }} />
-            )}
-
-            {/* Badges */}
-            <Box sx={{ position: "absolute", top: isSelected ? 18 : 14, left: 14, right: 52, display: "flex", gap: "6px", flexWrap: "wrap", transition: "top .3s ease" }}>
-                {recipe.trending && (
-                    <Box sx={{ display: "flex", alignItems: "center", gap: "4px", px: "9px", py: "4px", borderRadius: "20px", background: "linear-gradient(135deg,#f97316,#fb923c)", boxShadow: "0 2px 10px rgba(249,115,22,.5)", animation: "pr-pulse 2s ease-in-out infinite" }}>
-                        <Box component="span" sx={{ fontSize: "10px", lineHeight: 1 }}>&#128293;</Box>
-                        <Typography sx={{ fontSize: "10px", fontWeight: 700, color: "#fff", letterSpacing: ".4px" }}>Trending</Typography>
-                    </Box>
-                )}
-                {recipe.aiPick && (
-                    <Box sx={{ display: "flex", alignItems: "center", gap: "4px", px: "9px", py: "4px", borderRadius: "20px", background: "linear-gradient(135deg,#6BA539,#3a7d44)", boxShadow: "0 2px 10px rgba(107,165,57,.45)" }}>
-                        <Sparkles size={9} color="#fff" />
-                        <Typography sx={{ fontSize: "10px", fontWeight: 700, color: "#fff", letterSpacing: ".4px" }}>AI Pick</Typography>
-                    </Box>
-                )}
-            </Box>
-
-            {/* Favourite button */}
-            <IconButton
-                aria-label={isFav ? "Remove from favourites" : "Add to favourites"}
-                onClick={(e) => { e.stopPropagation(); onToggleFav(recipe.id); }}
-                sx={{
-                    position: "absolute", top: 12, right: 12, width: 38, height: 38,
-                    bgcolor: isFav ? "#f97316" : "rgba(255,255,255,.15)",
-                    backdropFilter: "blur(10px)",
-                    border: "1.5px solid rgba(255,255,255,.25)",
-                    transition: "all .3s cubic-bezier(.34,1.56,.64,1)",
-                    transform: active ? "rotate(8deg) scale(1.1)" : "rotate(0) scale(1)",
-                    "&:hover": { bgcolor: isFav ? "#fb923c" : "rgba(255,255,255,.3)" },
-                    "&:active": { transform: "scale(.92)" },
-                }}
-            >
-                <Heart size={16} fill={isFav ? "#fff" : "none"} color="#fff" />
-            </IconButton>
-
-            {/* Bottom info */}
-            <Box sx={{
-                position: "absolute", bottom: 0, left: 0, right: 0, p: "18px 16px 16px",
-                background: isSelected ? "linear-gradient(to top,rgba(18,20,19,.95) 0%,transparent 100%)" : "linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 100%)",
-                transition: "background .4s ease",
-            }}>
-                <Box sx={{ display: "flex", gap: "6px", mb: "8px", flexWrap: "wrap" }}>
-                    <Box sx={{ px: "8px", py: "3px", borderRadius: "10px", bgcolor: "rgba(255,255,255,.12)", border: "1px solid rgba(255,255,255,.2)", backdropFilter: "blur(6px)" }}>
-                        <Typography sx={{ fontSize: "9px", fontWeight: 600, color: "rgba(255,255,255,.85)", letterSpacing: ".3px" }}>{recipe.category}</Typography>
-                    </Box>
-                    <Box sx={{ px: "8px", py: "3px", borderRadius: "10px", bgcolor: diff.bg, border: "1px solid " + diff.border }}>
-                        <Typography sx={{ fontSize: "9px", fontWeight: 700, color: diff.text, letterSpacing: ".3px" }}>{recipe.difficulty}</Typography>
-                    </Box>
-                </Box>
-                <Typography sx={{ fontWeight: 700, fontSize: { xs: "13px", sm: "14px" }, lineHeight: 1.35, color: "#fff", mb: "10px", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", textShadow: "0 1px 6px rgba(0,0,0,.6)" }}>
-                    {recipe.title}
-                </Typography>
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <Box sx={{ display: "flex", gap: "12px" }}>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                            <Clock size={11} color="rgba(255,255,255,.7)" />
-                            <Typography sx={{ fontSize: "11px", color: "rgba(255,255,255,.8)", fontWeight: 500 }}>{recipe.time}</Typography>
-                        </Box>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                            <Scale size={11} color="rgba(255,255,255,.7)" />
-                            <Typography sx={{ fontSize: "11px", color: "rgba(255,255,255,.8)", fontWeight: 500 }}>{recipe.kcal}</Typography>
-                        </Box>
-                    </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: "3px" }}>
-                        <Typography sx={{ fontSize: "11px", color: "#facc15", letterSpacing: "-1px", lineHeight: 1 }}>{stars}</Typography>
-                        <Typography sx={{ fontSize: "11px", color: "rgba(255,255,255,.85)", fontWeight: 600, ml: "2px" }}>{recipe.rating}</Typography>
-                    </Box>
-                </Box>
-            </Box>
-        </Box>
-    );
-});
-
-// ─── MAIN SECTION ─────────────────────────────────────────────────────────────
-export default function PopularRecipesSection() {
-    const trackRef = useRef(null);
-    const animRef = useRef(null);
-    const posRef = useRef(0);
-    const speedPx = 0.55;
-
-    const [favs, setFavs] = useState({});
-    const [selected, setSelected] = useState(null);
-
-    const doubled = useMemo(() => [...POPULAR_RECIPES, ...POPULAR_RECIPES], []);
-
-    const toggleFav = useCallback((id) => setFavs((p) => ({ ...p, [id]: !p[id] })), []);
-    const handleSelect = useCallback((id) => setSelected((prev) => (prev === id ? null : id)), []);
-
-    const cardWidthPx = useCallback(() => {
-        const track = trackRef.current;
-        if (!track) return 300;
-        const card = track.firstElementChild;
-        if (!card) return 300;
-        const gap = parseInt(getComputedStyle(track).gap) || 20;
-        return card.offsetWidth + gap;
-    }, []);
-
-    useEffect(() => {
-        const track = trackRef.current;
-        if (!track) return;
-        let halfWidth = track.scrollWidth / 2;
-        const measure = () => { halfWidth = track.scrollWidth / 2; };
-        window.addEventListener("resize", measure);
-        const tick = () => {
-            posRef.current += speedPx;
-            if (posRef.current >= halfWidth) posRef.current -= halfWidth;
-            track.style.transform = "translate3d(-" + posRef.current + "px,0,0)";
-            animRef.current = requestAnimationFrame(tick);
-        };
-        animRef.current = requestAnimationFrame(tick);
-        return () => {
-            cancelAnimationFrame(animRef.current);
-            window.removeEventListener("resize", measure);
-        };
-    }, []);
-
-    const scrollLeft = useCallback(() => { posRef.current = Math.max(0, posRef.current - cardWidthPx()); }, [cardWidthPx]);
-    const scrollRight = useCallback(() => { posRef.current += cardWidthPx(); }, [cardWidthPx]);
-
-    const ArrowBtn = ({ onClick, label, flip }) => (
-        <Box component="button" onClick={onClick} aria-label={label}
-            sx={{
-                width: { xs: 40, md: 48 }, height: { xs: 40, md: 48 },
-                borderRadius: "50%",
-                border: "1.5px solid rgba(249,115,22,.45)",
-                bgcolor: "rgba(249,115,22,.12)",
-                backdropFilter: "blur(12px)",
-                color: "#f97316",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer", fontFamily: "inherit", flexShrink: 0,
-                transition: "all .25s ease",
-                "&:hover": { bgcolor: "#f97316", color: "#fff", border: "1.5px solid #f97316", boxShadow: "0 4px 20px rgba(249,115,22,.45)", transform: "scale(1.08)" },
-                "&:active": { transform: "scale(.94)" },
-            }}
-        >
-            <ChevronRight size={20} style={{ transform: flip ? "rotate(180deg)" : "none" }} />
-        </Box>
-    );
-
-    return (
-        <>
-            <style>{CAROUSEL_CSS}</style>
-            <Box component="section" aria-label="Popular Recipes"
-                sx={{
-                    mt: { xs: 6, md: 10 }, pb: { xs: 6, md: 10 },
-                    background: "linear-gradient(160deg,#121413 0%,#0F172A 55%,#121413 100%)",
-                    position: "relative", overflow: "hidden",
-                }}
-            >
-                {/* Ambient orbs */}
-                <Box sx={{ position: "absolute", top: "-100px", left: "8%", width: "380px", height: "380px", borderRadius: "50%", background: "radial-gradient(circle,rgba(249,115,22,.12) 0%,transparent 70%)", pointerEvents: "none" }} />
-                <Box sx={{ position: "absolute", bottom: "-60px", right: "6%", width: "300px", height: "300px", borderRadius: "50%", background: "radial-gradient(circle,rgba(107,165,57,.1) 0%,transparent 70%)", pointerEvents: "none" }} />
-
-                {/* Header */}
-                <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 4, lg: 8 } }}>
-                    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: { xs: 4, md: 5 }, gap: 2 }}>
-                        <Box>
-                            <Box sx={{ display: "flex", alignItems: "center", gap: "10px", mb: "6px" }}>
-                                <Box sx={{ width: 36, height: 36, borderRadius: "10px", background: "linear-gradient(135deg,#f97316,#fb923c)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 16px rgba(249,115,22,.4)" }}>
-                                    <Sparkles size={18} color="#fff" />
-                                </Box>
-                                <Typography sx={{ fontSize: { xs: "20px", sm: "26px", md: "32px" }, fontWeight: 800, color: "#fff", letterSpacing: "-0.5px", lineHeight: 1 }}>
-                                    Popular Recipes
-                                </Typography>
-                            </Box>
-                            <Typography sx={{ fontSize: { xs: "12px", sm: "14px" }, color: "rgba(255,255,255,.5)", pl: "46px" }}>
-                                Discover AI-curated recipes loved by thousands of food enthusiasts.
-                            </Typography>
-                        </Box>
-                        <Box sx={{ display: "flex", gap: "10px", flexShrink: 0 }}>
-                            <ArrowBtn onClick={scrollLeft} label="Scroll left" flip={true} />
-                            <ArrowBtn onClick={scrollRight} label="Scroll right" flip={false} />
-                        </Box>
-                    </Box>
-                </Container>
-
-                {/* Carousel */}
-                <Box sx={{ width: "100%", overflow: "hidden", maskImage: "linear-gradient(to right,transparent 0%,black 80px,black calc(100% - 80px),transparent 100%)", WebkitMaskImage: "linear-gradient(to right,transparent 0%,black 80px,black calc(100% - 80px),transparent 100%)" }}>
-                    <Box ref={trackRef} sx={{ display: "flex", gap: { xs: "14px", sm: "16px", md: "20px" }, width: "max-content", willChange: "transform", py: "20px", px: "24px" }}>
-                        {doubled.map((recipe, idx) => (
-                            <RecipeCarouselCard
-                                key={recipe.id + "-" + idx}
-                                recipe={recipe}
-                                isFav={!!favs[recipe.id]}
-                                onToggleFav={toggleFav}
-                                isSelected={selected === recipe.id}
-                                onSelect={handleSelect}
-                            />
-                        ))}
-                    </Box>
-                </Box>
-
-                {/* Mobile dots */}
-                <Box sx={{ display: { xs: "flex", md: "none" }, justifyContent: "center", gap: "6px", mt: 3 }}>
-                    {[0, 1, 2].map((i) => (
-                        <Box key={i} sx={{ width: i === 1 ? "20px" : "6px", height: "6px", borderRadius: "3px", bgcolor: i === 1 ? "#f97316" : "rgba(255,255,255,.25)", transition: "width .3s ease" }} />
-                    ))}
-                </Box>
-            </Box>
-        </>
-    );
-}
+export default PopularRecipesSection;

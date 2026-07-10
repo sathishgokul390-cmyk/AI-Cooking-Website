@@ -626,7 +626,7 @@ export default function RecipeDetailsPage() {
                                     key={r.title + i}
                                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
                                     whileHover={{ y: -6, scale: 1.02 }}
-                                    onClick={() => navigate("/recipe/detail", { state: { recipe: r } })}
+                                    onClick={() => { window.scrollTo(0, 0); navigate("/recipeDetails", { state: { recipe: r } }); }}
                                     className="rounded-2xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 overflow-hidden cursor-pointer hover:border-amber-500/40 hover:shadow-lg hover:shadow-amber-500/10 transition-all group shadow-sm"
                                 >
                                     <div className="relative overflow-hidden h-32 sm:h-40">

@@ -2284,7 +2284,7 @@ export default function Hero() {
 
 
       {/* ─── SECTION 4: POPULAR RECIPES — PREMIUM CAROUSEL ─────────────────── */}
-      {/* <PopularRecipesSection /> */}
+      <PopularRecipesSection />
 
     </Box>
   );

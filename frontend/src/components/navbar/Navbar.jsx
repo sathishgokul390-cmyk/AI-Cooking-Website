@@ -12,6 +12,7 @@ const navLinks = [
   { label: "My Ingredients", to: "/myIngredients" },
   { label: "Recipes", to: "/recipe" },
   { label: "AI Chef", to: "/ai" },
+  { label: "Healthy Recipe", to: "/healthyRecipe " }, 
   { label: "Favorites", to: "/favorites" },
   { label: "Meal Planner", to: "/mealplanner" },
 ];
