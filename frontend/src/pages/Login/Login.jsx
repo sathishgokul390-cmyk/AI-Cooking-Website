@@ -23,12 +23,14 @@ export default function Login() {
       return;
     }
     setLoading(true);
-    // Simulated login — replace with real API call
-    setTimeout(() => {
-      login({ name: "User", email: form.email });
+    try {
+      await login(form.email, form.password);
       setLoading(false);
-      navigate("/dashboard");
-    }, 900);
+      navigate('/dashboard');
+    } catch (err) {
+      setLoading(false);
+      setError(err.message || 'Login failed');
+    }
   };
 
   return (

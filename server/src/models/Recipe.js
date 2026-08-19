@@ -1,45 +1,15 @@
 const mongoose = require('mongoose');
 
-const recipeSchema = new mongoose.Schema(
+const RecipeSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
-    description: String,
-    ingredients: [
-      {
-        name: String,
-        quantity: String,
-        unit: String,
-      },
-    ],
-    instructions: [String],
-    cookingTime: Number,
-    servings: Number,
-    difficulty: {
-      type: String,
-      enum: ['Easy', 'Medium', 'Hard'],
-    },
-    cuisine: String,
-    mealType: {
-      type: String,
-      enum: ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dessert'],
-    },
-    nutrition: {
-      calories: Number,
-      protein: Number,
-      fat: Number,
-      carbs: Number,
-    },
-    image: String,
-    rating: {
-      type: Number,
-      default: 0,
-    },
-    reviews: Number,
+    title: { type: String, required: true },
+    ingredients: [{ type: String }],
+    steps: [{ type: String }],
+    category: { type: String },
+    trending: { type: Boolean, default: false },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Recipe', recipeSchema);
+module.exports = mongoose.model('Recipe', RecipeSchema);

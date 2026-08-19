@@ -15,6 +15,13 @@ export const api = {
       ...options.headers,
     };
 
+    // If body is FormData, let browser set Content-Type (including boundary)
+    const body = options.body;
+    const isFormData = typeof FormData !== 'undefined' && body instanceof FormData;
+    if (isFormData) {
+      delete headers['Content-Type'];
+    }
+
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }

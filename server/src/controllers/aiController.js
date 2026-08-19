@@ -1,49 +1,38 @@
-const { generateRecipeFromIngredients } = require('../services/openaiService');
-const { getRecommendations } = require('../services/recommendationService');
-const { getNutritionInfo } = require('../services/nutritionService');
-
 exports.generateRecipe = async (req, res) => {
-  try {
-    const { ingredients } = req.body;
+  const params = req.body || {};
+  const recipe = {
+    id: `${Date.now()}`,
+    title: params.title || 'AI Generated Dish',
+    ingredients: params.ingredients || ['1 cup water', '1 tsp salt'],
+    steps: ['Mix ingredients', 'Cook for 10 minutes'],
+  };
+  res.json({ recipe });
+};
 
-    if (!ingredients || !Array.isArray(ingredients)) {
-      return res.status(400).json({ message: 'Invalid ingredients' });
-    }
-
-    const recipe = await generateRecipeFromIngredients(ingredients);
-    res.json(recipe);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+exports.scanIngredients = async (req, res) => {
+  // In a real implementation we'd parse the image; here we return a stub
+  res.json({ ingredients: ['tomato', 'onion', 'garlic'] });
 };
 
 exports.getRecommendations = async (req, res) => {
-  try {
-    const userId = req.user.userId;
-    const { preferences } = req.body;
-
-    const recommendations = await getRecommendations(userId, preferences);
-    res.json(recommendations);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+  const { ingredients = [] } = req.body || {};
+  // Return simple mock recommendations
+  res.json({ recommendations: [{ id: 'rec1', title: 'Tomato Pasta', match: 0.9 }] });
 };
 
-exports.analyzeImage = async (req, res) => {
-  try {
-    // Placeholder for image recognition (TensorFlow, AWS Rekognition, etc.)
-    res.json({ message: 'Image analysis placeholder' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+exports.getSuggestions = async (req, res) => {
+  res.json({ suggestions: ['Try adding basil', 'Use fresh garlic'] });
 };
 
-exports.getNutrition = async (req, res) => {
-  try {
-    const { ingredients } = req.body;
-    const nutrition = await getNutritionInfo(ingredients);
-    res.json(nutrition);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+exports.analyzeNutrition = async (req, res) => {
+  res.json({ calories: 250, protein: 8, fat: 10 });
+};
+
+exports.getCookingTips = async (req, res) => {
+  res.json({ tips: ['Preheat pan', 'Let it rest for 5 minutes'] });
+};
+
+exports.getSubstitutes = async (req, res) => {
+  const ingredient = req.query.ingredient || '';
+  res.json({ substitutes: [`${ingredient} substitute 1`, `${ingredient} substitute 2`] });
 };

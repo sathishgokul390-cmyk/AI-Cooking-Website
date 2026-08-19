@@ -4,7 +4,7 @@ import { Eye, EyeOff, UserPlus } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 
 export default function Register() {
-  const { login } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -15,7 +15,7 @@ export default function Register() {
   const handleChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     if (!form.name || !form.email || !form.password) {
@@ -27,12 +27,14 @@ export default function Register() {
       return;
     }
     setLoading(true);
-    // Simulated register — replace with real API call
-    setTimeout(() => {
-      login({ name: form.name, email: form.email });
+    try {
+      await register(form.email, form.password, form.name);
       setLoading(false);
-      navigate("/dashboard");
-    }, 900);
+      navigate('/dashboard');
+    } catch (err) {
+      setLoading(false);
+      setError(err.message || 'Registration failed');
+    }
   };
 
   return (
